@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { ReactNode } from 'react';
 
+const siteSettings = require('../../json/siteSettings.json');
+
 const Main = styled.main``;
 
 type Props = {
@@ -10,9 +12,18 @@ type Props = {
 };
 
 const Layout = (props: Props) => {
+	const { children } = props;
+
 	const {
-		children
-	} = props;
+		postCode,
+		linkedInUrl,
+		addressUrl,
+		newBusinessEmail,
+		streetAddress,
+		instagramUrl,
+		careersEmail,
+		generalEnquiriesEmail
+	} = siteSettings;
 
 	return (
 		<>

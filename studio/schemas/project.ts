@@ -27,6 +27,11 @@ export default {
 			validation: (Rule: any) => Rule.required()
 		},
 		{
+			title: 'SEO Description',
+			name: 'seoDescription',
+			type: 'string',
+		},
+		{
 			title: 'Client',
 			name: 'client',
 			type: 'string',

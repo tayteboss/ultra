@@ -85,21 +85,7 @@ export default {
 			name: "clientList",
 			type: "array",
 			of: [
-				{
-					type: "object",
-					fields: [
-						{
-							title: "Title",
-							name: "title",
-							type: "string"
-						},
-						{
-							title: "Url",
-							name: "url",
-							type: "url"
-						}
-					]
-				}
+				{ type: 'client' },
 			]
 		},
 		{

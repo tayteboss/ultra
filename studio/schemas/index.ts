@@ -1,4 +1,5 @@
 import aboutPage from './aboutPage';
+import client from './client';
 import contactPage from './contactPage';
 import homePage from './homePage';
 import offBriefPage from './offBriefPage';
@@ -22,4 +23,5 @@ export const schemaTypes = [
 	projectRichText,
 	projectTwoColumnMedia,
 	projectTwoColumnContent,
+	client
 ];

@@ -34,7 +34,14 @@ const getSiteData = async () => {
 	const query = `
 		query {
 			allSiteSettings {
-				
+				postCode,
+				linkedInUrl,
+				addressUrl,
+				newBusinessEmail,
+				streetAddress,
+				instagramUrl,
+				careersEmail,
+				generalEnquiriesEmail,
 			}
 		}
 	`;

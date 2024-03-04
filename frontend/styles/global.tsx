@@ -6,9 +6,9 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-system-white-50: ${theme.colours.systemWhite.grey50};
-		--colour-system-black-50: ${theme.colours.systemBlack.grey50};
-		--font-default: ${theme.fonts.default};
+		--colour-orange: ${theme.colours.orange};
+		--colour-off-white: ${theme.colours.offWhite};
+		--font-default: ${theme.fonts.HaasGrotDisp};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
 		--transition-speed-extra-fast: ${theme.transitionSpeed.extraFast};
@@ -32,13 +32,12 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	::selection {
-		background-color: black;
-		color: white;
+		background-color: var(--colour-black);
+		color: var(--colour-orange);
 	}
 
 	html {
 		scroll-behavior: smooth;
-		background: var(--colour-white);
 		font-size: 16px;
 
 		&.no-scroll {
@@ -61,7 +60,6 @@ export const GlobalStyles = createGlobalStyle`
 	label,
 	body {
 		font-family: var(--font-default);
-		color: var(--colour-black);
 		line-height: normal;
 	}
 
@@ -76,7 +74,6 @@ export const GlobalStyles = createGlobalStyle`
 
 	a {
 		text-decoration: underline;
-		color: var(--colour-black);
 	}
 
 	button {
@@ -85,66 +82,57 @@ export const GlobalStyles = createGlobalStyle`
 
 	h1,
 	.type-h1 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-size: ${pxToRem(90)};
+		line-height: ${pxToRem(85)};
 
-		@media ${theme.mediaBreakpoints.tabletPortrait} {
+		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
 			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
-		}
+		} */
 	}
 
 	h2,
 	.type-h2 {
 		font-size: ${pxToRem(48)};
-		line-height: normal;
+		line-height: 1.1;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait} {
+		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
 			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
-		}
+		} */
 	}
 
 	h3,
 	.type-h3 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-size: ${pxToRem(36)};
+		line-height: 1;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait} {
+		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
 			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
-		}
+		} */
 	}
 
 	h4,
 	.type-h4 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-size: ${pxToRem(28)};
+		line-height: 1.3;
 
-		@media ${theme.mediaBreakpoints.tabletPortrait} {
+		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
 			line-height: normal;
-		}
+		} */
+	}
 
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
+	h5,
+	.type-h5 {
+		font-size: ${pxToRem(25)};
+		line-height: 1.3;
+
+		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(38)};
 			line-height: normal;
-		}
+		} */
 	}
 
 	p,
@@ -152,8 +140,13 @@ export const GlobalStyles = createGlobalStyle`
 	a,
 	button,
 	div {
-		font-size: ${pxToRem(16)};
+		font-size: ${pxToRem(18)};
 		line-height: normal;
+	}
+
+	.type-d1 {
+		font-size: ${pxToRem(120)};
+		line-height: ${pxToRem(112)};
 	}
 
 	mux-player {
@@ -244,8 +237,7 @@ export const GlobalStyles = createGlobalStyle`
 	input,
 	textarea,
 	select {
-		padding: 0.125rem 0;
-		font-size: ${pxToRem(16)};
+		font-size: ${pxToRem(18)};
 		width: 100%;
 		appearance: none;
 	}
