@@ -4,6 +4,8 @@ import { ContactPageType, TransitionsType } from '../shared/types/types';
 import { motion } from 'framer-motion';
 import client from '../client';
 import { contactPageQueryString } from '../lib/sanityQueries';
+import HeroTitle from '../components/blocks/HeroTitle';
+import ContactList from '../components/ContactList';
 
 const PageWrapper = styled(motion.div)``;
 
@@ -28,6 +30,8 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
+			<HeroTitle />
+			<ContactList />
 		</PageWrapper>
 	);
 };

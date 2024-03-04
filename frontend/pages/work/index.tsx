@@ -7,6 +7,8 @@ import {
 	projectQueryString,
 	workPageQueryString
 } from '../../lib/sanityQueries';
+import ProjectsList from '../../components/blocks/ProjectsList';
+import LoadMore from '../../components/blocks/LoadMore';
 
 const PageWrapper = styled(motion.div)`
 	background: var(--colour-white);
@@ -33,6 +35,8 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
+			<ProjectsList />
+			<LoadMore />
 		</PageWrapper>
 	);
 };
