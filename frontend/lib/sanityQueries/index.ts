@@ -41,6 +41,9 @@ export const contactPageQueryString = `
 export const offBriefPageQueryString = `
 	*[_type == 'offBriefPage'][0] {
 		...,
+		"gallery": gallery[] {
+			"asset": asset->url,
+		}
 	}
 `;
 

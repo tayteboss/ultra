@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import { useRef, useEffect, useState } from 'react';
 import useNoScroll from '../../../hooks/useNoScroll';
+import Link from 'next/link';
 
 const HeaderWrapper = styled.header`
 	position: fixed;
@@ -80,7 +81,9 @@ const Header = () => {
 		>
 			<LayoutWrapper>
 				<Inner>
-					<LogoSvg color="white" />
+					<Link href="/" scroll={false}>
+						<LogoSvg color="white" />
+					</Link>
 					<DesktopMenuList headerIsActive={headerIsActive} />
 				</Inner>
 			</LayoutWrapper>

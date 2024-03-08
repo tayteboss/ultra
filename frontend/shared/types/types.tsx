@@ -75,6 +75,9 @@ export type ContactPageType = {
 export type OffBriefPageType = {
 	seoTitle: string;
 	seoDescription: string;
+	heroTitle: string;
+	gallery: [];
+	content: string;
 };
 
 export type AboutPageType = {

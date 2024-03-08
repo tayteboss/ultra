@@ -4,6 +4,8 @@ import pxToRem from '../utils/pxToRem';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
+		--menu-active: ${theme.colours.black};
+		--menu-inactive: ${theme.colours.orange};
 		--html-bg: ${theme.colours.black};
 		--footer-bg: ${theme.colours.orange};
 		--footer-fg: ${theme.colours.black};

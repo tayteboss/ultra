@@ -30,6 +30,11 @@ export default {
 			type: 'string',
 		},
 		{
+			title: 'Content',
+			name: 'content',
+			type: 'string'
+		},
+		{
 			title: 'Gallery',
 			name: 'gallery',
 			type: 'array',

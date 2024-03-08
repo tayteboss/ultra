@@ -4,8 +4,17 @@ import { OffBriefPageType, TransitionsType } from '../shared/types/types';
 import { motion } from 'framer-motion';
 import client from '../client';
 import { offBriefPageQueryString } from '../lib/sanityQueries';
+import HeroTitle from '../components/blocks/HeroTitle';
+import OffBriefContent from '../components/blocks/OffBriefContent';
+import pxToRem from '../utils/pxToRem';
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	margin-bottom: ${pxToRem(80)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(16)};
+	}
+`;
 
 type Props = {
 	data: OffBriefPageType;
@@ -28,6 +37,9 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
+			<HeroTitle preCursor={data?.heroTitle} />
+			<OffBriefContent data={data?.content} />
+			<OffBriefGallery data={data?.gallery} />
 		</PageWrapper>
 	);
 };

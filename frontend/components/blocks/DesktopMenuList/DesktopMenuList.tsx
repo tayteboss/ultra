@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { AnimatePresence, motion } from 'framer-motion';
+import useActiveLink from '../../../hooks/useActiveLink';
 
 type Props = {
 	headerIsActive: boolean;
@@ -10,6 +11,24 @@ type Props = {
 type MenuItemProps = {
 	title: string;
 	url: string;
+	isActive: boolean;
+};
+
+const dotVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	}
 };
 
 const wrapperVariants = {
@@ -60,20 +79,25 @@ const DesktopMenuListWrapper = styled(motion.div)`
 	gap: ${pxToRem(16)};
 `;
 
-const MotionWrapper = styled(motion.div)``;
+const MotionWrapper = styled(motion.div)`
+	display: flex;
+	align-items: center;
+	gap: ${pxToRem(6)};
+`;
 
-const LinkTag = styled.a`
-	color: var(--colour-white);
+const LinkTag = styled.a<{ $isActive: boolean }>`
+	color: ${(props) =>
+		props.$isActive ? 'var(--menu-active)' : 'var(--menu-inactive)'};
 	font-size: ${pxToRem(18)};
 `;
 
 const MenuItem = (props: MenuItemProps) => {
-	const { title, url } = props;
+	const { title, url, isActive } = props;
 
 	return (
 		<MotionWrapper variants={childVariants}>
 			<Link href={url} scroll={false} passHref legacyBehavior>
-				<LinkTag>{title}</LinkTag>
+				<LinkTag $isActive={isActive}>{title}</LinkTag>
 			</Link>
 		</MotionWrapper>
 	);
@@ -81,6 +105,8 @@ const MenuItem = (props: MenuItemProps) => {
 
 const DesktopMenuList = (props: Props) => {
 	const { headerIsActive } = props;
+
+	const activeLink = useActiveLink();
 
 	return (
 		<AnimatePresence>
@@ -92,10 +118,26 @@ const DesktopMenuList = (props: Props) => {
 					exit="hidden"
 					layout
 				>
-					<MenuItem title="Work" url="/work" />
-					<MenuItem title="About" url="/about" />
-					<MenuItem title="Off Brief" url="/off-brief" />
-					<MenuItem title="Contact" url="/contact" />
+					<MenuItem
+						title="Work"
+						url="/work"
+						isActive={activeLink === 'Work'}
+					/>
+					<MenuItem
+						title="About"
+						url="/about"
+						isActive={activeLink === 'About'}
+					/>
+					<MenuItem
+						title="Off Brief"
+						url="/off-brief"
+						isActive={activeLink === 'Off Brief'}
+					/>
+					<MenuItem
+						title="Contact"
+						url="/contact"
+						isActive={activeLink === 'Contact'}
+					/>
 				</DesktopMenuListWrapper>
 			)}
 		</AnimatePresence>

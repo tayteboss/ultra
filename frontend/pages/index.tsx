@@ -3,15 +3,11 @@ import { NextSeo } from 'next-seo';
 import {
 	HomePageType,
 	ProjectType,
-	SiteSettingsType,
 	TransitionsType
 } from '../shared/types/types';
 import { motion } from 'framer-motion';
 import client from '../client';
-import {
-	homePageQueryString,
-	siteSettingsQueryString
-} from '../lib/sanityQueries';
+import { homePageQueryString } from '../lib/sanityQueries';
 import HomeProjectsList from '../components/blocks/HomeProjectsList';
 import muxBlurHash from '@mux/blurhash';
 import pxToRem from '../utils/pxToRem';
@@ -26,15 +22,11 @@ const PageWrapper = styled(motion.div)`
 
 type Props = {
 	data: HomePageType;
-	siteSettings: SiteSettingsType;
 	pageTransitionVariants: TransitionsType;
 };
 
 const Page = (props: Props) => {
-	const { data, siteSettings, pageTransitionVariants } = props;
-
-	// console.log('data', data);
-	// console.log('siteSettings', siteSettings);
+	const { data, pageTransitionVariants } = props;
 
 	return (
 		<PageWrapper
@@ -53,7 +45,6 @@ const Page = (props: Props) => {
 };
 
 export async function getStaticProps() {
-	const siteSettings = await client.fetch(siteSettingsQueryString);
 	let data = await client.fetch(homePageQueryString);
 
 	data.projects = await Promise.all(
@@ -74,8 +65,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			data,
-			siteSettings
+			data
 		}
 	};
 }

@@ -38,7 +38,7 @@ const App = (props: Props) => {
 	use1vh();
 	useHeaderHeight();
 
-	const setFooterOrangeTheme = () => {
+	const setDefaultTheme = () => {
 		document.documentElement.style.setProperty(
 			'--html-bg',
 			theme.colours.black
@@ -57,7 +57,34 @@ const App = (props: Props) => {
 		);
 	};
 
-	const setFooterBlackTheme = () => {
+	const setOffBriefTheme = () => {
+		document.documentElement.style.setProperty(
+			'--html-bg',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--footer-bg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--footer-fg',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--footer-contact-fg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--menu-active',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--menu-inactive',
+			theme.colours.white
+		);
+	};
+
+	const setBlackTheme = () => {
 		document.documentElement.style.setProperty(
 			'--html-bg',
 			theme.colours.white
@@ -78,9 +105,11 @@ const App = (props: Props) => {
 
 	useEffect(() => {
 		if (router.pathname === '/') {
-			setFooterOrangeTheme();
+			setDefaultTheme();
+		} else if (router.pathname === '/off-brief') {
+			setOffBriefTheme();
 		} else {
-			setFooterBlackTheme();
+			setDefaultTheme();
 		}
 	}, [router]);
 

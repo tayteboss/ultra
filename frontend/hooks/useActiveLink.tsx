@@ -8,14 +8,14 @@ const useActiveLink = (): string => {
 	useEffect(() => {
 		if (router.pathname === '/') {
 			setActiveLink('Home');
-		} else if (router.pathname === '/profile') {
-			setActiveLink('Profile');
-		} else if (router.pathname === '/services') {
-			setActiveLink('Services');
-		} else if (router.pathname === '/partners') {
-			setActiveLink('Partners');
+		} else if (router.pathname === '/off-brief') {
+			setActiveLink('Off Brief');
+		} else if (router.pathname === '/about') {
+			setActiveLink('About');
 		} else if (router.pathname === '/contact') {
 			setActiveLink('Contact');
+		} else if (router.pathname.includes('/work')) {
+			setActiveLink('Work');
 		} else {
 			setActiveLink('');
 		}
