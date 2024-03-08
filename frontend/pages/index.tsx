@@ -14,8 +14,15 @@ import {
 } from '../lib/sanityQueries';
 import HomeProjectsList from '../components/blocks/HomeProjectsList';
 import muxBlurHash from '@mux/blurhash';
+import pxToRem from '../utils/pxToRem';
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	margin-bottom: ${pxToRem(80)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(16)};
+	}
+`;
 
 type Props = {
 	data: HomePageType;

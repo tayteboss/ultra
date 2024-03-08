@@ -4,6 +4,10 @@ import pxToRem from '../utils/pxToRem';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
+		--html-bg: ${theme.colours.black};
+		--footer-bg: ${theme.colours.orange};
+		--footer-fg: ${theme.colours.black};
+		--footer-contact-fg: ${theme.colours.white};
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
 		--colour-orange: ${theme.colours.orange};
@@ -38,6 +42,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		font-size: 16px;
+		background: var(--html-bg);
 
 		&.no-scroll {
 			overflow-y: hidden;
@@ -99,22 +104,22 @@ export const GlobalStyles = createGlobalStyle`
 		line-height: 1.1;
 		font-weight: 500;
 
-		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		} */
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(32)};
+			line-height: ${pxToRem(35)};
+		}
 	}
 
 	h3,
 	.type-h3 {
 		font-size: ${pxToRem(36)};
-		line-height: 1;
+		line-height: ${pxToRem(36)};
 		font-weight: 500;
 
-		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		} */
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(28)};
+			line-height: ${pxToRem(28)};
+		}
 	}
 
 	h4,
@@ -123,10 +128,10 @@ export const GlobalStyles = createGlobalStyle`
 		line-height: 1.3;
 		font-weight: 500;
 
-		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		} */
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(20)};
+			line-height: ${pxToRem(20)};
+		}
 	}
 
 	h5,
@@ -135,10 +140,10 @@ export const GlobalStyles = createGlobalStyle`
 		line-height: 1.3;
 		font-weight: 500;
 
-		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		} */
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(18)};
+			line-height: ${pxToRem(18)};
+		}
 	}
 
 	p,

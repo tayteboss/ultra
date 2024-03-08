@@ -34,7 +34,16 @@ const Layout = (props: Props) => {
 			<ReactLenis root>
 				<Main>{children}</Main>
 			</ReactLenis>
-			<Footer />
+			<Footer
+				postcode={postCode}
+				linkedInUrl={linkedInUrl}
+				instagramUrl={instagramUrl}
+				addressUrl={addressUrl}
+				newBusinessEmail={newBusinessEmail}
+				streetAddress={streetAddress}
+				careersEmail={careersEmail}
+				generalEnquiriesEmail={generalEnquiriesEmail}
+			/>
 		</>
 	);
 };

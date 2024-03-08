@@ -38,6 +38,52 @@ const App = (props: Props) => {
 	use1vh();
 	useHeaderHeight();
 
+	const setFooterOrangeTheme = () => {
+		document.documentElement.style.setProperty(
+			'--html-bg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--footer-bg',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--footer-fg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--footer-contact-fg',
+			theme.colours.white
+		);
+	};
+
+	const setFooterBlackTheme = () => {
+		document.documentElement.style.setProperty(
+			'--html-bg',
+			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--footer-bg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--footer-fg',
+			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--footer-contact-fg',
+			theme.colours.black
+		);
+	};
+
+	useEffect(() => {
+		if (router.pathname === '/') {
+			setFooterOrangeTheme();
+		} else {
+			setFooterBlackTheme();
+		}
+	}, [router]);
+
 	useEffect(() => {
 		const hasCookies = Cookies.get('visited');
 
