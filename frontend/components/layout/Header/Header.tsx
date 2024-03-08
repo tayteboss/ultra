@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import { useRef, useEffect, useState } from 'react';
 import useNoScroll from '../../../hooks/useNoScroll';
+import { motion } from 'framer-motion';
 
 const HeaderWrapper = styled.header`
 	position: fixed;
@@ -16,6 +17,7 @@ const HeaderWrapper = styled.header`
 	backdrop-filter: blur(5px);
 	border-radius: ${pxToRem(4)};
 	z-index: 100;
+	height: ${pxToRem(33)};
 `;
 
 const Inner = styled.div`
@@ -28,6 +30,8 @@ const Inner = styled.div`
 		height: ${pxToRem(17)};
 	}
 `;
+
+const MotionWrapper = styled(motion.div)``;
 
 const Header = () => {
 	const [headerIsActive, setHeaderIsActive] = useState(true);
@@ -73,11 +77,14 @@ const Header = () => {
 	}, []);
 
 	return (
-		<HeaderWrapper className="header">
+		<HeaderWrapper
+			className="header"
+			onMouseOver={() => setHeaderIsActive(true)}
+		>
 			<LayoutWrapper>
 				<Inner>
 					<LogoSvg color="white" />
-					<DesktopMenuList />
+					<DesktopMenuList headerIsActive={headerIsActive} />
 				</Inner>
 			</LayoutWrapper>
 		</HeaderWrapper>

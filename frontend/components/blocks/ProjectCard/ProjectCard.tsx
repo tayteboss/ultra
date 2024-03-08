@@ -137,6 +137,8 @@ const ProjectCard = (props: Props) => {
 			style={{ filter: brightness }}
 			key={index}
 			ref={wrapperRef}
+			className="cursor-text"
+			data-text="See project"
 		>
 			<Inner style={{ transform: scale, filter: blur }}>
 				<Desktop>
