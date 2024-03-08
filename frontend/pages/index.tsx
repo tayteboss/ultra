@@ -9,11 +9,15 @@ import { motion } from 'framer-motion';
 import client from '../client';
 import {
 	homePageQueryString,
+	projectQueryString,
 	siteSettingsQueryString
 } from '../lib/sanityQueries';
 import HomeProjectsList from '../components/blocks/HomeProjectsList';
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	background: grey;
+	height: 200vh;
+`;
 
 type Props = {
 	data: HomePageType;
@@ -46,6 +50,7 @@ const Page = (props: Props) => {
 export async function getStaticProps() {
 	const siteSettings = await client.fetch(siteSettingsQueryString);
 	const data = await client.fetch(homePageQueryString);
+	// const projects = await client.fetch(projectQueryString);
 
 	return {
 		props: {
