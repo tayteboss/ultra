@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import {
 	HomePageType,
+	ProjectType,
 	SiteSettingsType,
 	TransitionsType
 } from '../shared/types/types';
@@ -9,15 +10,12 @@ import { motion } from 'framer-motion';
 import client from '../client';
 import {
 	homePageQueryString,
-	projectQueryString,
 	siteSettingsQueryString
 } from '../lib/sanityQueries';
 import HomeProjectsList from '../components/blocks/HomeProjectsList';
+import muxBlurHash from '@mux/blurhash';
 
-const PageWrapper = styled(motion.div)`
-	background: grey;
-	height: 200vh;
-`;
+const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	data: HomePageType;
@@ -28,8 +26,8 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, siteSettings, pageTransitionVariants } = props;
 
-	console.log('data', data);
-	console.log('siteSettings', siteSettings);
+	// console.log('data', data);
+	// console.log('siteSettings', siteSettings);
 
 	return (
 		<PageWrapper
@@ -42,15 +40,30 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
-			<HomeProjectsList />
+			<HomeProjectsList data={data?.projects} />
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
 	const siteSettings = await client.fetch(siteSettingsQueryString);
-	const data = await client.fetch(homePageQueryString);
-	// const projects = await client.fetch(projectQueryString);
+	let data = await client.fetch(homePageQueryString);
+
+	data.projects = await Promise.all(
+		data.projects.map(async (project: ProjectType) => {
+			if (project.heroVideo) {
+				const { blurHashBase64 } = await muxBlurHash(project.heroVideo);
+				project.desktopBlurHashBase64 = blurHashBase64;
+			}
+			if (project.mobileHeroVideo) {
+				const { blurHashBase64 } = await muxBlurHash(
+					project.mobileHeroVideo
+				);
+				project.mobileBlurHashBase64 = blurHashBase64;
+			}
+			return project;
+		})
+	);
 
 	return {
 		props: {

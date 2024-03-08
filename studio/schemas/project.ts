@@ -48,6 +48,7 @@ export default {
 			type: 'array',
 			of: [
 				{
+					title: 'Image',
 					type: 'image',
 					fields: [
 						{
@@ -61,6 +62,7 @@ export default {
 					]
 				},
 				{
+					title: 'Video',
 					type: 'mux.video'
 				}
 			]
@@ -80,7 +82,24 @@ export default {
 					name: 'alt',
 					type: 'string',
 				}
-			]
+			],
+			description: 'Please use an image or video, not both.'
+		},
+		{
+			title: 'Mobile Hero Image',
+			name: 'mobileHeroImage',
+			type: 'image',
+		},
+		{
+			title: 'Hero Video',
+			name: 'heroVideo',
+			type: 'mux.video',
+			description: 'Please use an image or video, not both.'
+		},
+		{
+			title: 'Mobile Hero Video',
+			name: 'mobileHeroVideo',
+			type: 'mux.video',
 		},
 		{
 			title: 'Page Builder',
@@ -93,7 +112,6 @@ export default {
 				{type: 'projectTwoColumnContent'},
 			]
 		},
-		// pick one related project
 		{
 			title: 'Related Project',
 			name: 'relatedProject',

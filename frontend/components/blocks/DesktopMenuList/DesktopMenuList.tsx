@@ -20,7 +20,7 @@ const MenuItem = (props: MenuItemProps) => {
 	const { title, url } = props;
 
 	return (
-		<Link href={url} scroll={false} passHref>
+		<Link href={url} scroll={false} passHref legacyBehavior>
 			<LinkTag>{title}</LinkTag>
 		</Link>
 	);

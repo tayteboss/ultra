@@ -37,7 +37,6 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	html {
-		scroll-behavior: smooth;
 		font-size: 16px;
 
 		&.no-scroll {
@@ -84,17 +83,21 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h1 {
 		font-size: ${pxToRem(90)};
 		line-height: ${pxToRem(85)};
+		letter-spacing: -2.7px;
+		font-weight: 500;
 
-		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		} */
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(46)};
+			line-height: ${pxToRem(46)};
+			letter-spacing: -1.38px;
+		}
 	}
 
 	h2,
 	.type-h2 {
 		font-size: ${pxToRem(48)};
 		line-height: 1.1;
+		font-weight: 500;
 
 		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
@@ -106,6 +109,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h3 {
 		font-size: ${pxToRem(36)};
 		line-height: 1;
+		font-weight: 500;
 
 		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
@@ -117,6 +121,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h4 {
 		font-size: ${pxToRem(28)};
 		line-height: 1.3;
+		font-weight: 500;
 
 		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
@@ -128,6 +133,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h5 {
 		font-size: ${pxToRem(25)};
 		line-height: 1.3;
+		font-weight: 500;
 
 		/* @media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(38)};
@@ -142,11 +148,20 @@ export const GlobalStyles = createGlobalStyle`
 	div {
 		font-size: ${pxToRem(18)};
 		line-height: normal;
+		font-weight: 500;
 	}
 
 	.type-d1 {
 		font-size: ${pxToRem(120)};
 		line-height: ${pxToRem(112)};
+		font-weight: 500;
+		letter-spacing: -3.6px;
+
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(46)};
+			line-height: ${pxToRem(46)};
+			letter-spacing: -1.38px;
+		}
 	}
 
 	mux-player {

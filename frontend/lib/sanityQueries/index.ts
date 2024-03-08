@@ -7,6 +7,22 @@ export const siteSettingsQueryString = `
 export const homePageQueryString = `
 	*[_type == 'homePage'][0] {
 		...,
+		"projects": *[_type == 'project'] {
+			...,
+			'heroVideo': heroVideo.asset->playbackId,
+			'mobileHeroVideo': mobileHeroVideo.asset->playbackId,
+			'heroImage': heroImage.asset->url,
+			'mobileHeroImage': mobileHeroImage.asset->url,
+			relatedProjects[]->{
+				...,
+				'heroVideo': heroVideo.asset->playbackId,
+			},
+			thumbnailStrip[] {
+				...,
+				'video': video.asset->playbackId,
+				'image': image.asset->url,
+			},
+		}
 	}
 `;
 

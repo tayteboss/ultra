@@ -12,9 +12,19 @@ export default {
 			type: "string",
 		},
 		{
-			title: "Content",
-			name: "content",
-			type: "string",
-		},
+			title: 'Content',
+			name: 'content',
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [],
+					lists: [],
+					marks: {
+						decorators: [],
+					}
+				},
+			]
+		}
 	]
 }

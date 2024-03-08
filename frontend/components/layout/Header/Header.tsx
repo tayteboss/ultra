@@ -10,17 +10,18 @@ import useNoScroll from '../../../hooks/useNoScroll';
 
 const HeaderWrapper = styled.header`
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
+	top: ${pxToRem(8)};
+	left: ${pxToRem(8)};
 	background: rgba(255, 255, 255, 0);
 	backdrop-filter: blur(5px);
+	border-radius: ${pxToRem(4)};
+	z-index: 100;
 `;
 
 const Inner = styled.div`
 	display: flex;
 	gap: ${pxToRem(32)};
-	padding: ${pxToRem(24)} 0;
+	padding: ${pxToRem(8)} 0;
 
 	.logo {
 		width: ${pxToRem(66)};

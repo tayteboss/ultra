@@ -33,6 +33,7 @@ export type TransitionsType = {
 export type HomePageType = {
 	seoTitle: string;
 	seoDescription: string;
+	projects: ProjectType[];
 };
 
 export type SiteSettingsType = {
@@ -53,8 +54,17 @@ export type WorkPageType = {
 
 export type ProjectType = {
 	title: string;
-	slug: string;
+	slug: { current: string };
 	seoDescription: string;
+	client: string;
+	heroImage: string;
+	mobileHeroImage: string;
+	heroVideo: string;
+	mobileHeroVideo: string;
+	relatedProject: ProjectType;
+	thumbnailStrip: [];
+	desktopBlurHashBase64: string;
+	mobileBlurHashBase64: string;
 };
 
 export type ContactPageType = {
