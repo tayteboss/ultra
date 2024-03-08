@@ -43,6 +43,7 @@ export const offBriefPageQueryString = `
 		...,
 		"gallery": gallery[] {
 			"asset": asset->url,
+			"alt:": alt,
 		}
 	}
 `;

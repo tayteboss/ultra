@@ -7,6 +7,7 @@ import { offBriefPageQueryString } from '../lib/sanityQueries';
 import HeroTitle from '../components/blocks/HeroTitle';
 import OffBriefContent from '../components/blocks/OffBriefContent';
 import pxToRem from '../utils/pxToRem';
+import OffBriefGallery from '../components/blocks/OffBriefGallery';
 
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
@@ -23,8 +24,6 @@ type Props = {
 
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
-
-	console.log('data', data);
 
 	return (
 		<PageWrapper

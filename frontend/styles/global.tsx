@@ -228,7 +228,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.embla__slide {
-		flex: 0 0 100%;
+		flex: 0 0 33%;
 		min-width: 0;
 	}
 

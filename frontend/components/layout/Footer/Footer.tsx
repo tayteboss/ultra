@@ -24,6 +24,7 @@ const FooterWrapper = styled.footer`
 
 const Outer = styled.div`
 	width: 100%;
+	margin-bottom: ${pxToRem(16)};
 `;
 
 const Inner = styled.div`

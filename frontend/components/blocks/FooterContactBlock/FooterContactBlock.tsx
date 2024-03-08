@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 type CardProps = {
 	title: string;
@@ -12,7 +14,43 @@ type Props = {
 	careersEmail: string;
 };
 
-const FooterContactBlockWrapper = styled.div`
+const wrapperVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut',
+			when: 'beforeChildren',
+			staggerChildren: 0.1
+		}
+	}
+};
+
+const childVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.5,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeInOut'
+		}
+	}
+};
+
+const FooterContactBlockWrapper = styled(motion.div)`
 	display: flex;
 	justify-content: center;
 	gap: ${pxToRem(80)};
@@ -26,7 +64,7 @@ const FooterContactBlockWrapper = styled.div`
 	}
 `;
 
-const CardWrapper = styled.a`
+const CardWrapper = styled(motion.a)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -66,7 +104,7 @@ const FooterContactCard = (props: CardProps) => {
 	const { title, email } = props;
 
 	return (
-		<CardWrapper href={`mailto:${email}`}>
+		<CardWrapper variants={childVariants} href={`mailto:${email}`}>
 			<Email className="card-wrapper-email">{email}</Email>
 			<Title>{title}</Title>
 		</CardWrapper>
@@ -76,8 +114,20 @@ const FooterContactCard = (props: CardProps) => {
 const FooterContactBlock = (props: Props) => {
 	const { newBusinessEmail, generalEnquiriesEmail, careersEmail } = props;
 
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.2,
+		rootMargin: '-50px'
+	});
+
 	return (
-		<FooterContactBlockWrapper>
+		<FooterContactBlockWrapper
+			ref={ref}
+			variants={wrapperVariants}
+			initial="hidden"
+			animate={inView ? 'visible' : 'hidden'}
+			exit="hidden"
+		>
 			<FooterContactCard title="New business" email={newBusinessEmail} />
 			<FooterContactCard
 				title="General enquiries"
