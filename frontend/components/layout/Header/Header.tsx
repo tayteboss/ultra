@@ -7,13 +7,12 @@ import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import { useRef, useEffect, useState } from 'react';
 import useNoScroll from '../../../hooks/useNoScroll';
-import { motion } from 'framer-motion';
 
 const HeaderWrapper = styled.header`
 	position: fixed;
 	top: ${pxToRem(8)};
 	left: ${pxToRem(8)};
-	background: rgba(255, 255, 255, 0);
+	background: rgba(0, 0, 0, 0.01);
 	backdrop-filter: blur(5px);
 	border-radius: ${pxToRem(4)};
 	z-index: 100;
@@ -30,8 +29,6 @@ const Inner = styled.div`
 		height: ${pxToRem(17)};
 	}
 `;
-
-const MotionWrapper = styled(motion.div)``;
 
 const Header = () => {
 	const [headerIsActive, setHeaderIsActive] = useState(true);

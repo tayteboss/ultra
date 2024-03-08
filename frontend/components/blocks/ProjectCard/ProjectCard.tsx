@@ -98,7 +98,7 @@ const ProjectCard = (props: Props) => {
 	const blur = useTransform(
 		scrollY,
 		[distanceToTop, distanceToTop + windowHeight * 1],
-		['blur(0px)', 'blur(2px)']
+		['blur(0px)', 'blur(1px)']
 	);
 
 	const scale = useTransform(
