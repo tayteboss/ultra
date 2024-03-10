@@ -47,6 +47,8 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: 16px;
 		background: var(--html-bg);
 
+		transition: background 500ms var(--transition-ease);
+
 		&.no-scroll {
 			overflow-y: hidden;
 			

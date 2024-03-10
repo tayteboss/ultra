@@ -36,16 +36,16 @@ const Cta = styled.h5`
 `;
 
 const Button = styled.a`
-	background: var(--colour-black);
-	color: var(--colour-off-white);
+	background: var(--colour-orange);
+	color: var(--colour-black);
 	padding: ${pxToRem(4)} ${pxToRem(8)};
 	border-radius: ${pxToRem(4)};
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		background: var(--colour-orange);
-		color: var(--colour-black);
+		background: var(--colour-black);
+		color: var(--colour-white);
 	}
 `;
 

@@ -13,29 +13,11 @@ type LetterProps = {
 	letter: string;
 };
 
-const wrapperVariants = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 0,
-			ease: 'easeInOut'
-		}
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 0,
-			ease: 'easeInOut',
-			when: 'beforeChildren'
-		}
-	}
-};
-
 const OffBriefContentWrapper = styled.section`
 	margin-bottom: ${pxToRem(24)};
 `;
 
-const Inner = styled(motion.div)`
+const Inner = styled.div`
 	background: var(--colour-black);
 	border-radius: ${pxToRem(4)};
 	padding: ${pxToRem(16)};
@@ -122,13 +104,7 @@ const OffBriefContent = (props: Props) => {
 	return (
 		<OffBriefContentWrapper ref={ref}>
 			<LayoutWrapper>
-				<Inner
-					className="type-d1"
-					variants={wrapperVariants}
-					initial="hidden"
-					animate={inView ? 'visible' : 'hidden'}
-					exit="hidden"
-				>
+				<Inner className="type-d1">
 					{words.map((word, i) => {
 						return (
 							<Word>

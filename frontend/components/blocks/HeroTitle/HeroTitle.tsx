@@ -5,9 +5,9 @@ import MuxPlayer from '@mux/mux-player-react/lazy';
 
 type Props = {
 	preCursor: string;
-	media: string;
-	suffix: string;
-	mediaPoster: string;
+	media?: string;
+	suffix?: string;
+	mediaPoster?: string;
 };
 
 const HeroTitleWrapper = styled.section`
