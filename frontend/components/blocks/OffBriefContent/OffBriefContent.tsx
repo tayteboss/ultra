@@ -3,6 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 type Props = {
 	data: string;
@@ -30,27 +31,6 @@ const wrapperVariants = {
 	}
 };
 
-const letterVariants = {
-	hidden: {
-		opacity: 0,
-		filter: 'blur(2px)',
-		x: -10,
-		transition: {
-			duration: 0.2,
-			ease: 'easeInOut'
-		}
-	},
-	visible: {
-		opacity: 1,
-		filter: 'blur(0)',
-		y: 0,
-		transition: {
-			duration: 0.2,
-			ease: 'easeInOut'
-		}
-	}
-};
-
 const OffBriefContentWrapper = styled.section`
 	margin-bottom: ${pxToRem(24)};
 `;
@@ -59,22 +39,79 @@ const Inner = styled(motion.div)`
 	background: var(--colour-black);
 	border-radius: ${pxToRem(4)};
 	padding: ${pxToRem(16)};
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
 `;
 
-const Span = styled(motion.span)`
+const Span = styled(motion.span)<{ $inlineBlock: boolean }>`
 	color: var(--colour-orange);
+	position: relative;
+	display: ${(props) => props.$inlineBlock && 'inline-block'};
+`;
+
+const Word = styled.span`
+	display: inline;
+	white-space: pre;
 `;
 
 const Letter = (props: LetterProps) => {
 	const { letter } = props;
 
-	return <Span variants={letterVariants}>{letter}</Span>;
+	const [isActive, setIsActive] = useState(false);
+
+	const randInt = (min: number, max: number) =>
+		Math.floor(Math.random() * (max - min + 1)) + min;
+
+	const letterVariants = {
+		hidden: {
+			filter: 'blur(0px)',
+			transition: {
+				duration: randInt(1, 3),
+				ease: 'easeInOut'
+			}
+		},
+		visible: {
+			filter: 'blur(2px)',
+			scale: randInt(-0.5, 2.5),
+			x: randInt(-100, 100),
+			y: randInt(-100, 100),
+			rotate: randInt(-180, 180),
+			transition: {
+				duration: randInt(1, 3),
+				ease: 'easeInOut'
+			}
+		}
+	};
+
+	useEffect(() => {
+		if (isActive) {
+			setTimeout(() => {
+				setIsActive(false);
+			}, 3000);
+		}
+	}, [isActive]);
+
+	return (
+		<Span
+			initial="hidden"
+			animate={isActive ? 'visible' : 'hidden'}
+			onMouseOver={() => setIsActive(true)}
+			variants={letterVariants}
+			$inlineBlock={letter !== ' '}
+		>
+			{letter}
+		</Span>
+	);
 };
 
 const OffBriefContent = (props: Props) => {
 	const { data } = props;
 
-	const splitData = data.split('');
+	// create an array of words and inbetween each word make sure there's an array with an empty string
+	const words = data.split(' ').map((word) => [...word, ' ']);
+
+	console.log('words', words);
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -92,8 +129,14 @@ const OffBriefContent = (props: Props) => {
 					animate={inView ? 'visible' : 'hidden'}
 					exit="hidden"
 				>
-					{splitData.map((letter, index) => {
-						return <Letter letter={letter} key={index} />;
+					{words.map((word, i) => {
+						return (
+							<Word>
+								{word.map((letter, j) => {
+									return <Letter letter={letter} key={j} />;
+								})}
+							</Word>
+						);
 					})}
 				</Inner>
 			</LayoutWrapper>

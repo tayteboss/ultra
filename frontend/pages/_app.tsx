@@ -55,6 +55,14 @@ const App = (props: Props) => {
 			'--footer-contact-fg',
 			theme.colours.white
 		);
+		document.documentElement.style.setProperty(
+			'--menu-active',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--menu-inactive',
+			theme.colours.white
+		);
 	};
 
 	const setOffBriefTheme = () => {
@@ -76,11 +84,11 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--menu-active',
-			theme.colours.black
+			theme.colours.white
 		);
 		document.documentElement.style.setProperty(
 			'--menu-inactive',
-			theme.colours.white
+			theme.colours.black
 		);
 	};
 
