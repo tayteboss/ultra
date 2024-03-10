@@ -62,12 +62,12 @@ export default {
 			type: 'string',
 		},
 		{
-			title: 'Contact CTA',
+			title: 'Careers CTA',
 			name: 'contactCta',
 			type: 'string',
 		},
 		{
-			title: 'Contact Button Title',
+			title: 'Careers Button Title',
 			name: 'contactButtonTitle',
 			type: 'string',
 		},

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 type CardProps = {
 	title: string;
@@ -114,6 +116,18 @@ const FooterContactCard = (props: CardProps) => {
 const FooterContactBlock = (props: Props) => {
 	const { newBusinessEmail, generalEnquiriesEmail, careersEmail } = props;
 
+	const [isActive, setIsActive] = useState(true);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router.asPath === '/contact') {
+			setIsActive(false);
+		} else {
+			setIsActive(true);
+		}
+	}, [router]);
+
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
@@ -121,20 +135,30 @@ const FooterContactBlock = (props: Props) => {
 	});
 
 	return (
-		<FooterContactBlockWrapper
-			ref={ref}
-			variants={wrapperVariants}
-			initial="hidden"
-			animate={inView ? 'visible' : 'hidden'}
-			exit="hidden"
-		>
-			<FooterContactCard title="New business" email={newBusinessEmail} />
-			<FooterContactCard
-				title="General enquiries"
-				email={generalEnquiriesEmail}
-			/>
-			<FooterContactCard title="Join our team" email={careersEmail} />
-		</FooterContactBlockWrapper>
+		<>
+			{isActive && (
+				<FooterContactBlockWrapper
+					ref={ref}
+					variants={wrapperVariants}
+					initial="hidden"
+					animate={inView ? 'visible' : 'hidden'}
+					exit="hidden"
+				>
+					<FooterContactCard
+						title="New business"
+						email={newBusinessEmail}
+					/>
+					<FooterContactCard
+						title="General enquiries"
+						email={generalEnquiriesEmail}
+					/>
+					<FooterContactCard
+						title="Join our team"
+						email={careersEmail}
+					/>
+				</FooterContactBlockWrapper>
+			)}
+		</>
 	);
 };
 

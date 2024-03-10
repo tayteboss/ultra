@@ -23,7 +23,7 @@ const HeaderWrapper = styled.header`
 const Inner = styled.div`
 	display: flex;
 	gap: ${pxToRem(32)};
-	padding: ${pxToRem(8)} 0;
+	padding: ${pxToRem(8)} ${pxToRem(8)};
 
 	.logo {
 		width: ${pxToRem(66)};
@@ -79,14 +79,12 @@ const Header = () => {
 			className="header"
 			onMouseOver={() => setHeaderIsActive(true)}
 		>
-			<LayoutWrapper>
-				<Inner>
-					<Link href="/" scroll={false}>
-						<LogoSvg color="white" />
-					</Link>
-					<DesktopMenuList headerIsActive={headerIsActive} />
-				</Inner>
-			</LayoutWrapper>
+			<Inner>
+				<Link href="/" scroll={false}>
+					<LogoSvg color="var(--menu-inactive)" />
+				</Link>
+				<DesktopMenuList headerIsActive={headerIsActive} />
+			</Inner>
 		</HeaderWrapper>
 	);
 };

@@ -89,6 +89,8 @@ const LinkTag = styled.a<{ $isActive: boolean }>`
 	color: ${(props) =>
 		props.$isActive ? 'var(--menu-active)' : 'var(--menu-inactive)'};
 	font-size: ${pxToRem(18)};
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 `;
 
 const MenuItem = (props: MenuItemProps) => {

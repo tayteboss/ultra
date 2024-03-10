@@ -35,6 +35,7 @@ export const workPageQueryString = `
 export const contactPageQueryString = `
 	*[_type == 'contactPage'][0] {
 		...,
+		'showreelVideo': showreelVideo.asset->playbackId,
 	}
 `;
 

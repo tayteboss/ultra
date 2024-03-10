@@ -70,6 +70,15 @@ export type ProjectType = {
 export type ContactPageType = {
 	seoTitle: string;
 	seoDescription: string;
+	contactButtonTitle: string;
+	contactCta: string;
+	generalEnquiriesButtonTitle: string;
+	generalEnquiriesCta: string;
+	newBusinessButtonTitle: string;
+	newBusinessCta: string;
+	prefixHeroTitle: string;
+	suffixHeroTitle: string;
+	showreelVideo: string;
 };
 
 export type OffBriefPageType = {

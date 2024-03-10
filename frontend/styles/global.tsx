@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
 		--footer-contact-fg: ${theme.colours.white};
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
+		--colour-off-black: ${theme.colours.offBlack};
 		--colour-orange: ${theme.colours.orange};
 		--colour-off-white: ${theme.colours.offWhite};
 		--font-default: ${theme.fonts.HaasGrotDisp};
@@ -132,7 +133,7 @@ export const GlobalStyles = createGlobalStyle`
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(20)};
-			line-height: ${pxToRem(20)};
+			line-height: ${pxToRem(26)};
 		}
 	}
 
@@ -230,6 +231,10 @@ export const GlobalStyles = createGlobalStyle`
 	.embla__slide {
 		flex: 0 0 33%;
 		min-width: 0;
+	}
+
+	.logo {
+		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
 	.performance {

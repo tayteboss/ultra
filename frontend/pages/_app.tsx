@@ -13,8 +13,8 @@ import useHeaderHeight from '../hooks/useHeaderHeight';
 import Cursor from '../components/elements/Cursor';
 
 const pageTransitionVariants: TransitionsType = {
-	hidden: { opacity: 0, transition: { duration: 0.3 } },
-	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } }
+	hidden: { opacity: 0, transition: { duration: 0.5 } },
+	visible: { opacity: 1, transition: { duration: 0.5 } }
 };
 
 type Props = {
@@ -92,7 +92,7 @@ const App = (props: Props) => {
 		);
 	};
 
-	const setBlackTheme = () => {
+	const setContactTheme = () => {
 		document.documentElement.style.setProperty(
 			'--html-bg',
 			theme.colours.white
@@ -109,6 +109,14 @@ const App = (props: Props) => {
 			'--footer-contact-fg',
 			theme.colours.black
 		);
+		document.documentElement.style.setProperty(
+			'--menu-active',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--menu-inactive',
+			theme.colours.black
+		);
 	};
 
 	useEffect(() => {
@@ -116,6 +124,8 @@ const App = (props: Props) => {
 			setDefaultTheme();
 		} else if (router.pathname === '/off-brief') {
 			setOffBriefTheme();
+		} else if (router.pathname === '/contact') {
+			setContactTheme();
 		} else {
 			setDefaultTheme();
 		}
