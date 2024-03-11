@@ -21,7 +21,7 @@ const CursorWrapper = styled.div<StyledProps>`
 	z-index: 1000;
 	position: fixed;
 	display: ${(props) => (props.$isOnDevice ? 'none' : 'block')};
-	/* mix-blend-mode: difference; */
+	mix-blend-mode: normal;
 
 	transition: opacity ${(props) => props.theme.transitionSpeed.default} ease;
 	transition-delay: 500ms;

@@ -82,6 +82,7 @@ const Header = () => {
 		<HeaderWrapper
 			className="header"
 			onMouseOver={() => setHeaderIsActive(true)}
+			onMouseEnter={() => setHeaderIsActive(true)}
 		>
 			<Inner>
 				<Link href="/" scroll={false}>

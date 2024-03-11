@@ -13,7 +13,7 @@ import muxBlurHash from '@mux/blurhash';
 import pxToRem from '../utils/pxToRem';
 
 const PageWrapper = styled(motion.div)`
-	margin-bottom: ${pxToRem(80)};
+	margin-bottom: ${pxToRem(120)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		margin-bottom: ${pxToRem(16)};
@@ -27,6 +27,8 @@ type Props = {
 
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
+
+	console.log('data', data);
 
 	return (
 		<PageWrapper

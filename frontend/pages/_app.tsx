@@ -59,7 +59,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-contact-fg',
-			theme.colours.white
+			theme.colours.offWhite
 		);
 		document.documentElement.style.setProperty(
 			'--menu-inactive',

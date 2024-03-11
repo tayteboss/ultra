@@ -7,7 +7,7 @@ export const siteSettingsQueryString = `
 export const homePageQueryString = `
 	*[_type == 'homePage'][0] {
 		...,
-		"projects": *[_type == 'project'] {
+		"projects": *[_type == 'project'] | order(orderRank) [0...100] {
 			...,
 			'heroVideo': heroVideo.asset->playbackId,
 			'mobileHeroVideo': mobileHeroVideo.asset->playbackId,
