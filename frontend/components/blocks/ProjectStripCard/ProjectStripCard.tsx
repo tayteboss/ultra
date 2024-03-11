@@ -23,10 +23,10 @@ const ProjectStripCardWrapper = styled.a`
 `;
 
 const Inner = styled.div`
-	margin-bottom: ${pxToRem(32)};
+	margin-bottom: ${pxToRem(24)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		margin-bottom: ${pxToRem(24)};
+		margin-bottom: ${pxToRem(16)};
 	}
 `;
 
@@ -46,6 +46,7 @@ const ProjectStripCard = (props: Props) => {
 		<ProjectStripCardWrapper
 			href={`/work/${slug}`}
 			className="cursor-text project-strip-card"
+			data-theme="orange"
 			data-text="See project"
 			onMouseOver={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}

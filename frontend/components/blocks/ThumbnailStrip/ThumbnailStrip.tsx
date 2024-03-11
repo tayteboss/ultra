@@ -83,7 +83,7 @@ const ThumbnailStrip = (props: Props) => {
 		[distanceToTop - windowHeight, distanceToTop + windowHeight * 2],
 		[
 			'translateX(0)',
-			screenSize === 'mobile' ? 'translateX(-50%)' : 'translateX(-35%)'
+			screenSize === 'mobile' ? 'translateX(-100%)' : 'translateX(-75%)'
 		]
 	);
 
