@@ -8,6 +8,7 @@ import HeroTitle from '../../components/blocks/HeroTitle';
 import ProjectHeroTitle from '../../components/blocks/ProjectHeroTitle';
 import ProjectHeroMedia from '../../components/blocks/ProjectHeroMedia';
 import muxBlurHash from '@mux/blurhash';
+import UltraPageBuilder from '../../components/common/UltraPageBuilder';
 
 type Props = {
 	data: ProjectType;
@@ -45,6 +46,7 @@ const Page = (props: Props) => {
 				mobileHeroImage={data?.mobileHeroImage}
 				blurHashBase64={blurHashBase64}
 			/>
+			<UltraPageBuilder data={data?.pageBuilder} />
 		</PageWrapper>
 	);
 };

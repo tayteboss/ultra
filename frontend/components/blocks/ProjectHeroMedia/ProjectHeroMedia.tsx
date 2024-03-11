@@ -60,7 +60,7 @@ const ProjectHeroMedia = (props: Props) => {
 
 	const padding = useTransform(
 		scrollY,
-		[0, windowHeight],
+		[0, windowHeight * 0.5],
 		[isMobile ? '8px' : '16px', '0px']
 	);
 
