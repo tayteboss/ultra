@@ -60,7 +60,14 @@ export const aboutPageQueryString = `
 `;
 
 export const projectQueryString = `
-	*[_type == 'project'] {
+	*[_type == 'project'] | order(orderRank) [0...100] {
 		...,
+		"thumbnailStrip": thumbnailStrip[] {
+			alt,
+			asset-> {
+				url,
+				playbackId
+			}
+		},
 	}
 `;
