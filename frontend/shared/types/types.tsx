@@ -66,6 +66,7 @@ export type ProjectType = {
 	thumbnailStrip: [];
 	desktopBlurHashBase64: string;
 	mobileBlurHashBase64: string;
+	heroTitle: string;
 };
 
 export type ContactPageType = {
