@@ -5,6 +5,7 @@ import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 type Props = {
 	data: [];
@@ -82,6 +83,10 @@ const ImageInner = styled.div`
 	margin-right: ${pxToRem(16)};
 	overflow: hidden;
 	border-radius: ${pxToRem(4)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-right: ${pxToRem(8)};
+	}
 `;
 
 const OffBriefGallery = (props: Props) => {
@@ -93,12 +98,14 @@ const OffBriefGallery = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
+	const viewport = useViewportWidth();
+
 	var settings = {
 		dots: false,
 		arrows: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 3,
+		slidesToShow: viewport === 'mobile' ? 1.5 : 3,
 		slidesToScroll: 1,
 		fade: false
 	};

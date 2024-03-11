@@ -8,6 +8,11 @@ import { useRef, useEffect, useState } from 'react';
 import useNoScroll from '../../../hooks/useNoScroll';
 import Link from 'next/link';
 
+type Props = {
+	menuIsActive: boolean;
+	setMenuIsActive: (value: boolean) => void;
+};
+
 const HeaderWrapper = styled.header`
 	position: fixed;
 	top: ${pxToRem(8)};
@@ -21,6 +26,9 @@ const HeaderWrapper = styled.header`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		left: ${pxToRem(8)};
+		width: 100%;
+		left: 0;
+		padding: 0 ${pxToRem(8)};
 	}
 `;
 
@@ -29,15 +37,32 @@ const Inner = styled.div`
 	gap: ${pxToRem(32)};
 	padding: ${pxToRem(8)} ${pxToRem(8)};
 
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		justify-content: space-between;
+		width: 100%;
+	}
+
 	.logo {
 		width: ${pxToRem(66)};
 		height: ${pxToRem(17)};
 	}
 `;
 
-const Header = () => {
+const MobileMenuButton = styled.button`
+	display: none;
+	color: var(--menu-inactive);
+	font-size: ${pxToRem(18)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+		text-align: right;
+	}
+`;
+
+const Header = (props: Props) => {
+	const { menuIsActive, setMenuIsActive } = props;
+
 	const [headerIsActive, setHeaderIsActive] = useState(true);
-	const [menuIsActive, setMenuIsActive] = useState(false);
 
 	const router = useRouter();
 
@@ -89,6 +114,11 @@ const Header = () => {
 					<LogoSvg color="var(--menu-inactive)" />
 				</Link>
 				<DesktopMenuList headerIsActive={headerIsActive} />
+				<MobileMenuButton
+					onClick={() => setMenuIsActive(!menuIsActive)}
+				>
+					{menuIsActive ? 'Close' : 'Menu'}
+				</MobileMenuButton>
 			</Inner>
 		</HeaderWrapper>
 	);

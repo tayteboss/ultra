@@ -14,23 +14,6 @@ type MenuItemProps = {
 	isActive: boolean;
 };
 
-const dotVariants = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	}
-};
-
 const wrapperVariants = {
 	hidden: {
 		opacity: 0,
@@ -77,6 +60,10 @@ const childVariants = {
 const DesktopMenuListWrapper = styled(motion.div)`
 	display: flex;
 	gap: ${pxToRem(16)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none !important;
+	}
 `;
 
 const MotionWrapper = styled(motion.div)`

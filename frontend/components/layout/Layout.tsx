@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
+import MobileMenu from '../blocks/MobileMenu';
 
 const siteSettings = require('../../json/siteSettings.json');
 
@@ -26,11 +27,33 @@ const Layout = (props: Props) => {
 		generalEnquiriesEmail
 	} = siteSettings;
 
+	const [menuIsActive, setMenuIsActive] = useState(false);
+
 	const lenis = useLenis(({ scroll }) => {});
+
+	useEffect(() => {
+		if (!lenis) return;
+
+		if (menuIsActive) {
+			lenis.stop();
+		} else {
+			lenis.start();
+		}
+	}, [menuIsActive]);
 
 	return (
 		<>
-			<Header />
+			<Header
+				setMenuIsActive={setMenuIsActive}
+				menuIsActive={menuIsActive}
+			/>
+			<MobileMenu
+				isActive={menuIsActive}
+				postcode={postCode}
+				linkedInUrl={linkedInUrl}
+				instagramUrl={instagramUrl}
+				setMenuIsActive={setMenuIsActive}
+			/>
 			<ReactLenis root>
 				<Main>{children}</Main>
 			</ReactLenis>

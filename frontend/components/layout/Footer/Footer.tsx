@@ -20,6 +20,13 @@ const FooterWrapper = styled.footer`
 	display: flex;
 	flex-direction: column;
 	gap: ${pxToRem(80)};
+	position: relative;
+	z-index: 10;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		background: var(--footer-fg);
+		padding-top: ${pxToRem(64)};
+	}
 `;
 
 const Outer = styled.div`
@@ -37,6 +44,8 @@ const Inner = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		gap: ${pxToRem(240)};
+		height: calc(100svh - 64px);
+		justify-content: space-between;
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {

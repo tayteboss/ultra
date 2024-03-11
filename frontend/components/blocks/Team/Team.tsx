@@ -28,6 +28,7 @@ const Inner = styled.div`
 	height: ${pxToRem(620)};
 	border-radius: ${pxToRem(4)};
 	position: relative;
+	overflow: hidden;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		height: 100svh;
