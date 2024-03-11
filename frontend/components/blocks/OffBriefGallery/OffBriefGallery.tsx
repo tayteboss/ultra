@@ -4,6 +4,7 @@ import Image from 'next/image';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import Slider from 'react-slick';
 
 type Props = {
 	data: [];
@@ -47,10 +48,15 @@ const childVariants = {
 	}
 };
 
-const OffBriefGalleryWrapper = styled.div``;
-
-const Embla = styled.div`
+const OffBriefGalleryWrapper = styled(motion.div)`
 	cursor: grab;
+	margin-left: ${pxToRem(16)};
+	border-radius: ${pxToRem(4)};
+	overflow: hidden;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-left: ${pxToRem(8)};
+	}
 
 	&:active {
 		cursor: grabbing;
@@ -65,44 +71,21 @@ const Embla = styled.div`
 	}
 `;
 
-const EmblaContainer = styled(motion.div)`
-	padding-left: ${pxToRem(16)};
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding-left: ${pxToRem(8)};
-	}
-`;
-
-const EmblaSlide = styled(motion.div)`
-	margin-right: ${pxToRem(16)};
-
-	&.embla__slide {
-		flex: 0 0 33%;
-	}
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		&.embla__slide {
-			flex: 0 0 50%;
-		}
-	}
-`;
-
-const ImageWrapper = styled.div`
+const ImageWrapper = styled(motion.div)`
 	position: relative;
 	padding-top: 100%;
-	overflow: hidden;
-	border-radius: ${pxToRem(4)};
 `;
 
 const ImageInner = styled.div`
 	position: absolute;
 	inset: 0;
+	margin-right: ${pxToRem(16)};
+	overflow: hidden;
+	border-radius: ${pxToRem(4)};
 `;
 
 const OffBriefGallery = (props: Props) => {
 	const { data } = props;
-
-	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -110,35 +93,35 @@ const OffBriefGallery = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
+	var settings = {
+		dots: false,
+		arrows: false,
+		infinite: false,
+		speed: 500,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		fade: false
+	};
+
 	return (
-		<OffBriefGalleryWrapper ref={ref}>
-			<Embla className="embla" ref={emblaRef}>
-				<EmblaContainer
-					className="embla__container"
-					variants={wrapperVariants}
-					initial="hidden"
-					animate={inView ? 'visible' : 'hidden'}
-					exit="hidden"
-				>
-					{data.map((item, i) => (
-						<EmblaSlide
-							className="embla__slide"
-							key={i}
-							variants={childVariants}
-						>
-							<ImageWrapper>
-								<ImageInner>
-									<Image
-										src={item?.asset}
-										alt={item.alt}
-										fill
-									/>
-								</ImageInner>
-							</ImageWrapper>
-						</EmblaSlide>
-					))}
-				</EmblaContainer>
-			</Embla>
+		<OffBriefGalleryWrapper
+			ref={ref}
+			variants={wrapperVariants}
+			initial="hidden"
+			animate={inView ? 'visible' : 'hidden'}
+		>
+			<Slider {...settings}>
+				{data.map((item, i) => (
+					<ImageWrapper
+						variants={childVariants}
+						style={i === 0 ? { marginLeft: '16px' } : {}}
+					>
+						<ImageInner>
+							<Image src={item?.asset} alt={item.alt} fill />
+						</ImageInner>
+					</ImageWrapper>
+				))}
+			</Slider>
 		</OffBriefGalleryWrapper>
 	);
 };
