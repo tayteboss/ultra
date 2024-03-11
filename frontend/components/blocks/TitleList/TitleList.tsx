@@ -49,20 +49,38 @@ const childVariants = {
 
 const TitleListWrapper = styled.section`
 	margin-bottom: ${pxToRem(80)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(62)};
+	}
 `;
 
 const Title = styled.h4`
 	grid-column: span 6;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(8)};
+	}
 `;
 
 const ListWrapper = styled(motion.ul)`
 	grid-column: span 6;
 `;
 
-const ListItem = styled(motion.li)``;
+const ListItem = styled(motion.li)`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(28)} !important;
+		line-height: ${pxToRem(36)} !important;
+	}
+`;
 
 const ListItemLink = styled(motion.a)`
 	color: var(--colour-black);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(28)} !important;
+		line-height: ${pxToRem(36)} !important;
+	}
 `;
 
 const TitleList = (props: Props) => {

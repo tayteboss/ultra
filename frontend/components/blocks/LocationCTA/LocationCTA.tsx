@@ -15,12 +15,29 @@ const LocationCTAWrapper = styled.section`
 const Inner = styled.div`
 	max-width: ${pxToRem(1200)};
 	margin: 0 auto;
+	text-align: center;
 `;
 
 const Title = styled.a`
 	text-align: center;
 	display: block;
 	color: var(--colour-black);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(24)};
+	}
+`;
+
+const Button = styled.a`
+	display: none;
+	background: var(--colour-orange);
+	color: var(--colour-black);
+	padding: ${pxToRem(4)} ${pxToRem(8)};
+	border-radius: ${pxToRem(4)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: inline-block;
+	}
 `;
 
 const LocationCTA = (props: Props) => {
@@ -52,6 +69,9 @@ const LocationCTA = (props: Props) => {
 							>
 								{title}
 							</Title>
+							<Button href={url} target="_blank">
+								See on map
+							</Button>
 						</Inner>
 					</LayoutWrapper>
 				</LocationCTAWrapper>

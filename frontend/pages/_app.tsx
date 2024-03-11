@@ -33,6 +33,12 @@ const App = (props: Props) => {
 
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
+		setAppCursorRefresh(appCursorRefresh + 1);
+
+		setTimeout(() => {
+			checkRoute();
+			setAppCursorRefresh(appCursorRefresh + 1);
+		}, 100);
 	};
 
 	use1vh();
@@ -56,12 +62,16 @@ const App = (props: Props) => {
 			theme.colours.white
 		);
 		document.documentElement.style.setProperty(
-			'--menu-active',
-			theme.colours.orange
-		);
-		document.documentElement.style.setProperty(
 			'--menu-inactive',
 			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--footer-hover',
+			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--menu-blend-mode',
+			'difference'
 		);
 	};
 
@@ -83,12 +93,16 @@ const App = (props: Props) => {
 			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
-			'--menu-active',
+			'--menu-inactive',
 			theme.colours.white
 		);
 		document.documentElement.style.setProperty(
-			'--menu-inactive',
-			theme.colours.black
+			'--footer-hover',
+			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--menu-blend-mode',
+			'normal'
 		);
 	};
 
@@ -110,12 +124,16 @@ const App = (props: Props) => {
 			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
-			'--menu-active',
+			'--menu-inactive',
+			theme.colours.white
+		);
+		document.documentElement.style.setProperty(
+			'--footer-hover',
 			theme.colours.orange
 		);
 		document.documentElement.style.setProperty(
-			'--menu-inactive',
-			theme.colours.black
+			'--menu-blend-mode',
+			'difference'
 		);
 	};
 
@@ -137,16 +155,16 @@ const App = (props: Props) => {
 			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
-			'--menu-active',
-			theme.colours.orange
+			'--menu-inactive',
+			theme.colours.white
 		);
 		document.documentElement.style.setProperty(
-			'--menu-inactive',
-			theme.colours.black
+			'--footer-hover',
+			theme.colours.white
 		);
 	};
 
-	useEffect(() => {
+	const checkRoute = () => {
 		if (router.pathname === '/') {
 			setDefaultTheme();
 		} else if (router.pathname === '/off-brief') {
@@ -158,6 +176,10 @@ const App = (props: Props) => {
 		} else {
 			setDefaultTheme();
 		}
+	};
+
+	useEffect(() => {
+		checkRoute();
 	}, [router]);
 
 	useEffect(() => {
@@ -170,6 +192,8 @@ const App = (props: Props) => {
 		const timer = setTimeout(() => {
 			Cookies.set('visited', 'true', { expires: 1, path: '' });
 		}, 5000);
+
+		checkRoute();
 
 		return () => {
 			clearTimeout(timer);

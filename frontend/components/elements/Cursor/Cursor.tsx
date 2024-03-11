@@ -114,6 +114,8 @@ const Cursor = ({ cursorRefresh }: Props) => {
 
 	const clearCursor = () => {
 		setIsHoveringLink(false);
+		setIsHoveringTextLink(false);
+		setButtonTheme('default');
 		setIsOnDevice(false);
 	};
 

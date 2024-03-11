@@ -34,6 +34,7 @@ export type HomePageType = {
 	seoTitle: string;
 	seoDescription: string;
 	projects: ProjectType[];
+	taglineIntro: string;
 };
 
 export type SiteSettingsType = {

@@ -86,11 +86,15 @@ const MotionWrapper = styled(motion.div)`
 `;
 
 const LinkTag = styled.a<{ $isActive: boolean }>`
-	color: ${(props) =>
-		props.$isActive ? 'var(--menu-active)' : 'var(--menu-inactive)'};
+	color: var(--menu-inactive);
 	font-size: ${pxToRem(18)};
+	opacity: ${(props) => (props.$isActive ? 1 : 0.5)};
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		opacity: 1;
+	}
 `;
 
 const MenuItem = (props: MenuItemProps) => {

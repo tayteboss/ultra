@@ -25,6 +25,11 @@ export default {
 			description: 'This is the SEO description that appears in search engines.'
 		},
 		{
+			title: 'Tagline Intro',
+			name: 'taglineIntro',
+			type: 'string',
+		},
+		{
 			title: 'Projects',
 			name: 'projects',
 			type: 'array',

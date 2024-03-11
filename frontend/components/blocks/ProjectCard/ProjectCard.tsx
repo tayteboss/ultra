@@ -18,7 +18,9 @@ type Props = {
 	index: number;
 };
 
-const ProjectCardWrapper = styled(motion.a)``;
+const ProjectCardWrapper = styled(motion.a)`
+	display: block;
+`;
 
 const Inner = styled(motion.div)`
 	position: relative;
@@ -52,7 +54,7 @@ const Mobile = styled.div`
 
 const TitleWrapper = styled.div`
 	position: absolute;
-	bottom: ${pxToRem(16)};
+	bottom: ${pxToRem(32)};
 	left: ${pxToRem(16)};
 `;
 
@@ -92,7 +94,7 @@ const ProjectCard = (props: Props) => {
 	const brightness = useTransform(
 		scrollY,
 		[distanceToTop, distanceToTop + windowHeight * 1],
-		['brightness(1)', 'brightness(0.9)']
+		['brightness(1)', 'brightness(0.7)']
 	);
 
 	const blur = useTransform(
@@ -105,6 +107,12 @@ const ProjectCard = (props: Props) => {
 		scrollY,
 		[distanceToTop, distanceToTop + windowHeight * 1],
 		['scale(1)', 'scale(1.01)']
+	);
+
+	const transform = useTransform(
+		scrollY,
+		[distanceToTop, distanceToTop + windowHeight * 2],
+		['translateY(0)', 'translateY(100px)']
 	);
 
 	useEffect(() => {
@@ -134,7 +142,7 @@ const ProjectCard = (props: Props) => {
 	return (
 		<ProjectCardWrapper
 			href={`/work/${slug}`}
-			style={{ filter: brightness }}
+			style={{ filter: brightness, transform }}
 			key={index}
 			ref={wrapperRef}
 			className="cursor-text"

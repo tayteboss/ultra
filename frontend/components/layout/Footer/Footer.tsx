@@ -61,7 +61,7 @@ const SocialLink = styled.a`
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		opacity: 75%;
+		color: var(--footer-hover);
 	}
 `;
 
@@ -71,13 +71,17 @@ const AddressWrapper = styled.a`
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		opacity: 75%;
+		* {
+			color: var(--footer-hover);
+		}
 	}
 `;
 
 const Address = styled.div`
 	color: var(--footer-fg);
 	text-align: right;
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		text-align: left;
@@ -87,6 +91,8 @@ const Address = styled.div`
 const Postcode = styled.div`
 	color: var(--footer-fg);
 	text-align: right;
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		text-align: left;

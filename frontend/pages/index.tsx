@@ -39,7 +39,10 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
-			<HomeProjectsList data={data?.projects} />
+			<HomeProjectsList
+				data={data?.projects}
+				taglineIntro={data?.taglineIntro}
+			/>
 		</PageWrapper>
 	);
 };

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import LogoSvg from '../../svgs/LogoSvg';
 import DesktopMenuList from '../../blocks/DesktopMenuList';
-import LayoutWrapper from '../../common/LayoutWrapper';
 import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import { useRef, useEffect, useState } from 'react';
@@ -12,12 +11,17 @@ import Link from 'next/link';
 const HeaderWrapper = styled.header`
 	position: fixed;
 	top: ${pxToRem(8)};
-	left: ${pxToRem(8)};
+	left: ${pxToRem(16)};
 	background: rgba(0, 0, 0, 0.01);
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(2px);
 	border-radius: ${pxToRem(4)};
 	z-index: 100;
 	height: ${pxToRem(33)};
+	mix-blend-mode: var(--menu-blend-mode);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		left: ${pxToRem(8)};
+	}
 `;
 
 const Inner = styled.div`
