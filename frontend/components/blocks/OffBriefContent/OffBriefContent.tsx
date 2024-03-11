@@ -60,7 +60,7 @@ const Letter = (props: LetterProps) => {
 			y: randInt(-100, 100),
 			rotate: randInt(-180, 180),
 			transition: {
-				duration: randInt(1, 3),
+				duration: randInt(2, 3),
 				ease: 'easeInOut'
 			}
 		}
@@ -90,10 +90,7 @@ const Letter = (props: LetterProps) => {
 const OffBriefContent = (props: Props) => {
 	const { data } = props;
 
-	// create an array of words and inbetween each word make sure there's an array with an empty string
 	const words = data.split(' ').map((word) => [...word, ' ']);
-
-	console.log('words', words);
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -107,7 +104,7 @@ const OffBriefContent = (props: Props) => {
 				<Inner className="type-d1">
 					{words.map((word, i) => {
 						return (
-							<Word>
+							<Word key={i}>
 								{word.map((letter, j) => {
 									return <Letter letter={letter} key={j} />;
 								})}

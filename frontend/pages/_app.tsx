@@ -119,6 +119,33 @@ const App = (props: Props) => {
 		);
 	};
 
+	const setAboutTheme = () => {
+		document.documentElement.style.setProperty(
+			'--html-bg',
+			theme.colours.offWhite
+		);
+		document.documentElement.style.setProperty(
+			'--footer-bg',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--footer-fg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--footer-contact-fg',
+			theme.colours.black
+		);
+		document.documentElement.style.setProperty(
+			'--menu-active',
+			theme.colours.orange
+		);
+		document.documentElement.style.setProperty(
+			'--menu-inactive',
+			theme.colours.black
+		);
+	};
+
 	useEffect(() => {
 		if (router.pathname === '/') {
 			setDefaultTheme();
@@ -126,6 +153,8 @@ const App = (props: Props) => {
 			setOffBriefTheme();
 		} else if (router.pathname === '/contact') {
 			setContactTheme();
+		} else if (router.pathname === '/about') {
+			setAboutTheme();
 		} else {
 			setDefaultTheme();
 		}

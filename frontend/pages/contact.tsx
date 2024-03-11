@@ -35,8 +35,6 @@ const Page = (props: Props) => {
 	const { data, blurHashBase64, pageTransitionVariants, siteSettings } =
 		props;
 
-	console.log('siteSettings', siteSettings);
-
 	return (
 		<PageWrapper
 			variants={pageTransitionVariants}

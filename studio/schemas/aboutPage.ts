@@ -61,8 +61,23 @@ export default {
 			description: 'Content underneath hero title'
 		},
 		{
+			title: 'Team Roles Prefix',
+			name: 'teamRolesPrefix',
+			type: 'string',
+		},
+		{
 			title: 'Team Roles',
 			name: 'teamRoles',
+			type: 'array',
+			of: [
+				{
+					type: 'string',
+				}
+			]
+		},
+		{
+			title: 'Team Cursors',
+			name: 'teamCursors',
 			type: 'array',
 			of: [
 				{

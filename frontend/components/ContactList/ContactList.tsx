@@ -37,8 +37,6 @@ const ContactList = (props: Props) => {
 		generalEnquiriesEmail
 	} = props;
 
-	console.log('generalEnquiriesButtontitle', generalEnquiriesButtontitle);
-
 	return (
 		<ContactListWrapper>
 			<LayoutWrapper>

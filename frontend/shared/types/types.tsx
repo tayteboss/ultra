@@ -92,4 +92,14 @@ export type OffBriefPageType = {
 export type AboutPageType = {
 	seoTitle: string;
 	seoDescription: string;
+	clientList: [];
+	locationCta: string;
+	suffixHeroTitle: string;
+	prefixHeroTitle: string;
+	teamRoles: [];
+	servicesList: [];
+	description: string;
+	clientsLogos: [];
+	teamRolesPrefix: string;
+	teamCursors: [];
 };

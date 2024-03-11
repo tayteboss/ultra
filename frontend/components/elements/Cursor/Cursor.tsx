@@ -50,17 +50,19 @@ const CursorRing = styled(motion.div)<StyledProps>`
 		top 300ms ease, left 300ms ease, border-radius 300ms ease;
 `;
 
-const Text = styled(motion.div)`
+const Text = styled(motion.div)<{ $isOrangeTheme: boolean }>`
 	font-size: ${pxToRem(18)};
 	line-height: 1;
-	color: var(--colour-white);
+	color: ${(props) =>
+		props.$isOrangeTheme ? 'var(--colour-black)' : 'var(--colour-white)'};
 	position: absolute;
 	text-align: right;
 	top: -25px;
 	right: 5px;
 	white-space: nowrap;
 	padding: 2px 8px;
-	background: rgba(0, 0, 0, 0.01);
+	background: ${(props) =>
+		props.$isOrangeTheme ? 'var(--colour-orange)' : 'rgba(0, 0, 0, 0.01)'};
 	backdrop-filter: blur(10px);
 	border-radius: 4px;
 `;
@@ -71,6 +73,8 @@ const Cursor = ({ cursorRefresh }: Props) => {
 		boolean | string
 	>(false);
 	const [isOnDevice, setIsOnDevice] = useState(false);
+	const [buttonTheme, setButtonTheme] = useState('default');
+
 	const position = useMousePosition();
 	const router = useRouter();
 
@@ -87,6 +91,23 @@ const Cursor = ({ cursorRefresh }: Props) => {
 				stiffness: 800,
 				damping: 20,
 				ease: 'linear'
+			}
+		}
+	};
+
+	const textVariants = {
+		hidden: {
+			opacity: 0,
+			transition: {
+				duration: 0.2,
+				ease: 'easeInOut'
+			}
+		},
+		visible: {
+			opacity: 1,
+			transition: {
+				duration: 0.2,
+				ease: 'easeInOut'
 			}
 		}
 	};
@@ -135,13 +156,19 @@ const Cursor = ({ cursorRefresh }: Props) => {
 				const title = (e.target as HTMLElement).getAttribute(
 					'data-text'
 				);
+				const theme = (e.target as HTMLElement).getAttribute(
+					'data-theme'
+				);
 				setIsHoveringTextLink(title);
+				setButtonTheme(theme === 'orange' ? 'orange' : 'default');
 			});
 			link.addEventListener('mouseleave', () => {
 				setIsHoveringTextLink(false);
+				setButtonTheme('default');
 			});
 			link.addEventListener('click', () => {
 				setIsHoveringTextLink(false);
+				setButtonTheme('default');
 			});
 		});
 
@@ -180,7 +207,16 @@ const Cursor = ({ cursorRefresh }: Props) => {
 				>
 					<AnimatePresence>
 						{isHoveringTextLink && (
-							<Text key={1}>{isHoveringTextLink}</Text>
+							<Text
+								key={1}
+								$isOrangeTheme={buttonTheme === 'orange'}
+								variants={textVariants}
+								initial="hidden"
+								animate="visible"
+								exit="hidden"
+							>
+								{isHoveringTextLink}
+							</Text>
 						)}
 					</AnimatePresence>
 				</CursorRing>
