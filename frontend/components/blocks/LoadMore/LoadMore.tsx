@@ -4,6 +4,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 
 type Props = {
 	handleClick: () => void;
+	isLoading: boolean;
 };
 
 const LoadMoreWrapper = styled.section`
@@ -23,13 +24,13 @@ const Trigger = styled.button`
 `;
 
 const LoadMore = (props: Props) => {
-	const { handleClick } = props;
+	const { handleClick, isLoading } = props;
 
 	return (
 		<LoadMoreWrapper>
 			<LayoutWrapper>
 				<Trigger className="type-h1" onClick={() => handleClick()}>
-					Load more work
+					{isLoading ? 'Loading...' : 'Load more work'}
 				</Trigger>
 			</LayoutWrapper>
 		</LoadMoreWrapper>

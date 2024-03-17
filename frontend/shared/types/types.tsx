@@ -68,6 +68,7 @@ export type ProjectType = {
 	mobileBlurHashBase64: string;
 	heroTitle: string;
 	pageBuilder: [];
+	_id: string;
 };
 
 export type ContactPageType = {
