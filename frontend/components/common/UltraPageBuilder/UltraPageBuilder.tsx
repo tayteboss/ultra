@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import FullScreenMedia from '../../blocks/FullScreenMedia';
 import TwoColumnContent from '../../blocks/TwoColumnContent';
 import TwoColumnMedia from '../../blocks/TwoColumnMedia';
-import RichText from '../RichText';
-import pxToRem from '../../../utils/pxToRem';
+import ProjectRichText from '../../blocks/ProjectRichText';
 
 type Props = {
 	data: [];
@@ -23,7 +22,7 @@ const UltraPageBuilder = (props: Props) => {
 		projectTwoColumnContent: TwoColumnContent,
 		projectTwoColumnMedia: TwoColumnMedia,
 		projectFullScreenMedia: FullScreenMedia,
-		projectRichText: RichText
+		projectRichText: ProjectRichText
 	};
 
 	return (

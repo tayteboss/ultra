@@ -4,11 +4,11 @@ import { ProjectType, TransitionsType } from '../../shared/types/types';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import { useEffect } from 'react';
-import HeroTitle from '../../components/blocks/HeroTitle';
 import ProjectHeroTitle from '../../components/blocks/ProjectHeroTitle';
 import ProjectHeroMedia from '../../components/blocks/ProjectHeroMedia';
 import muxBlurHash from '@mux/blurhash';
 import UltraPageBuilder from '../../components/common/UltraPageBuilder';
+import pxToRem from '../../utils/pxToRem';
 
 type Props = {
 	data: ProjectType;
@@ -16,7 +16,9 @@ type Props = {
 	pageTransitionVariants: TransitionsType;
 };
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	margin-bottom: ${pxToRem(80)};
+`;
 
 const Page = (props: Props) => {
 	const { data, blurHash, pageTransitionVariants } = props;
