@@ -210,17 +210,24 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
-	.view-element-scale-up
+	.view-element-img-scale-down
 	{
-		transform: scale(0.95);
-		opacity: 0;
+		img,
+		mux-player {
+			opacity: 0;
+			transform: scale(1.05);
 
-		transition: opacity var(--transition-speed-default) ease, transform var(--transition-speed-default) ease;
+			transition: opacity var(--transition-speed-default) ease, transform 3000ms ease;
+		}
+
 
 		&--in-view
 		{
-			opacity: 1;
-			transform: scale(1);
+			img,
+			mux-player {
+				opacity: 1;
+				transform: scale(1);
+			}
 		}
 	}
 

@@ -94,6 +94,10 @@ export async function getStaticProps({ params }: any) {
 			},
 			pageBuilder[] {
 				...,
+				'leftImage': leftImage.asset->url,
+				'rightImage': rightImage.asset->url,
+				'leftVideo': leftVideo.asset->playbackId,
+				'rightVideo': rightVideo.asset->playbackId,
 			}
 		}
 	`;
