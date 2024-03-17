@@ -14,9 +14,7 @@ type Props = {
 	blurHashBase64: string | null;
 };
 
-const ProjectHeroMediaWrapper = styled.section`
-	margin-bottom: ${pxToRem(60)};
-`;
+const ProjectHeroMediaWrapper = styled.section``;
 
 const Inner = styled(motion.div)`
 	height: 100svh;

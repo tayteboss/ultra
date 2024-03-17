@@ -98,6 +98,8 @@ export async function getStaticProps({ params }: any) {
 				'rightImage': rightImage.asset->url,
 				'leftVideo': leftVideo.asset->playbackId,
 				'rightVideo': rightVideo.asset->playbackId,
+				'image': image.asset->url,
+				'video': video.asset->playbackId
 			}
 		}
 	`;

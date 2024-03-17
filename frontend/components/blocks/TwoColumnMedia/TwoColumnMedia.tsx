@@ -14,6 +14,8 @@ type Props = {
 };
 
 const TwoColumnMediaWrapper = styled.section`
+	padding: ${pxToRem(16)} 0;
+
 	mux-player {
 		width: 100%;
 		height: 100%;

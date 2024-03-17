@@ -10,7 +10,13 @@ type Props = {
 	content: [];
 };
 
-const TwoColumnContentWrapper = styled.section``;
+const TwoColumnContentWrapper = styled.section`
+	padding: ${pxToRem(120)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(60)} 0;
+	}
+`;
 
 const Title = styled.h3`
 	grid-column: 1 / 6;

@@ -12,7 +12,6 @@ type Props = {
 const PageBuilderWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: ${pxToRem(120)};
 `;
 
 const UltraPageBuilder = (props: Props) => {
