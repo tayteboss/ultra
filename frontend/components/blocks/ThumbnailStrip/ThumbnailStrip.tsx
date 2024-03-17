@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, motionValue, useScroll, useTransform } from 'framer-motion';
 import router from 'next/router';
 import { useState, useRef, useEffect } from 'react';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import useViewportWidth from '../../../hooks/useViewportWidth';
+import { useMousePosition } from '../../../hooks/useMousePosition';
 
 type Props = {
 	data: any[];
@@ -20,8 +20,12 @@ const ThumbnailStripWrapper = styled(motion.div)`
 	}
 `;
 
-const WrapperInner = styled(motion.div)`
+const WrapperInner = styled(motion.div)``;
+
+const HoverWrapper = styled(motion.div)`
 	display: flex;
+
+	transition: all 100ms linear !important;
 `;
 
 const ImageWrapper = styled.div`
@@ -72,9 +76,25 @@ const ThumbnailStrip = (props: Props) => {
 	}
 
 	const [windowHeight, setWindowHeight] = useState(0);
+	const [windowWidth, setWindowWidth] = useState(0);
 	const [distanceToTop, setDistanceToTop] = useState(0);
+	const [isHovered, setIsHovered] = useState(false);
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
+
+	const position = useMousePosition();
+
+	const mouseXPosition = position.x;
+
+	const cursorPositionRelativeToWindow = motionValue(
+		mouseXPosition / windowWidth
+	);
+
+	const cursorTransform = useTransform(
+		cursorPositionRelativeToWindow,
+		[0, 1],
+		['translateX(5%)', 'translateX(-5%)']
+	);
 
 	const { scrollY } = useScroll();
 
@@ -96,6 +116,7 @@ const ThumbnailStrip = (props: Props) => {
 		}
 
 		setWindowHeight(window.innerHeight);
+		setWindowWidth(window.innerWidth);
 
 		const timer = setTimeout(() => {
 			if (wrapperRef?.current) {
@@ -106,43 +127,56 @@ const ThumbnailStrip = (props: Props) => {
 			}
 
 			setWindowHeight(window.innerHeight);
+			setWindowWidth(window.innerWidth);
 		}, 1000);
 
 		return () => clearTimeout(timer);
 	}, [distanceToTop, router]);
 
 	return (
-		<ThumbnailStripWrapper ref={wrapperRef}>
+		<ThumbnailStripWrapper
+			ref={wrapperRef}
+			onMouseOver={() => setIsHovered(true)}
+			onMouseOut={() => setIsHovered(false)}
+		>
 			<WrapperInner style={{ transform }}>
-				{hasData &&
-					doubleData.map((item, i) => {
-						let isImage = item?.asset?.url;
+				<HoverWrapper
+					style={{
+						transform: isHovered
+							? cursorTransform
+							: 'translateX(0%)'
+					}}
+				>
+					{hasData &&
+						doubleData.map((item, i) => {
+							let isImage = item?.asset?.url;
 
-						return isImage ? (
-							<ImageWrapper key={i}>
-								<Outer>
-									<Inner>
-										<img
-											src={item?.asset?.url}
-											alt={item?.alt}
-											loading="eager"
-										/>
-									</Inner>
-								</Outer>
-							</ImageWrapper>
-						) : (
-							<ImageWrapper key={i}>
-								<Outer>
-									<Inner>
-										<img
-											src={`https://image.mux.com/${item?.asset?.playbackId}/animated.webp`}
-											loading="eager"
-										/>
-									</Inner>
-								</Outer>
-							</ImageWrapper>
-						);
-					})}
+							return isImage ? (
+								<ImageWrapper key={i}>
+									<Outer>
+										<Inner>
+											<img
+												src={item?.asset?.url}
+												alt={item?.alt}
+												loading="eager"
+											/>
+										</Inner>
+									</Outer>
+								</ImageWrapper>
+							) : (
+								<ImageWrapper key={i}>
+									<Outer>
+										<Inner>
+											<img
+												src={`https://image.mux.com/${item?.asset?.playbackId}/animated.webp`}
+												loading="eager"
+											/>
+										</Inner>
+									</Outer>
+								</ImageWrapper>
+							);
+						})}
+				</HoverWrapper>
 			</WrapperInner>
 		</ThumbnailStripWrapper>
 	);
