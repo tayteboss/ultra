@@ -678,7 +678,7 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@portabletext/react@^3.0.0", "@portabletext/react@^3.0.11", "@portabletext/react@^3.0.12":
+"@portabletext/react@^3.0.0", "@portabletext/react@^3.0.12":
   version "3.0.12"
   resolved "https://registry.npmjs.org/@portabletext/react/-/react-3.0.12.tgz"
   integrity sha512-XyvM9rad7JK9gVt+fg4eK/5LuqmoGSkSabqlEMiuoQ1sRd7dJrNiYAegmjNFuxHIQraDlz3fCrh5FbQP1hryIQ==

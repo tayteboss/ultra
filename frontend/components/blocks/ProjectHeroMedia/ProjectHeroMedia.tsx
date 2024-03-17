@@ -11,10 +11,12 @@ type Props = {
 	mobileVideo: string;
 	heroImage: string;
 	mobileHeroImage: string;
-	blurHashBase64: string;
+	blurHashBase64: string | null;
 };
 
-const ProjectHeroMediaWrapper = styled.section``;
+const ProjectHeroMediaWrapper = styled.section`
+	margin-bottom: ${pxToRem(60)};
+`;
 
 const Inner = styled(motion.div)`
 	height: 100svh;
@@ -80,10 +82,10 @@ const ProjectHeroMedia = (props: Props) => {
 				<ProjectHeroMediaWrapper ref={wrapperRef}>
 					<Inner style={{ padding }}>
 						<DesktopWrapper>
-							{isUsingVideo ? (
+							{isUsingVideo && desktopVideo?.asset?.playbackId ? (
 								<MuxPlayer
 									streamType="on-demand"
-									playbackId={desktopVideo}
+									playbackId={desktopVideo?.asset?.playbackId}
 									autoPlay="muted"
 									loop={true}
 									thumbnailTime={1}
@@ -91,7 +93,9 @@ const ProjectHeroMedia = (props: Props) => {
 									preload="auto"
 									muted
 									playsInline={true}
-									poster={blurHashBase64}
+									poster={
+										blurHashBase64 ? blurHashBase64 : ''
+									}
 								/>
 							) : (
 								<Image
