@@ -9,6 +9,7 @@ import ProjectHeroMedia from '../../components/blocks/ProjectHeroMedia';
 import muxBlurHash from '@mux/blurhash';
 import UltraPageBuilder from '../../components/common/UltraPageBuilder';
 import pxToRem from '../../utils/pxToRem';
+import RelatedProjectCover from '../../components/blocks/RelatedProjectCover';
 
 type Props = {
 	data: ProjectType;
@@ -20,6 +21,23 @@ const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
 `;
 
+const workPageVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.5,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeInOut'
+		}
+	}
+};
+
 const Page = (props: Props) => {
 	const { data, blurHash, pageTransitionVariants } = props;
 
@@ -27,11 +45,9 @@ const Page = (props: Props) => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	console.log('data', data);
-
 	return (
 		<PageWrapper
-			variants={pageTransitionVariants}
+			variants={workPageVariants}
 			initial="hidden"
 			animate="visible"
 			exit="hidden"
@@ -49,6 +65,14 @@ const Page = (props: Props) => {
 				blurHashBase64={blurHash}
 			/>
 			<UltraPageBuilder data={data?.pageBuilder} />
+			<RelatedProjectCover
+				desktopVideo={data?.relatedProject?.heroVideo}
+				mobileVideo={data?.relatedProject?.mobileHeroVideo}
+				heroImage={data?.relatedProject?.heroImage}
+				mobileHeroImage={data?.relatedProject?.mobileHeroImage}
+				title={data?.relatedProject?.heroTitle}
+				link={`/work/${data?.relatedProject?.slug?.current}`}
+			/>
 		</PageWrapper>
 	);
 };
@@ -73,6 +97,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
 	const projectQuery = `
 		*[_type == 'project' && slug.current == "${params.slug[0]}"][0] {
+			...,
 			title,
 			slug,
 			seoDescription,
@@ -102,6 +127,26 @@ export async function getStaticProps({ params }: any) {
 				'rightVideo': rightVideo.asset->playbackId,
 				'image': image.asset->url,
 				'video': video.asset->playbackId
+			},
+			relatedProject-> {
+				heroTitle,
+				slug,
+				mobileHeroImage {
+					asset->{
+						url
+					}
+				},
+				heroImage {
+					asset->{
+						url
+					}
+				},
+				heroVideo {
+					asset->{playbackId}
+				},
+				mobileHeroVideo {
+					asset->{playbackId}
+				},
 			}
 		}
 	`;

@@ -7,7 +7,10 @@ import MobileMenu from '../blocks/MobileMenu';
 
 const siteSettings = require('../../json/siteSettings.json');
 
-const Main = styled.main``;
+const Main = styled.main`
+	position: relative;
+	z-index: 15;
+`;
 
 type Props = {
 	children: ReactNode;

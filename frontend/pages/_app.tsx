@@ -162,6 +162,10 @@ const App = (props: Props) => {
 			'--footer-hover',
 			theme.colours.white
 		);
+		document.documentElement.style.setProperty(
+			'--menu-blend-mode',
+			'difference'
+		);
 	};
 
 	const checkRoute = () => {

@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const ProjectHeroTitleWrapper = styled(motion.div)`
 	padding-top: ${pxToRem(180)};
-	max-width: 90%;
+	max-width: 80%;
 	margin-bottom: ${pxToRem(32)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
