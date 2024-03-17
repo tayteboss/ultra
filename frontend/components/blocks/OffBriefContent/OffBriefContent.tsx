@@ -55,12 +55,12 @@ const Letter = (props: LetterProps) => {
 		},
 		visible: {
 			filter: 'blur(2px)',
-			scale: randInt(-0.5, 2.5),
-			x: randInt(-100, 100),
-			y: randInt(-100, 100),
-			rotate: randInt(-180, 180),
+			scale: randInt(0.7, 1.2),
+			x: randInt(-50, 50),
+			y: randInt(-50, 50),
+			rotate: randInt(-100, 100),
 			transition: {
-				duration: randInt(2, 3),
+				duration: 3,
 				ease: 'easeInOut'
 			}
 		}

@@ -47,7 +47,7 @@ const Page = (props: Props) => {
 		setIsLoading(true);
 
 		const query = `
-			*[_type == 'project'] | order(orderRank) [${projectCount}...${
+			*[_type == 'project' && !inactive] | order(orderRank) [${projectCount}...${
 			projectCount + 8
 		}] {
 				...,

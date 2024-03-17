@@ -7,7 +7,7 @@ export const siteSettingsQueryString = `
 export const homePageQueryString = `
 	*[_type == 'homePage'][0] {
 		...,
-		"projects": *[_type == 'project'] | order(orderRank) [0...100] {
+		"projects": *[_type == 'project' && !inactive] | order(orderRank) [0...100] {
 			...,
 			'heroVideo': heroVideo.asset->playbackId,
 			'mobileHeroVideo': mobileHeroVideo.asset->playbackId,
@@ -60,7 +60,7 @@ export const aboutPageQueryString = `
 `;
 
 export const projectQueryString = `
-	*[_type == 'project'] | order(orderRank) [0...8] {
+	*[_type == 'project' && !inactive] | order(orderRank) [0...8] {
 		...,
 		"thumbnailStrip": thumbnailStrip[] {
 			alt,

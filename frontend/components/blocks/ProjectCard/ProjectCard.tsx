@@ -147,6 +147,7 @@ const ProjectCard = (props: Props) => {
 			ref={wrapperRef}
 			className="cursor-text"
 			data-text="See project"
+			data-theme="orange"
 		>
 			<Inner style={{ transform: scale, filter: blur }}>
 				<Desktop>
