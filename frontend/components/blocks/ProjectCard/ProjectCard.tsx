@@ -70,8 +70,13 @@ const Title = styled.h2`
 `;
 
 const MobileButton = styled.p`
+	display: none;
 	color: var(--colour-white);
 	mix-blend-mode: difference;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+	}
 `;
 
 const ImageWrapper = styled.div`
