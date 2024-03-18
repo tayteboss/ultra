@@ -66,14 +66,16 @@ const FooterContactBlockWrapper = styled(motion.div)`
 	}
 `;
 
-const CardWrapper = styled(motion.a)`
+const MotionWrapper = styled(motion.div)``;
+
+const CardWrapper = styled.a`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	opacity: 0.75;
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	transition: all var(--transition-speed-default) linear;
 
 	&:hover {
 		opacity: 1;
@@ -106,10 +108,12 @@ const FooterContactCard = (props: CardProps) => {
 	const { title, email } = props;
 
 	return (
-		<CardWrapper variants={childVariants} href={`mailto:${email}`}>
-			<Email className="card-wrapper-email">{email}</Email>
-			<Title>{title}</Title>
-		</CardWrapper>
+		<MotionWrapper variants={childVariants}>
+			<CardWrapper href={`mailto:${email}`}>
+				<Email className="card-wrapper-email">{email}</Email>
+				<Title>{title}</Title>
+			</CardWrapper>
+		</MotionWrapper>
 	);
 };
 

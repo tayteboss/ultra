@@ -38,7 +38,7 @@ const ImageWrapper = styled.div`
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-		flex: 0 0 45%;
+		flex: 0 0 65%;
 	}
 `;
 

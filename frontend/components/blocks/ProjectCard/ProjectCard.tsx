@@ -56,9 +56,20 @@ const TitleWrapper = styled.div`
 	position: absolute;
 	bottom: ${pxToRem(32)};
 	left: ${pxToRem(16)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: flex;
+		flex-direction: column;
+		gap: ${pxToRem(8)};
+	}
 `;
 
 const Title = styled.h2`
+	color: var(--colour-white);
+	mix-blend-mode: difference;
+`;
+
+const MobileButton = styled.p`
 	color: var(--colour-white);
 	mix-blend-mode: difference;
 `;
@@ -210,6 +221,7 @@ const ProjectCard = (props: Props) => {
 				</Mobile>
 				<TitleWrapper>
 					{title && <Title className="type-d1">{title}</Title>}
+					<MobileButton>Click to view project</MobileButton>
 				</TitleWrapper>
 			</Inner>
 		</ProjectCardWrapper>

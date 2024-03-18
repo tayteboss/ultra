@@ -19,6 +19,7 @@ type Props = {
 
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
+	min-height: 100vh;
 `;
 
 const workPageVariants = {
@@ -39,7 +40,7 @@ const workPageVariants = {
 };
 
 const Page = (props: Props) => {
-	const { data, blurHash, pageTransitionVariants } = props;
+	const { data, blurHash } = props;
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

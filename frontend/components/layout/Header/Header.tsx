@@ -17,8 +17,8 @@ const HeaderWrapper = styled.header`
 	position: fixed;
 	top: ${pxToRem(8)};
 	left: ${pxToRem(16)};
-	background: rgba(0, 0, 0, 0.01);
-	backdrop-filter: blur(2px);
+	/* background: rgba(255, 255, 255, 0.01); */
+	/* backdrop-filter: blur(2px); */
 	border-radius: ${pxToRem(4)};
 	z-index: 100;
 	height: ${pxToRem(33)};
@@ -70,6 +70,14 @@ const Header = (props: Props) => {
 
 	const handleScroll = () => {
 		const currentScrollPos = window.pageYOffset;
+
+		const windowHeight = window.innerHeight;
+		const documentHeight = document.body.clientHeight;
+
+		if (currentScrollPos > documentHeight - windowHeight * 2) {
+			setHeaderIsActive(true);
+			return;
+		}
 
 		if (currentScrollPos < 30) {
 			setHeaderIsActive(true);
