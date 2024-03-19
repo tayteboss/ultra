@@ -31,11 +31,23 @@ const TitleInner = styled.div`
 	padding-top: ${pxToRem(180)};
 	max-width: 80%;
 	margin-bottom: ${pxToRem(32)};
+	display: flex;
+	flex-direction: column;
+	gap: ${pxToRem(8)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		max-width: 100%;
 		padding-top: ${pxToRem(120)};
 		margin-bottom: ${pxToRem(16)};
+	}
+`;
+
+const Text = styled.p`
+	color: var(--colour-off-white);
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
 	}
 `;
 
@@ -114,9 +126,13 @@ const RelatedProjectCover = (props: Props) => {
 					onClick={() => handleLink()}
 					ref={ref}
 					$isFixed={isFixed}
+					className="cursor-text"
+					data-text="Next project"
+					data-theme="orange"
 				>
 					<LayoutWrapper>
 						<TitleInner className="type-d1">
+							<Text className="type-p">Next project</Text>
 							{title && <Title>{title}</Title>}
 						</TitleInner>
 						<Inner>

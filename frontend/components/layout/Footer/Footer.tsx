@@ -117,6 +117,11 @@ const Time = styled.div`
 		font-size: ${pxToRem(38)};
 		line-height: normal;
 	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		font-size: ${pxToRem(28)};
+		line-height: ${pxToRem(28)};
+	}
 `;
 
 const BottomWrapper = styled.div`

@@ -161,6 +161,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(18)};
 		line-height: normal;
 		font-weight: 500;
+		letter-spacing: normal;
 	}
 
 	.type-d1 {
