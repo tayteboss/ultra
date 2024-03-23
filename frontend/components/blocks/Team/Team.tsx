@@ -66,6 +66,7 @@ const RoleWrapper = styled.div`
 
 const Role = styled.div`
 	color: var(--colour-off-white);
+	background: transparent;
 `;
 
 const Team = (props: Props) => {

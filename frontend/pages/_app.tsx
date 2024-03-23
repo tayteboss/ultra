@@ -12,6 +12,8 @@ import { TransitionsType } from '../shared/types/types';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 import Cursor from '../components/elements/Cursor';
 
+const siteSettings = require('../json/siteSettings.json');
+
 const pageTransitionVariants: TransitionsType = {
 	hidden: { opacity: 0, transition: { duration: 0.5 } },
 	visible: { opacity: 1, transition: { duration: 0.5 } }
@@ -30,6 +32,8 @@ const App = (props: Props) => {
 
 	const router = useRouter();
 	const routerEvents = router.events;
+
+	const { accentHexCode } = siteSettings;
 
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
@@ -51,7 +55,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
-			theme.colours.orange
+			accentHexCode
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
@@ -76,17 +80,14 @@ const App = (props: Props) => {
 	};
 
 	const setOffBriefTheme = () => {
-		document.documentElement.style.setProperty(
-			'--html-bg',
-			theme.colours.orange
-		);
+		document.documentElement.style.setProperty('--html-bg', accentHexCode);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
 			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
-			theme.colours.orange
+			accentHexCode
 		);
 		document.documentElement.style.setProperty(
 			'--footer-contact-fg',
@@ -129,7 +130,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-hover',
-			theme.colours.orange
+			accentHexCode
 		);
 		document.documentElement.style.setProperty(
 			'--menu-blend-mode',
@@ -144,7 +145,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
-			theme.colours.orange
+			accentHexCode
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
@@ -187,6 +188,11 @@ const App = (props: Props) => {
 	}, [router]);
 
 	useEffect(() => {
+		document.documentElement.style.setProperty(
+			'--colour-orange',
+			accentHexCode
+		);
+
 		const hasCookies = Cookies.get('visited');
 
 		if (hasCookies) {

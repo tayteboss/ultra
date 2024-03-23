@@ -2,19 +2,22 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 import pxToRem from '../utils/pxToRem';
 
+const siteSettings = require('../json/siteSettings.json');
+const { accentHexCode } = siteSettings;
+
 export const GlobalStyles = createGlobalStyle`
 	:root {
 		--menu-blend-mode: normal;
 		--menu-active: ${theme.colours.black};
-		--menu-inactive: ${theme.colours.orange};
+		--menu-inactive: ${accentHexCode};
 		--html-bg: ${theme.colours.black};
-		--footer-bg: ${theme.colours.orange};
+		--footer-bg: ${accentHexCode};
 		--footer-fg: ${theme.colours.black};
 		--footer-contact-fg: ${theme.colours.white};
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
 		--colour-off-black: ${theme.colours.offBlack};
-		--colour-orange: ${theme.colours.orange};
+		--colour-orange: ${accentHexCode};
 		--colour-off-white: ${theme.colours.offWhite};
 		--font-default: ${theme.fonts.HaasGrotDisp};
 		--transition-speed-default: ${theme.transitionSpeed.default};

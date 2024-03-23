@@ -42,6 +42,7 @@ const getSiteData = async () => {
 				instagramUrl,
 				careersEmail,
 				generalEnquiriesEmail,
+				accentHexCode
 			}
 		}
 	`;
