@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';

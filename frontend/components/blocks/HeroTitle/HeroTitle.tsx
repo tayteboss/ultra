@@ -136,7 +136,7 @@ const HeroTitle = (props: Props) => {
 		slidesToScroll: 1,
 		fade: true,
 		autoplay: true,
-		autoplaySpeed: 1500
+		autoplaySpeed: 1000
 	};
 
 	return (

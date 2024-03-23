@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import pxToRem from '../../../utils/pxToRem';
 import ThumbnailStrip from '../ThumbnailStrip';
+import { useRouter } from 'next/router';
 
 type Props = {
 	client: string;
@@ -42,6 +43,12 @@ const Title = styled.h3`
 const ProjectStripCard = (props: Props) => {
 	const { client, title, slug, thumbnails, setIsHovered } = props;
 
+	const router = useRouter();
+
+	const onLinkMouseDown = () => {
+		router.push(`/work/${slug}`);
+	};
+
 	return (
 		<ProjectStripCardWrapper
 			href={`/work/${slug}`}
@@ -50,6 +57,7 @@ const ProjectStripCard = (props: Props) => {
 			data-text="See project"
 			onMouseOver={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}
+			onMouseDown={onLinkMouseDown}
 		>
 			<LayoutWrapper>
 				<Inner>

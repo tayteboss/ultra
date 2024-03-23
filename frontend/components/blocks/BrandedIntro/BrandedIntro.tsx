@@ -12,8 +12,6 @@ type Props = {
 const BrandedIntroWrapper = styled.div`
 	padding: 25vh 0 ${pxToRem(120)};
 	background: var(--colour-black);
-	position: sticky;
-	top: 0;
 `;
 
 const Inner = styled.div``;
@@ -35,22 +33,14 @@ const BrandedIntro = (props: Props) => {
 
 	const brightness = useTransform(
 		scrollY,
-		[distanceToTop + windowHeight, distanceToTop + windowHeight * 2],
+		[distanceToTop + windowHeight * 0.5, distanceToTop + windowHeight * 2],
 		['brightness(1) blur(0px)', 'brightness(0) blur(2px)']
 	);
 
 	const scale = useTransform(
 		scrollY,
-		[
-			distanceToTop,
-			distanceToTop + windowHeight,
-			distanceToTop + windowHeight * 2
-		],
-		[
-			'scale(1) translateY(0)',
-			'scale(1) translateY(0)',
-			'scale(0.98) translateY(-550px)'
-		]
+		[distanceToTop, distanceToTop + windowHeight],
+		['scale(1) translateY(0)', 'scale(0.98) translateY(-50px)']
 	);
 
 	useEffect(() => {
