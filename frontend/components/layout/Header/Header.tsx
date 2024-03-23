@@ -103,7 +103,7 @@ const Header = (props: Props) => {
 	}, [router]);
 
 	useEffect(() => {
-		const throttledHandleScroll = throttle(handleScroll, 100);
+		const throttledHandleScroll = throttle(handleScroll, 50);
 		window.addEventListener('scroll', throttledHandleScroll);
 
 		return () => {

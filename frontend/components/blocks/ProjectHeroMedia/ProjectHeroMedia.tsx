@@ -1,4 +1,4 @@
-import MuxPlayer from '@mux/mux-player-react/lazy';
+import MuxPlayer from '@mux/mux-player-react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
@@ -17,7 +17,7 @@ type Props = {
 const ProjectHeroMediaWrapper = styled.section``;
 
 const Inner = styled(motion.div)`
-	height: 100svh;
+	min-height: 100svh;
 	width: 100%;
 `;
 
@@ -87,13 +87,9 @@ const ProjectHeroMedia = (props: Props) => {
 									autoPlay="muted"
 									loop={true}
 									thumbnailTime={1}
-									loading="page"
 									preload="auto"
 									muted
-									playsInline={true}
-									poster={
-										blurHashBase64 ? blurHashBase64 : ''
-									}
+									style={{ aspectRatio: '16 / 9' }}
 								/>
 							) : (
 								<Image

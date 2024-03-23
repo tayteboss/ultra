@@ -62,7 +62,7 @@ export type ProjectType = {
 	mobileHeroImage: string;
 	heroVideo: string;
 	mobileHeroVideo: string;
-	relatedProject: ProjectType;
+	relatedProjects: ProjectType[];
 	thumbnailStrip: [];
 	desktopBlurHashBase64: string;
 	mobileBlurHashBase64: string;

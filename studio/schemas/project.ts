@@ -111,10 +111,10 @@ export default {
       ],
     },
     {
-      title: 'Related Project',
-      name: 'relatedProject',
-      type: 'reference',
-      to: [{type: 'project'}],
+      title: 'Related Projects',
+      name: 'relatedProjects',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'project'}]}],
     },
   ],
 }

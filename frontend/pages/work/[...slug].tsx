@@ -9,7 +9,8 @@ import ProjectHeroMedia from '../../components/blocks/ProjectHeroMedia';
 import muxBlurHash from '@mux/blurhash';
 import UltraPageBuilder from '../../components/common/UltraPageBuilder';
 import pxToRem from '../../utils/pxToRem';
-import RelatedProjectCover from '../../components/blocks/RelatedProjectCover';
+import ProjectsList from '../../components/blocks/ProjectsList';
+import LayoutWrapper from '../../components/common/LayoutWrapper';
 
 type Props = {
 	data: ProjectType;
@@ -20,6 +21,19 @@ type Props = {
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
 	min-height: 100vh;
+`;
+
+const RelatedWrapper = styled.div`
+	padding-top: ${pxToRem(80)};
+`;
+
+const RelatedTitle = styled.h3`
+	color: var(--colour-off-white);
+	margin-bottom: ${pxToRem(40)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(32)};
+	}
 `;
 
 const workPageVariants = {
@@ -46,6 +60,8 @@ const Page = (props: Props) => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	const hasRelatedProjects = data?.relatedProjects?.length > 0;
+
 	return (
 		<PageWrapper
 			variants={workPageVariants}
@@ -66,14 +82,14 @@ const Page = (props: Props) => {
 				blurHashBase64={blurHash}
 			/>
 			<UltraPageBuilder data={data?.pageBuilder} />
-			<RelatedProjectCover
-				desktopVideo={data?.relatedProject?.heroVideo}
-				mobileVideo={data?.relatedProject?.mobileHeroVideo}
-				heroImage={data?.relatedProject?.heroImage}
-				mobileHeroImage={data?.relatedProject?.mobileHeroImage}
-				title={data?.relatedProject?.heroTitle}
-				link={`/work/${data?.relatedProject?.slug?.current}`}
-			/>
+			{hasRelatedProjects && (
+				<RelatedWrapper>
+					<LayoutWrapper>
+						<RelatedTitle>Related Projects</RelatedTitle>
+					</LayoutWrapper>
+					<ProjectsList data={data?.relatedProjects} />
+				</RelatedWrapper>
+			)}
 		</PageWrapper>
 	);
 };
@@ -129,24 +145,14 @@ export async function getStaticProps({ params }: any) {
 				'image': image.asset->url,
 				'video': video.asset->playbackId
 			},
-			relatedProject-> {
-				heroTitle,
-				slug,
-				mobileHeroImage {
-					asset->{
-						url
+			relatedProjects[]-> {
+				...,
+				"thumbnailStrip": thumbnailStrip[] {
+					alt,
+					asset-> {
+						url,
+						playbackId
 					}
-				},
-				heroImage {
-					asset->{
-						url
-					}
-				},
-				heroVideo {
-					asset->{playbackId}
-				},
-				mobileHeroVideo {
-					asset->{playbackId}
 				},
 			}
 		}
@@ -156,12 +162,12 @@ export async function getStaticProps({ params }: any) {
 
 	let blurHash = '';
 
-	if (data?.heroVideo?.asset?.playbackId) {
-		const { blurHashBase64 } = await muxBlurHash(
-			data.heroVideo?.asset?.playbackId
-		);
-		blurHash = blurHashBase64;
-	}
+	// if (data?.heroVideo?.asset?.playbackId) {
+	// 	const { blurHashBase64 } = await muxBlurHash(
+	// 		data.heroVideo?.asset?.playbackId
+	// 	);
+	// 	blurHash = blurHashBase64;
+	// }
 
 	return {
 		props: {

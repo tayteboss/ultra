@@ -15,7 +15,6 @@ import ProjectsList from '../../components/blocks/ProjectsList';
 import LoadMore from '../../components/blocks/LoadMore';
 import pxToRem from '../../utils/pxToRem';
 import { useState } from 'react';
-import { groq } from 'next-sanity';
 
 const PageWrapper = styled(motion.div)`
 	background: var(--colour-black);
