@@ -28,6 +28,19 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
 	}
 
+	.CookieConsent {
+		@media ${theme.mediaBreakpoints.mobile} {
+			max-width: 100% !important;
+			margin: 0 0 !important;
+			border-radius: 0 !important;
+			flex-wrap: nowrap !important;
+
+			& > div {
+				flex: auto !important;
+			}
+		}
+	}
+
 	* {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
