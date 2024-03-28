@@ -33,7 +33,7 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={data?.seoTitle || 'Ultra'}
+				title="OFF BRIEF TEST"
 				description={data?.seoDescription || ''}
 			/>
 			<HeroTitle preCursor={data?.heroTitle} />
