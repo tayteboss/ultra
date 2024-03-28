@@ -28,7 +28,8 @@ const Layout = (props: Props) => {
 		streetAddress,
 		instagramUrl,
 		careersEmail,
-		generalEnquiriesEmail
+		generalEnquiriesEmail,
+		cookieCta
 	} = siteSettings;
 
 	const [menuIsActive, setMenuIsActive] = useState(false);
@@ -71,28 +72,30 @@ const Layout = (props: Props) => {
 				careersEmail={careersEmail}
 				generalEnquiriesEmail={generalEnquiriesEmail}
 			/>
-			<CookieConsent
-				location="bottom"
-				buttonText="Accept"
-				cookieName="ultra-cookie-consent"
-				style={{
-					background: 'rgba(0, 0, 0, 0.7)',
-					backdropFilter: 'blur(10px)',
-					maxWidth: '450px',
-					margin: '0 16px 16px',
-					borderRadius: '4px',
-					color: '#FFF'
-				}}
-				buttonStyle={{
-					color: 'var(--colour-black)',
-					background: 'var(--colour-orange)',
-					borderRadius: '4px',
-					fontSize: '13px'
-				}}
-				expires={150}
-			>
-				This website uses cookies to enhance the user experience.
-			</CookieConsent>
+			{cookieCta && (
+				<CookieConsent
+					location="bottom"
+					buttonText="Accept"
+					cookieName="ultra-cookie-consent"
+					style={{
+						background: 'rgba(0, 0, 0, 0.7)',
+						backdropFilter: 'blur(10px)',
+						maxWidth: '450px',
+						margin: '0 16px 16px',
+						borderRadius: '4px',
+						color: '#FFF'
+					}}
+					buttonStyle={{
+						color: 'var(--colour-black)',
+						background: 'var(--colour-orange)',
+						borderRadius: '4px',
+						fontSize: '13px'
+					}}
+					expires={150}
+				>
+					{cookieCta}
+				</CookieConsent>
+			)}
 		</>
 	);
 };

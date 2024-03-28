@@ -55,5 +55,10 @@ export default {
       name: 'accentHexCode',
       type: 'string',
     },
+    {
+      title: 'Cookies CTA',
+      name: 'cookieCta',
+      type: 'string',
+    },
   ],
 }
