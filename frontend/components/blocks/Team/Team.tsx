@@ -84,35 +84,42 @@ const Team = (props: Props) => {
 		autoplaySpeed: 1500
 	};
 
-	const hasRoles = roles.length > 0;
-	const hasCursors = cursors.length > 0;
+	const hasRoles = roles?.length > 0;
+	const hasCursors = cursors?.length > 0;
 
 	return (
-		<TeamWrapper className="performance">
-			<LayoutWrapper>
-				<Inner>
-					<TitleWrapper>
-						{prefix && (
-							<Title className="type-h3">
-								Our team is made up of
-							</Title>
-						)}
-						{hasRoles && (
-							<RoleWrapper>
-								<Slider {...settings}>
-									{roles.map((item, index) => (
-										<Role className="type-h3" key={index}>
-											{item}
-										</Role>
-									))}
-								</Slider>
-							</RoleWrapper>
-						)}
-					</TitleWrapper>
-					{hasCursors && <TeamCursors data={cursors} />}
-				</Inner>
-			</LayoutWrapper>
-		</TeamWrapper>
+		<>
+			{hasRoles && hasCursors && prefix && (
+				<TeamWrapper className="performance">
+					<LayoutWrapper>
+						<Inner>
+							<TitleWrapper>
+								{prefix && (
+									<Title className="type-h3">
+										Our team is made up of
+									</Title>
+								)}
+								{hasRoles && (
+									<RoleWrapper>
+										<Slider {...settings}>
+											{roles.map((item, index) => (
+												<Role
+													className="type-h3"
+													key={index}
+												>
+													{item}
+												</Role>
+											))}
+										</Slider>
+									</RoleWrapper>
+								)}
+							</TitleWrapper>
+							{hasCursors && <TeamCursors data={cursors} />}
+						</Inner>
+					</LayoutWrapper>
+				</TeamWrapper>
+			)}
+		</>
 	);
 };
 

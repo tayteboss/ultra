@@ -24,7 +24,7 @@ const wrapperVariants = {
 		transition: {
 			duration: 0.3,
 			ease: 'easeInOut',
-			staggerChildren: 0.1,
+			staggerChildren: 0.05,
 			when: 'beforeChildren'
 		}
 	}
@@ -34,14 +34,14 @@ const childVariants = {
 	hidden: {
 		opacity: 0,
 		transition: {
-			duration: 0.3,
+			duration: 0.2,
 			ease: 'easeInOut'
 		}
 	},
 	visible: {
 		opacity: 1,
 		transition: {
-			duration: 0.3,
+			duration: 0.2,
 			ease: 'easeInOut'
 		}
 	}
@@ -92,56 +92,62 @@ const TitleList = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
+	const hasItems = items?.length > 0;
+
 	return (
-		<TitleListWrapper
-			ref={ref}
-			className={`view-element-fade-in ${
-				inView ? 'view-element-fade-in--in-view' : ''
-			}`}
-		>
-			<LayoutWrapper>
-				<LayoutGrid>
-					<Title>{title}</Title>
-					<ListWrapper
-						variants={wrapperVariants}
-						initial="hidden"
-						animate={inView ? 'visible' : 'hidden'}
-					>
-						{items.map((item, i) =>
-							useLink ? (
-								item.url ? (
-									<ListItemLink
-										href={item.url}
-										target="_blank"
-										className="type-h4"
-										key={i}
-										variants={childVariants}
-									>
-										{item.title}
-									</ListItemLink>
-								) : (
-									<ListItem
-										className="type-h4"
-										key={i}
-										variants={childVariants}
-									>
-										{item.title}
-									</ListItem>
-								)
-							) : (
-								<ListItem
-									className="type-h4"
-									key={i}
-									variants={childVariants}
-								>
-									{item}
-								</ListItem>
-							)
-						)}
-					</ListWrapper>
-				</LayoutGrid>
-			</LayoutWrapper>
-		</TitleListWrapper>
+		<>
+			{hasItems && (
+				<TitleListWrapper
+					ref={ref}
+					className={`view-element-fade-in ${
+						inView ? 'view-element-fade-in--in-view' : ''
+					}`}
+				>
+					<LayoutWrapper>
+						<LayoutGrid>
+							<Title>{title}</Title>
+							<ListWrapper
+								variants={wrapperVariants}
+								initial="hidden"
+								animate={inView ? 'visible' : 'hidden'}
+							>
+								{items.map((item, i) =>
+									useLink ? (
+										item.url ? (
+											<ListItemLink
+												href={item.url}
+												target="_blank"
+												className="type-h4"
+												key={i}
+												variants={childVariants}
+											>
+												{item.title}
+											</ListItemLink>
+										) : (
+											<ListItem
+												className="type-h4"
+												key={i}
+												variants={childVariants}
+											>
+												{item.title}
+											</ListItem>
+										)
+									) : (
+										<ListItem
+											className="type-h4"
+											key={i}
+											variants={childVariants}
+										>
+											{item}
+										</ListItem>
+									)
+								)}
+							</ListWrapper>
+						</LayoutGrid>
+					</LayoutWrapper>
+				</TitleListWrapper>
+			)}
+		</>
 	);
 };
 

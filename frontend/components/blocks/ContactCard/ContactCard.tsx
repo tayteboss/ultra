@@ -53,13 +53,17 @@ const ContactCard = (props: Props) => {
 	const { cta, buttonTitle, email, title } = props;
 
 	return (
-		<ContactCardWrapper>
-			{title && <Title>{title}</Title>}
-			{cta && <Cta>{cta}</Cta>}
-			{email && buttonTitle && (
-				<Button href={`mailto:${email}`}>{buttonTitle}</Button>
+		<>
+			{cta && (
+				<ContactCardWrapper>
+					{title && <Title>{title}</Title>}
+					{cta && <Cta>{cta}</Cta>}
+					{email && buttonTitle && (
+						<Button href={`mailto:${email}`}>{buttonTitle}</Button>
+					)}
+				</ContactCardWrapper>
 			)}
-		</ContactCardWrapper>
+		</>
 	);
 };
 
