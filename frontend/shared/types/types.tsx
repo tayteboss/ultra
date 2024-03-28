@@ -46,6 +46,8 @@ export type SiteSettingsType = {
 	instagramUrl: string;
 	careersEmail: string;
 	generalEnquiriesEmail: string;
+	accentHexCode: string;
+	cookieCta: string;
 };
 
 export type WorkPageType = {
