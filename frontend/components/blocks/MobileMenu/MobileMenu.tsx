@@ -112,20 +112,6 @@ const MobileMenu = (props: Props) => {
 										</MainListTag>
 									</Link>
 									<Link
-										href="/off-brief"
-										passHref
-										legacyBehavior
-									>
-										<MainListTag
-											$isActive={
-												activeLink === 'Off Brief'
-											}
-											className="type-h1"
-										>
-											Off Brief
-										</MainListTag>
-									</Link>
-									<Link
 										href="/contact"
 										passHref
 										legacyBehavior
