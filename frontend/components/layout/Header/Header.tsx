@@ -68,48 +68,48 @@ const Header = (props: Props) => {
 
 	const prevScrollPosRef = useRef(0);
 
-	const handleScroll = () => {
-		const currentScrollPos = window.pageYOffset;
+	// const handleScroll = () => {
+	// 	const currentScrollPos = window.pageYOffset;
 
-		const windowHeight = window.innerHeight;
-		const documentHeight = document.body.clientHeight;
+	// 	const windowHeight = window.innerHeight;
+	// 	const documentHeight = document.body.clientHeight;
 
-		if (currentScrollPos > documentHeight - windowHeight * 2) {
-			setHeaderIsActive(true);
-			return;
-		}
+	// 	if (currentScrollPos > documentHeight - windowHeight * 2) {
+	// 		setHeaderIsActive(true);
+	// 		return;
+	// 	}
 
-		if (currentScrollPos < 30) {
-			setHeaderIsActive(true);
-			return;
-		}
+	// 	if (currentScrollPos < 30) {
+	// 		setHeaderIsActive(true);
+	// 		return;
+	// 	}
 
-		const isScrollingDown = currentScrollPos > prevScrollPosRef.current;
+	// 	const isScrollingDown = currentScrollPos > prevScrollPosRef.current;
 
-		setHeaderIsActive(!isScrollingDown);
-		prevScrollPosRef.current = currentScrollPos;
-	};
+	// 	setHeaderIsActive(!isScrollingDown);
+	// 	prevScrollPosRef.current = currentScrollPos;
+	// };
 
-	useEffect(() => {
-		if (menuIsActive) {
-			useNoScroll(true);
-		} else {
-			useNoScroll(false);
-		}
-	}, [menuIsActive]);
+	// useEffect(() => {
+	// 	if (menuIsActive) {
+	// 		useNoScroll(true);
+	// 	} else {
+	// 		useNoScroll(false);
+	// 	}
+	// }, [menuIsActive]);
 
-	useEffect(() => {
-		setMenuIsActive(false);
-	}, [router]);
+	// useEffect(() => {
+	// 	setMenuIsActive(false);
+	// }, [router]);
 
-	useEffect(() => {
-		const throttledHandleScroll = throttle(handleScroll, 50);
-		window.addEventListener('scroll', throttledHandleScroll);
+	// useEffect(() => {
+	// 	const throttledHandleScroll = throttle(handleScroll, 50);
+	// 	window.addEventListener('scroll', throttledHandleScroll);
 
-		return () => {
-			window.removeEventListener('scroll', throttledHandleScroll);
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener('scroll', throttledHandleScroll);
+	// 	};
+	// }, []);
 
 	return (
 		<HeaderWrapper
