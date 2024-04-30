@@ -11,6 +11,7 @@ type Props = {
 };
 
 const FullScreenMediaWrapper = styled.section`
+	img,
 	mux-player {
 		width: 100%;
 		height: 100%;

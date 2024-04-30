@@ -60,6 +60,10 @@ const MediaInner = styled.div`
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
+
+	img {
+		object-fit: cover;
+	}
 `;
 
 const TwoColumnMedia = (props: Props) => {
