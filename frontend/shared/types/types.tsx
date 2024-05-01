@@ -60,6 +60,8 @@ export type ProjectType = {
 	slug: { current: string };
 	seoDescription: string;
 	client: string;
+	desktopSnippetVideo: string;
+	mobileSnippetVideo: string;
 	heroImage: string;
 	mobileHeroImage: string;
 	heroVideo: string;

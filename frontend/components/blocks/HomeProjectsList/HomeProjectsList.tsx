@@ -25,9 +25,9 @@ const HomeProjectsList = (props: Props) => {
 					title={firstProject?.title}
 					slug={firstProject?.slug?.current}
 					heroImage={firstProject?.heroImage}
-					heroVideo={firstProject?.heroVideo}
+					heroVideo={firstProject?.desktopSnippetVideo}
 					mobileHeroImage={firstProject?.mobileHeroImage}
-					mobileHeroVideo={firstProject?.mobileHeroVideo}
+					mobileHeroVideo={firstProject?.mobileSnippetVideo}
 					desktopBlurHashBase64={firstProject?.desktopBlurHashBase64}
 					mobileBlurHashBase64={firstProject?.mobileBlurHashBase64}
 					index={0}
@@ -40,9 +40,9 @@ const HomeProjectsList = (props: Props) => {
 						title={item?.title}
 						slug={item?.slug?.current}
 						heroImage={item?.heroImage}
-						heroVideo={item?.heroVideo}
+						heroVideo={item?.desktopSnippetVideo}
 						mobileHeroImage={item?.mobileHeroImage}
-						mobileHeroVideo={item?.mobileHeroVideo}
+						mobileHeroVideo={item?.mobileSnippetVideo}
 						desktopBlurHashBase64={item?.desktopBlurHashBase64}
 						mobileBlurHashBase64={item?.mobileBlurHashBase64}
 						index={i + 1}

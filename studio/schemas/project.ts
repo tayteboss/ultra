@@ -71,6 +71,18 @@ export default {
       type: 'string',
     },
     {
+      title: 'Desktop Snippet Video',
+      name: 'DesktopSnippetVideo',
+      type: 'mux.video',
+      description: 'Landscape orientation. This video will be used on the homepage project list.',
+    },
+    {
+      title: 'Mobile Snippet Video',
+      name: 'MobileSnippetVideo',
+      type: 'mux.video',
+      description: 'Portrait orientation. This video will be used on the homepage project list.',
+    },
+    {
       title: 'Hero Image',
       name: 'heroImage',
       type: 'image',
@@ -81,23 +93,25 @@ export default {
           type: 'string',
         },
       ],
-      description: 'Please use an image or video, not both.',
+      description: 'Portrait orientation. Please use an image or video, not both.',
     },
     {
       title: 'Mobile Hero Image',
       name: 'mobileHeroImage',
       type: 'image',
+      description: 'Portrait orientation.',
     },
     {
       title: 'Hero Video',
       name: 'heroVideo',
       type: 'mux.video',
-      description: 'Please use an image or video, not both.',
+      description: 'Landscape orientation. Please use an image or video, not both.',
     },
     {
       title: 'Mobile Hero Video',
       name: 'mobileHeroVideo',
       type: 'mux.video',
+      description: 'Portrait orientation.',
     },
     {
       title: 'Page Builder',

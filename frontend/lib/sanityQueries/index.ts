@@ -9,6 +9,8 @@ export const homePageQueryString = `
 		...,
 		"projects": *[_type == 'project' && !inactive] | order(orderRank) [0...100] {
 			...,
+			'desktopSnippetVideo': DesktopSnippetVideo.asset->playbackId,
+			'mobileSnippetVideo': MobileSnippetVideo.asset->playbackId,
 			'heroVideo': heroVideo.asset->playbackId,
 			'mobileHeroVideo': mobileHeroVideo.asset->playbackId,
 			'heroImage': heroImage.asset->url,

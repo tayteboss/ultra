@@ -52,13 +52,15 @@ export async function getStaticProps() {
 
 	data.projects = await Promise.all(
 		data.projects.map(async (project: ProjectType) => {
-			if (project.heroVideo) {
-				const { blurHashBase64 } = await muxBlurHash(project.heroVideo);
+			if (project.desktopSnippetVideo) {
+				const { blurHashBase64 } = await muxBlurHash(
+					project.desktopSnippetVideo
+				);
 				project.desktopBlurHashBase64 = blurHashBase64;
 			}
-			if (project.mobileHeroVideo) {
+			if (project.mobileSnippetVideo) {
 				const { blurHashBase64 } = await muxBlurHash(
-					project.mobileHeroVideo
+					project.mobileSnippetVideo
 				);
 				project.mobileBlurHashBase64 = blurHashBase64;
 			}

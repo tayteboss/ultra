@@ -167,7 +167,7 @@ const ProjectCard = (props: Props) => {
 		>
 			<Inner style={{ transform: scale, filter: blur }}>
 				<Desktop>
-					{heroVideo && !heroImage && (
+					{heroVideo && (
 						<MuxPlayer
 							streamType="on-demand"
 							playbackId={heroVideo}
