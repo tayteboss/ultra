@@ -67,7 +67,7 @@ const TwoColumnContent = (props: Props) => {
 			<LayoutWrapper>
 				<LayoutGrid>
 					{title && <Title>{title}</Title>}
-					<ContentWrapper>
+					<ContentWrapper className="content">
 						{content && <PortableText value={content} />}
 					</ContentWrapper>
 				</LayoutGrid>

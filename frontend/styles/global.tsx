@@ -201,6 +201,14 @@ export const GlobalStyles = createGlobalStyle`
 		--media-object-position: center;
 	}
 
+	.content {
+		p {
+			&:not(:last-child ) {
+				margin-bottom: ${pxToRem(16)};
+			}
+		}
+	}
+
 	.view-element-fade-in
 	{
 		opacity: 0;

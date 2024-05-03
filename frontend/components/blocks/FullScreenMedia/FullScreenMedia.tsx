@@ -11,6 +11,8 @@ type Props = {
 };
 
 const FullScreenMediaWrapper = styled.section`
+	padding: ${pxToRem(16)} 0;
+
 	img,
 	mux-player {
 		width: 100%;
