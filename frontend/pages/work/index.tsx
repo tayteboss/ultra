@@ -90,12 +90,12 @@ const Page = (props: Props) => {
 				description={data?.seoDescription || ''}
 			/>
 			<ProjectsList data={fetchedProjects} />
-			{!cantLoadMore && (
+			{/* {!cantLoadMore && (
 				<LoadMore
 					isLoading={isLoading}
 					handleClick={() => handleLoadMore()}
 				/>
-			)}
+			)} */}
 		</PageWrapper>
 	);
 };

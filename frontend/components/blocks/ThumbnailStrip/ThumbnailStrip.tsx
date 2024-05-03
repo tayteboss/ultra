@@ -93,7 +93,7 @@ const ThumbnailStrip = (props: Props) => {
 	const cursorTransform = useTransform(
 		cursorPositionRelativeToWindow,
 		[0, 1],
-		['translateX(5%)', 'translateX(-5%)']
+		['translateX(2%)', 'translateX(-2%)']
 	);
 
 	const { scrollY } = useScroll();

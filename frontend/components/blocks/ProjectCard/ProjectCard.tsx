@@ -162,7 +162,7 @@ const ProjectCard = (props: Props) => {
 			key={index}
 			ref={wrapperRef}
 			className="cursor-text"
-			data-text="See project"
+			data-text="View project"
 			data-theme="orange"
 		>
 			<Inner style={{ transform: scale, filter: blur }}>
@@ -226,7 +226,7 @@ const ProjectCard = (props: Props) => {
 				</Mobile>
 				<TitleWrapper>
 					{title && <Title className="type-d1">{title}</Title>}
-					<MobileButton>Click to view project</MobileButton>
+					<MobileButton>View project</MobileButton>
 				</TitleWrapper>
 			</Inner>
 		</ProjectCardWrapper>

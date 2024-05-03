@@ -7,22 +7,21 @@ import { useState, useRef, useEffect } from 'react';
 import useViewportWidth from '../../../hooks/useViewportWidth';
 
 type Props = {
-	desktopVideo: string;
-	mobileVideo: string;
-	heroImage: string;
-	mobileHeroImage: string;
+	desktopVideo: { asset: { playbackId: string } } | null;
+	mobileVideo: { asset: { playbackId: string } } | null;
+	heroImage: { asset: { url: string } };
+	mobileHeroImage: { asset: { url: string } };
 	blurHashBase64: string | null;
 };
 
 const ProjectHeroMediaWrapper = styled.section``;
 
 const Inner = styled(motion.div)`
-	min-height: 100svh;
 	width: 100%;
 `;
 
 const DesktopWrapper = styled.div`
-	height: 100%;
+	height: 100svh;
 	width: 100%;
 	position: relative;
 	border-radius: ${pxToRem(4)};
@@ -83,17 +82,24 @@ const ProjectHeroMedia = (props: Props) => {
 							{isUsingVideo && desktopVideo?.asset?.playbackId ? (
 								<MuxPlayer
 									streamType="on-demand"
-									playbackId={desktopVideo?.asset?.playbackId}
+									playbackId={
+										isMobile
+											? mobileVideo?.asset?.playbackId
+											: desktopVideo?.asset?.playbackId
+									}
 									autoPlay="muted"
 									loop={true}
 									thumbnailTime={1}
 									preload="auto"
 									muted
-									style={{ aspectRatio: '16 / 9' }}
 								/>
 							) : (
 								<Image
-									src={heroImage}
+									src={
+										isMobile
+											? mobileHeroImage?.asset?.url
+											: heroImage?.asset?.url
+									}
 									alt="Hero image"
 									fill
 									priority={true}

@@ -62,7 +62,7 @@ export const aboutPageQueryString = `
 `;
 
 export const projectQueryString = `
-	*[_type == 'project' && !inactive] | order(orderRank) [0...8] {
+	*[_type == 'project' && !inactive] | order(orderRank) [0...100] {
 		...,
 		"thumbnailStrip": thumbnailStrip[] {
 			alt,
