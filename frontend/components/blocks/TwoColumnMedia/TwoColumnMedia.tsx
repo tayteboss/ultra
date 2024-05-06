@@ -5,6 +5,8 @@ import Image from 'next/image';
 import MuxPlayer from '@mux/mux-player-react';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
+import MobileControls from '../../elements/MobileControls';
 
 type Props = {
 	leftImage?: string;
@@ -69,6 +71,9 @@ const MediaInner = styled.div`
 const TwoColumnMedia = (props: Props) => {
 	const { leftImage, rightImage, leftVideo, rightVideo } = props;
 
+	const [isRhsMuted, setIsRhsMuted] = useState(true);
+	const [isLhsMuted, setIsLhsMuted] = useState(true);
+
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
@@ -94,7 +99,16 @@ const TwoColumnMedia = (props: Props) => {
 						) : (
 							leftVideo && (
 								<MediaWrapper>
-									<MediaInner>
+									<MediaInner
+										className="cursor-text"
+										data-text={
+											isRhsMuted ? 'Unmute' : 'Mute'
+										}
+										data-theme="orange"
+										onClick={() =>
+											setIsRhsMuted(!isRhsMuted)
+										}
+									>
 										<MuxPlayer
 											streamType="on-demand"
 											playbackId={leftVideo}
@@ -102,8 +116,12 @@ const TwoColumnMedia = (props: Props) => {
 											loop={true}
 											thumbnailTime={1}
 											preload="auto"
-											muted
+											muted={isRhsMuted}
 											playsInline={true}
+										/>
+										<MobileControls
+											setIsMuted={setIsRhsMuted}
+											isMuted={isRhsMuted}
 										/>
 									</MediaInner>
 								</MediaWrapper>
@@ -120,7 +138,16 @@ const TwoColumnMedia = (props: Props) => {
 						) : (
 							rightVideo && (
 								<MediaWrapper>
-									<MediaInner>
+									<MediaInner
+										className="cursor-text"
+										data-text={
+											isLhsMuted ? 'Unmute' : 'Mute'
+										}
+										data-theme="orange"
+										onClick={() =>
+											setIsLhsMuted(!isLhsMuted)
+										}
+									>
 										<MuxPlayer
 											streamType="on-demand"
 											playbackId={rightVideo}
@@ -128,8 +155,12 @@ const TwoColumnMedia = (props: Props) => {
 											loop={true}
 											thumbnailTime={1}
 											preload="auto"
-											muted
+											muted={isLhsMuted}
 											playsInline={true}
+										/>
+										<MobileControls
+											setIsMuted={setIsLhsMuted}
+											isMuted={isLhsMuted}
 										/>
 									</MediaInner>
 								</MediaWrapper>

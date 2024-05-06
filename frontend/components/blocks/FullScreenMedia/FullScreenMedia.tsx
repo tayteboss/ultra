@@ -4,6 +4,8 @@ import Image from 'next/image';
 import MuxPlayer from '@mux/mux-player-react';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
+import MobileControls from '../../elements/MobileControls';
 
 type Props = {
 	image?: string;
@@ -37,8 +39,15 @@ const MediaInner = styled.div`
 	overflow: hidden;
 `;
 
+const VideoInner = styled.div`
+	height: 100%;
+	width: 100%;
+`;
+
 const FullScreenMedia = (props: Props) => {
 	const { image, video } = props;
+
+	const [isMuted, setIsMuted] = useState(true);
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -57,16 +66,27 @@ const FullScreenMedia = (props: Props) => {
 				<MediaWrapper>
 					<MediaInner>
 						{video ? (
-							<MuxPlayer
-								streamType="on-demand"
-								playbackId={video}
-								autoPlay="muted"
-								loop={true}
-								thumbnailTime={1}
-								preload="auto"
-								muted
-								playsInline={true}
-							/>
+							<VideoInner
+								className="cursor-text"
+								data-text={isMuted ? 'Unmute' : 'Mute'}
+								data-theme="orange"
+								onClick={() => setIsMuted(!isMuted)}
+							>
+								<MuxPlayer
+									streamType="on-demand"
+									playbackId={video}
+									autoPlay="muted"
+									loop={true}
+									thumbnailTime={1}
+									preload="auto"
+									muted={isMuted}
+									playsInline={true}
+								/>
+								<MobileControls
+									setIsMuted={setIsMuted}
+									isMuted={isMuted}
+								/>
+							</VideoInner>
 						) : (
 							<Image
 								src={image}

@@ -115,11 +115,11 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
-			theme.colours.black
+			'var(--colour-orange)'
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
-			theme.colours.white
+			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
 			'--footer-contact-fg',
@@ -131,7 +131,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-hover',
-			'var(--colour-orange)'
+			theme.colours.white
 		);
 		document.documentElement.style.setProperty(
 			'--menu-blend-mode',

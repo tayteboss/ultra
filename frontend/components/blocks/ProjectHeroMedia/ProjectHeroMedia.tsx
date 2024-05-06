@@ -5,6 +5,7 @@ import pxToRem from '../../../utils/pxToRem';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import useViewportWidth from '../../../hooks/useViewportWidth';
+import MobileControls from '../../elements/MobileControls';
 
 type Props = {
 	desktopVideo: { asset: { playbackId: string } } | null;
@@ -35,6 +36,11 @@ const DesktopWrapper = styled.div`
 	}
 `;
 
+const VideoInner = styled.div`
+	height: 100%;
+	width: 100%;
+`;
+
 const ProjectHeroMedia = (props: Props) => {
 	const {
 		desktopVideo,
@@ -49,6 +55,7 @@ const ProjectHeroMedia = (props: Props) => {
 	const isUsingVideo = desktopVideo || mobileVideo;
 
 	const [windowHeight, setWindowHeight] = useState(0);
+	const [isMuted, setIsMuted] = useState(true);
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -80,19 +87,32 @@ const ProjectHeroMedia = (props: Props) => {
 					<Inner style={{ padding }}>
 						<DesktopWrapper>
 							{isUsingVideo && desktopVideo?.asset?.playbackId ? (
-								<MuxPlayer
-									streamType="on-demand"
-									playbackId={
-										isMobile
-											? mobileVideo?.asset?.playbackId
-											: desktopVideo?.asset?.playbackId
-									}
-									autoPlay="muted"
-									loop={true}
-									thumbnailTime={1}
-									preload="auto"
-									muted
-								/>
+								<VideoInner
+									className="cursor-text"
+									data-text={isMuted ? 'Unmute' : 'Mute'}
+									data-theme="orange"
+									onClick={() => setIsMuted(!isMuted)}
+								>
+									<MuxPlayer
+										streamType="on-demand"
+										playbackId={
+											isMobile &&
+											mobileVideo?.asset?.playbackId
+												? mobileVideo?.asset?.playbackId
+												: desktopVideo?.asset
+														?.playbackId
+										}
+										autoPlay="muted"
+										loop={true}
+										thumbnailTime={1}
+										preload="auto"
+										muted={isMuted}
+									/>
+									<MobileControls
+										setIsMuted={setIsMuted}
+										isMuted={isMuted}
+									/>
+								</VideoInner>
 							) : (
 								<Image
 									src={
