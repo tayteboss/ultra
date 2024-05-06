@@ -53,6 +53,8 @@ const MobileMenuButton = styled.button`
 	color: var(--menu-inactive);
 	font-size: ${pxToRem(18)};
 
+	transition: color var(--transition-speed-slow) var(--transition-ease);
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: block;
 		text-align: right;

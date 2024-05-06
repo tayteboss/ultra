@@ -35,6 +35,8 @@ const Button = styled.a`
 	padding: ${pxToRem(4)} ${pxToRem(8)};
 	border-radius: ${pxToRem(4)};
 
+	transition: background var(--transition-speed-slow) var(--transition-ease);
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: inline-block;
 	}

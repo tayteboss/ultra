@@ -3,21 +3,21 @@ import { theme } from './theme';
 import pxToRem from '../utils/pxToRem';
 
 const siteSettings = require('../json/siteSettings.json');
-const { accentHexCode } = siteSettings;
+const firstAccentHexCode = 'accentHexCodes[0]';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
 		--menu-blend-mode: normal;
 		--menu-active: ${theme.colours.black};
-		--menu-inactive: ${accentHexCode};
 		--html-bg: ${theme.colours.black};
-		--footer-bg: ${accentHexCode};
 		--footer-fg: ${theme.colours.black};
 		--footer-contact-fg: ${theme.colours.white};
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
 		--colour-off-black: ${theme.colours.offBlack};
-		--colour-orange: ${accentHexCode};
+		--colour-orange: ${firstAccentHexCode};
+		--menu-inactive: var(--colour-orange);
+		--footer-bg: var(--colour-orange);
 		--colour-off-white: ${theme.colours.offWhite};
 		--font-default: ${theme.fonts.HaasGrotDisp};
 		--transition-speed-default: ${theme.transitionSpeed.default};
@@ -26,6 +26,10 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-speed-slow: ${theme.transitionSpeed.slow};
 		--transition-speed-extra-slow: ${theme.transitionSpeed.extraSlow};
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	svg path {
+		transition: all var(--transition-speed-slow) var(--transition-ease);
 	}
 
 	.CookieConsent {

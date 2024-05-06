@@ -42,6 +42,8 @@ const Inner = styled.div`
 	flex-direction: column;
 	gap: ${pxToRem(315)};
 
+	transition: background var(--transition-speed-slow) var(--transition-ease);
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		gap: ${pxToRem(240)};
 		height: calc(100svh - 64px);

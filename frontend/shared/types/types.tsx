@@ -47,6 +47,7 @@ export type SiteSettingsType = {
 	careersEmail: string;
 	generalEnquiriesEmail: string;
 	accentHexCode: string;
+	accentHexCodes: string[];
 	cookieCta: string;
 };
 

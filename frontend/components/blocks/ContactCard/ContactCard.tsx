@@ -41,7 +41,7 @@ const Button = styled.a`
 	padding: ${pxToRem(4)} ${pxToRem(8)};
 	border-radius: ${pxToRem(4)};
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	transition: background var(--transition-speed-slow) var(--transition-ease);
 
 	&:hover {
 		background: var(--colour-black);

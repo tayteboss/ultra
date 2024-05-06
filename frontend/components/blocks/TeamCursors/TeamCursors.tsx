@@ -19,6 +19,8 @@ const TeamCursor = styled(motion.div)`
 	color: var(--colour-orange);
 	position: absolute;
 
+	transition: color var(--transition-speed-slow) var(--transition-ease);
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -29,6 +31,9 @@ const TeamCursor = styled(motion.div)`
 		background: var(--colour-orange);
 		transform: translateY(-50%);
 		border-radius: 100%;
+
+		transition: background var(--transition-speed-slow)
+			var(--transition-ease);
 	}
 `;
 

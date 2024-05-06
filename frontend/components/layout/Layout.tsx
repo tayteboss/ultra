@@ -29,10 +29,12 @@ const Layout = (props: Props) => {
 		instagramUrl,
 		careersEmail,
 		generalEnquiriesEmail,
-		cookieCta
+		cookieCta,
+		accentHexCodes
 	} = siteSettings;
 
 	const [menuIsActive, setMenuIsActive] = useState(false);
+	const [accentHex, setAccentHex] = useState(accentHexCodes[0]);
 
 	const lenis = useLenis(({ scroll }) => {});
 
@@ -45,6 +47,24 @@ const Layout = (props: Props) => {
 			lenis.start();
 		}
 	}, [menuIsActive]);
+
+	useEffect(() => {
+		document.documentElement.style.setProperty(
+			'--colour-orange',
+			accentHex
+		);
+
+		const interval = setInterval(() => {
+			const currentIndex = accentHexCodes.indexOf(accentHex);
+			const nextIndex =
+				currentIndex + 1 === accentHexCodes.length
+					? 0
+					: currentIndex + 1;
+			setAccentHex(accentHexCodes[nextIndex]);
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, [accentHex]);
 
 	return (
 		<>

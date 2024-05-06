@@ -65,6 +65,8 @@ const Text = styled(motion.div)<{ $isOrangeTheme: boolean }>`
 		props.$isOrangeTheme ? 'var(--colour-orange)' : 'rgba(0, 0, 0, 0.01)'};
 	backdrop-filter: blur(10px);
 	border-radius: 4px;
+
+	transition: background var(--transition-speed-slow) var(--transition-ease);
 `;
 
 const Cursor = ({ cursorRefresh }: Props) => {

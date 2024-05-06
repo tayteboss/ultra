@@ -30,6 +30,8 @@ const Span = styled(motion.span)<{ $inlineBlock: boolean }>`
 	color: var(--colour-orange);
 	position: relative;
 	display: ${(props) => props.$inlineBlock && 'inline-block'};
+
+	transition: color var(--transition-speed-slow) var(--transition-ease);
 `;
 
 const Word = styled.span`

@@ -51,9 +51,10 @@ export default {
       type: 'url',
     },
     {
-      title: 'Accent Hex Code',
-      name: 'accentHexCode',
-      type: 'string',
+      title: 'Accent Hex Codes',
+      name: 'accentHexCodes',
+      type: 'array',
+      of: [{type: 'string'}],
     },
     {
       title: 'Cookies CTA',

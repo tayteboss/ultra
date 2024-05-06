@@ -77,7 +77,8 @@ const LinkTag = styled.a<{ $isActive: boolean }>`
 	font-size: ${pxToRem(18)};
 	opacity: ${(props) => (props.$isActive ? 1 : 0.5)};
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	transition: opacity var(--transition-speed-default) var(--transition-ease),
+		color var(--transition-speed-slow) var(--transition-ease);
 
 	&:hover {
 		opacity: 1;

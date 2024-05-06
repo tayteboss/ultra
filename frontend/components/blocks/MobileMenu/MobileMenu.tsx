@@ -55,6 +55,8 @@ const MainList = styled.div`
 const MainListTag = styled.a<{ $isActive: boolean }>`
 	color: ${(props) =>
 		props.$isActive ? 'var(--colour-orange)' : 'var(--colour-white)'};
+
+	transition: all var(--transition-speed-slow) var(--transition-ease);
 `;
 
 const SecondaryList = styled.div`

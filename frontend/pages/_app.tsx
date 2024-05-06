@@ -33,8 +33,6 @@ const App = (props: Props) => {
 	const router = useRouter();
 	const routerEvents = router.events;
 
-	const { accentHexCode } = siteSettings;
-
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
 		setAppCursorRefresh(appCursorRefresh + 1);
@@ -55,7 +53,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
-			accentHexCode
+			'var(--colour-orange)'
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
@@ -80,14 +78,17 @@ const App = (props: Props) => {
 	};
 
 	const setOffBriefTheme = () => {
-		document.documentElement.style.setProperty('--html-bg', accentHexCode);
+		document.documentElement.style.setProperty(
+			'--html-bg',
+			'var(--colour-orange)'
+		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
 			theme.colours.black
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
-			accentHexCode
+			'var(--colour-orange)'
 		);
 		document.documentElement.style.setProperty(
 			'--footer-contact-fg',
@@ -130,7 +131,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-hover',
-			accentHexCode
+			'var(--colour-orange)'
 		);
 		document.documentElement.style.setProperty(
 			'--menu-blend-mode',
@@ -145,7 +146,7 @@ const App = (props: Props) => {
 		);
 		document.documentElement.style.setProperty(
 			'--footer-bg',
-			accentHexCode
+			'var(--colour-orange)'
 		);
 		document.documentElement.style.setProperty(
 			'--footer-fg',
@@ -188,11 +189,6 @@ const App = (props: Props) => {
 	}, [router]);
 
 	useEffect(() => {
-		document.documentElement.style.setProperty(
-			'--colour-orange',
-			accentHexCode
-		);
-
 		const hasCookies = Cookies.get('visited');
 
 		if (hasCookies) {
