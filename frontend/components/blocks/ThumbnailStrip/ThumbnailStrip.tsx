@@ -64,12 +64,12 @@ const Inner = styled.div`
 const ThumbnailStrip = (props: Props) => {
 	const { data } = props;
 
-	const hasData = data.length > 0;
+	const hasData = data?.length > 0;
 	const screenSize = useViewportWidth();
 
 	let doubleData = [];
 
-	if (data.length < 5) {
+	if (data?.length < 5) {
 		doubleData = [...data, ...data];
 	} else {
 		doubleData = data;
