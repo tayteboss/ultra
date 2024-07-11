@@ -206,7 +206,7 @@ const ProjectCard = (props: Props) => {
 							muted
 							playsInline={true}
 							poster={mobileBlurHashBase64}
-							style={{ height: '100vh' }}
+							style={{ height: '100svh' }}
 						/>
 					)}
 					{!heroVideo && (heroImage || mobileHeroImage) && (
