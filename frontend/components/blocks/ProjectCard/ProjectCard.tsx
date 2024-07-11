@@ -174,11 +174,11 @@ const ProjectCard = (props: Props) => {
 							autoPlay="muted"
 							loop={true}
 							thumbnailTime={1}
-							loading="page"
-							preload="auto"
+							loading="viewport"
 							muted
 							playsInline={true}
 							poster={desktopBlurHashBase64}
+							style={{ height: '100vh' }}
 						/>
 					)}
 					{!heroVideo && heroImage && (
@@ -202,11 +202,11 @@ const ProjectCard = (props: Props) => {
 							autoPlay="muted"
 							loop={true}
 							thumbnailTime={1}
-							loading="page"
-							preload="auto"
+							loading="viewport"
 							muted
 							playsInline={true}
 							poster={mobileBlurHashBase64}
+							style={{ height: '100vh' }}
 						/>
 					)}
 					{!heroVideo && (heroImage || mobileHeroImage) && (
