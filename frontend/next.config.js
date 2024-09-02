@@ -22,16 +22,6 @@ const nextConfig = {
 			},
 		],
 	},
-	async redirects() {
-		return [
-		  {
-			source: '/',
-			destination: 'https://www.ultra.london',
-			permanent: true,
-			basePath: false
-		  },
-		]
-	  },
 };
 
 module.exports = nextConfig;
