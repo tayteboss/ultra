@@ -206,6 +206,19 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.content {
+		h1,
+		h2,
+		h3,
+		h4 {
+			&:not(:last-child ) {
+				margin-bottom: ${pxToRem(32)};
+			}
+
+			&:not(:first-child) {
+				padding-top: ${pxToRem(24)};
+			}
+		}
+
 		p {
 			&:not(:last-child ) {
 				margin-bottom: ${pxToRem(16)};

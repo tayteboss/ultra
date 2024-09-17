@@ -49,6 +49,8 @@ export type SiteSettingsType = {
 	accentHexCode: string;
 	accentHexCodes: string[];
 	cookieCta: string;
+	termsAndConditionsContent: any;
+	privacyPolicyContent: any;
 };
 
 export type WorkPageType = {
