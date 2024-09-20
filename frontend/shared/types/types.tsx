@@ -106,6 +106,9 @@ export type ContactPageType = {
 	prefixHeroTitle: string;
 	suffixHeroTitle: string;
 	showreelVideo: string;
+	followUsCta: string;
+	findUsCta: string;
+	newsletterCta: string;
 };
 
 export type OffBriefPageType = {

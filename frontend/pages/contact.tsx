@@ -62,6 +62,13 @@ const Page = (props: Props) => {
 				newBusinessEmail={siteSettings.newBusinessEmail}
 				careersEmail={siteSettings.careersEmail}
 				generalEnquiriesEmail={siteSettings.generalEnquiriesEmail}
+				findUsCta={data?.findUsCta}
+				streetAddress={siteSettings.streetAddress}
+				addressUrl={siteSettings.addressUrl}
+				followUsCta={data?.followUsCta}
+				instagramUrl={siteSettings.instagramUrl}
+				linkedInUrl={siteSettings.linkedInUrl}
+				newsletterCta={data?.newsletterCta}
 			/>
 		</PageWrapper>
 	);
@@ -71,7 +78,11 @@ export async function getStaticProps() {
 	const data = await client.fetch(contactPageQueryString);
 	const siteSettings = await client.fetch(siteSettingsQueryString);
 
-	const { blurHashBase64 } = await muxBlurHash(data.showreelVideo);
+	let blurHashBase64: any = '';
+
+	if (data?.showreelVideo) {
+		blurHashBase64 = await muxBlurHash(data?.showreelVideo);
+	}
 
 	return {
 		props: {

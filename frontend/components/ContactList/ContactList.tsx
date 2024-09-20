@@ -3,6 +3,7 @@ import LayoutWrapper from '../common/LayoutWrapper';
 import LayoutGrid from '../common/LayoutGrid';
 import ContactCard from '../blocks/ContactCard';
 import pxToRem from '../../utils/pxToRem';
+import ContactLinkCard from '../blocks/ContactLinkCard';
 
 type Props = {
 	contactButtonTitle: string;
@@ -14,6 +15,13 @@ type Props = {
 	newBusinessEmail: string;
 	careersEmail: string;
 	generalEnquiriesEmail: string;
+	findUsCta: string;
+	streetAddress: string;
+	addressUrl: string;
+	followUsCta: string;
+	instagramUrl: string;
+	linkedInUrl: string;
+	newsletterCta: string;
 };
 
 const ContactListWrapper = styled.section`
@@ -21,6 +29,14 @@ const ContactListWrapper = styled.section`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding-top: ${pxToRem(62)};
+	}
+
+	.layout-grid {
+		row-gap: ${pxToRem(80)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			row-gap: 0;
+		}
 	}
 `;
 
@@ -34,7 +50,14 @@ const ContactList = (props: Props) => {
 		newBusinessCta,
 		newBusinessEmail,
 		careersEmail,
-		generalEnquiriesEmail
+		generalEnquiriesEmail,
+		findUsCta,
+		streetAddress,
+		addressUrl,
+		followUsCta,
+		instagramUrl,
+		linkedInUrl,
+		newsletterCta
 	} = props;
 
 	return (
@@ -58,6 +81,27 @@ const ContactList = (props: Props) => {
 						buttonTitle={contactButtonTitle}
 						email={careersEmail}
 						title="Careers"
+					/>
+					<ContactLinkCard
+						cta={followUsCta}
+						useSocialButtons={true}
+						instagramUrl={instagramUrl}
+						linkedInUrl={linkedInUrl}
+						title="Follow us"
+					/>
+					<ContactLinkCard
+						cta={findUsCta}
+						useMapsButton={true}
+						addressUrl={addressUrl}
+						streetAddress={streetAddress}
+						title="Find us"
+					/>
+					<ContactLinkCard
+						cta={newsletterCta}
+						useNewsletterButton={true}
+						instagramUrl={instagramUrl}
+						linkedInUrl={linkedInUrl}
+						title="Newsletter"
 					/>
 				</LayoutGrid>
 			</LayoutWrapper>
