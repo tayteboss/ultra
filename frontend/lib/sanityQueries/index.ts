@@ -60,10 +60,16 @@ export const offBriefPageQueryString = `
 export const aboutPageQueryString = `
 	*[_type == 'aboutPage'][0] {
 		...,
-		'clientsLogos': clientsLogos[] {
-			'asset': asset->url,
-			"alt:": alt,
-		},
+		'clientList': clientList[] {
+			...,
+			title,
+			logo {
+				...,
+				asset-> {
+					url,
+				}
+			}
+		}
 	}
 `;
 

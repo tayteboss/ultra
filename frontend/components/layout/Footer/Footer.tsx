@@ -243,7 +243,7 @@ const TermsLHS = styled.div`
 	gap: ${pxToRem(16)};
 `;
 
-const SmallLinkTag = styled.a`
+const SmallLinkTag = styled.div`
 	color: var(--footer-bg);
 
 	transition: color var(--transition-speed-slow) var(--transition-ease);

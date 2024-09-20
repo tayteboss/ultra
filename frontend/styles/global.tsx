@@ -243,7 +243,7 @@ export const GlobalStyles = createGlobalStyle`
 		opacity: 0;
 		transform: translateY(15px);
 
-		transition: opacity var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
+		transition: opacity var(--transition-speed-extra-slow) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
 
 		&--in-view
 		{

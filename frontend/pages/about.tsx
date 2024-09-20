@@ -17,6 +17,8 @@ import Team from '../components/blocks/Team';
 import TitleList from '../components/blocks/TitleList';
 import LocationCTA from '../components/blocks/LocationCTA';
 import pxToRem from '../utils/pxToRem';
+import ServicesScroller from '../components/blocks/ServicesScroller';
+import ClientsList from '../components/blocks/ClientsList';
 
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
@@ -52,13 +54,15 @@ const Page = (props: Props) => {
 				gallery={data?.clientsLogos}
 			/>
 			<AboutDescription data={data?.description} />
-			<Team
+			{/* <Team
 				roles={data?.teamRoles}
 				prefix={data?.teamRolesPrefix}
 				cursors={data?.teamCursors}
-			/>
-			<TitleList title="Services" items={data?.servicesList} />
-			<TitleList title="Client List" items={data?.clientList} useLink />
+			/> */}
+			{/* <TitleList title="Services" items={data?.servicesList} />
+			<TitleList title="Client List" items={data?.clientList} useLink /> */}
+			<ServicesScroller data={data?.servicesList} />
+			<ClientsList data={data?.clientList} />
 			<LocationCTA
 				title={data?.locationCta}
 				url={siteSettings?.addressUrl}
