@@ -11,17 +11,17 @@ export default {
       initialValue: 'Site Settings',
     },
     {
-      title: 'General Enquiries Email',
+      title: 'Talk to us email',
       name: 'generalEnquiriesEmail',
       type: 'email',
     },
     {
-      title: 'New Business Email',
+      title: 'Work with us email',
       name: 'newBusinessEmail',
       type: 'email',
     },
     {
-      title: 'Careers Email',
+      title: 'Join us Email',
       name: 'careersEmail',
       type: 'email',
     },

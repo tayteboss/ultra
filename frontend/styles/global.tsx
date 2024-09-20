@@ -370,4 +370,8 @@ export const GlobalStyles = createGlobalStyle`
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+.right-align {
+	text-align: right;
+}
 `;

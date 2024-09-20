@@ -149,17 +149,14 @@ const FooterContactBlock = (props: Props) => {
 					exit="hidden"
 				>
 					<FooterContactCard
-						title="New business"
+						title="Work with us"
 						email={newBusinessEmail}
 					/>
 					<FooterContactCard
-						title="General enquiries"
+						title="Talk to us"
 						email={generalEnquiriesEmail}
 					/>
-					<FooterContactCard
-						title="Join our team"
-						email={careersEmail}
-					/>
+					<FooterContactCard title="Join us" email={careersEmail} />
 				</FooterContactBlockWrapper>
 			)}
 		</>
