@@ -58,6 +58,11 @@ export type WorkPageType = {
 	seoDescription: string;
 };
 
+export type NewsPageType = {
+	seoTitle: string;
+	seoDescription: string;
+};
+
 export type ProjectType = {
 	title: string;
 	slug: { current: string };
@@ -74,6 +79,17 @@ export type ProjectType = {
 	desktopBlurHashBase64: string;
 	mobileBlurHashBase64: string;
 	heroTitle: string;
+	pageBuilder: [];
+	_id: string;
+};
+
+export type ArticleType = {
+	title: string;
+	slug: { current: string };
+	seoDescription: string;
+	heroImage: string;
+	relatedArticle: ArticleType[];
+	thumbnailStrip: [];
 	pageBuilder: [];
 	_id: string;
 };

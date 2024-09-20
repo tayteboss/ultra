@@ -34,6 +34,12 @@ export const workPageQueryString = `
 	}
 `;
 
+export const newsPageQueryString = `
+	*[_type == 'newsPage'][0] {
+		...,
+	}
+`;
+
 export const contactPageQueryString = `
 	*[_type == 'contactPage'][0] {
 		...,
@@ -71,5 +77,12 @@ export const projectQueryString = `
 				playbackId
 			}
 		},
+	}
+`;
+
+export const articleQueryString = `
+	*[_type == 'article' && !inactive] | order(orderRank) [0...100] {
+		...,
+		heroImage: heroImage.asset->url
 	}
 `;
