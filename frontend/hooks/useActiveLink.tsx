@@ -12,6 +12,11 @@ const useActiveLink = (): string => {
 			setActiveLink('Off Brief');
 		} else if (router.pathname === '/about') {
 			setActiveLink('About');
+		} else if (
+			router.pathname === '/news' ||
+			router.pathname.includes('/news/')
+		) {
+			setActiveLink('News');
 		} else if (router.pathname === '/contact') {
 			setActiveLink('Contact');
 		} else if (router.pathname.includes('/work')) {

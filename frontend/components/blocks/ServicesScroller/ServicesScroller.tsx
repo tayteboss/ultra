@@ -20,6 +20,7 @@ const Inner = styled(motion.ul)`
 	justify-content: center;
 	align-items: center;
 	gap: ${pxToRem(8)};
+	position: relative;
 `;
 
 const Title = styled.h2`
@@ -35,17 +36,17 @@ const GradTop = styled.div`
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 40%;
+	height: 30%;
 	background: linear-gradient(0deg, rgba(232, 227, 223, 0) 0%, #e8e3df 100%);
 	z-index: 2;
 `;
 
 const GradBottom = styled.div`
 	position: absolute;
-	bottom: -2px;
+	bottom: -5px;
 	left: 0;
 	width: 100%;
-	height: 40%;
+	height: 30%;
 	background: linear-gradient(0deg, #e8e3df 0%, rgba(232, 227, 223, 0) 100%);
 	z-index: 2;
 `;
@@ -104,26 +105,26 @@ const ServicesScroller = (props: Props) => {
 
 	return (
 		<ServicesScrollerWrapper>
-			{/* <GradTop /> */}
 			<LayoutWrapper>
 				<Inner style={{ transform }}>
-					<Title
+					<GradTop />
+					{/* <Title
 						className={`type-h3 view-element-fade-in ${
 							inView ? 'view-element-fade-in--in-view' : ''
 						}`}
 						ref={ref}
 					>
 						Our services
-					</Title>
+					</Title> */}
 					{hasData &&
 						data.map((item, i) => (
 							<Service className="type-h1" key={i}>
 								{item}
 							</Service>
 						))}
+					<GradBottom />
 				</Inner>
 			</LayoutWrapper>
-			{/* <GradBottom /> */}
 		</ServicesScrollerWrapper>
 	);
 };

@@ -5,31 +5,37 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 type Props = {
 	handleClick: () => void;
 	isLoading: boolean;
+	useDark?: boolean;
 };
 
 const LoadMoreWrapper = styled.section`
 	padding-top: ${pxToRem(80)};
 `;
 
-const Trigger = styled.button`
+const Trigger = styled.button<{ $useDark: boolean }>`
 	text-align: center;
-	color: var(--colour-off-white);
+	color: ${(props) =>
+		props.$useDark ? 'var(--colour-black)' : 'var(--colour-white)'};
 	width: 100%;
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		color: var(--colour-white);
+		opacity: 0.5;
 	}
 `;
 
 const LoadMore = (props: Props) => {
-	const { handleClick, isLoading } = props;
+	const { handleClick, isLoading, useDark } = props;
 
 	return (
 		<LoadMoreWrapper>
 			<LayoutWrapper>
-				<Trigger className="type-h1" onClick={() => handleClick()}>
+				<Trigger
+					className="type-h1"
+					onClick={() => handleClick()}
+					$useDark={useDark}
+				>
 					{isLoading ? 'Loading...' : 'Load more work'}
 				</Trigger>
 			</LayoutWrapper>

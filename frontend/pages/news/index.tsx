@@ -11,16 +11,16 @@ import {
 	articleQueryString,
 	workPageQueryString
 } from '../../lib/sanityQueries';
-import ProjectsList from '../../components/blocks/ProjectsList';
 import LoadMore from '../../components/blocks/LoadMore';
 import pxToRem from '../../utils/pxToRem';
 import { useState } from 'react';
 import ArticleList from '../../components/blocks/ArticleList';
+import HeroTitle from '../../components/blocks/HeroTitle';
 
 const PageWrapper = styled(motion.div)`
 	background: var(--colour-black);
-	padding-top: ${pxToRem(120)};
 	margin-bottom: ${pxToRem(120)};
+	background: var(--colour-white);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		margin-bottom: ${pxToRem(80)};
@@ -36,32 +36,32 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, articles, pageTransitionVariants } = props;
 
+	const paginationLength = 8;
+
 	const [fetchedArticles, setfetchedArticles] = useState(articles);
-	const [articleCount, setProjectCount] = useState(8);
+	const [articleCount, setProjectCount] = useState(paginationLength);
 	const [cantLoadMore, setCantLoadMore] = useState(
-		articles.length > 8 ? false : true
+		articles.length >= paginationLength ? false : true
 	);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleLoadMore = async () => {
 		setIsLoading(true);
 
-		const query = `
-			*[_type == 'article' && !inactive] | order(orderRank) [${articleCount}...${
-			articleCount + 8
-		}] {
-				...,
-				heroImage: heroImage.asset->url
-			}
-		`;
-
 		try {
-			const data = await client.fetch(query);
+			const data = await client.fetch<ArticleType[]>(
+				`*[_type == 'article'] | order(date desc) [${articleCount}...${
+					articleCount + paginationLength
+				}] {
+					...,
+					'heroImage': heroImage.asset->url 
+				}`
+			);
 
 			setfetchedArticles([...fetchedArticles, ...data]);
-			setProjectCount(articleCount + 2);
+			setProjectCount(articleCount + paginationLength);
 
-			if (data?.length < 4) {
+			if (data.length < paginationLength) {
 				setCantLoadMore(true);
 			}
 
@@ -69,7 +69,6 @@ const Page = (props: Props) => {
 		} catch (error) {
 			console.error('Error fetching site data:', error);
 			setIsLoading(false);
-			return [];
 		}
 	};
 
@@ -84,13 +83,15 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
+			<HeroTitle preCursor="Latest news" />
 			<ArticleList data={fetchedArticles} />
-			{/* {!cantLoadMore && (
+			{!cantLoadMore && (
 				<LoadMore
 					isLoading={isLoading}
 					handleClick={() => handleLoadMore()}
+					useDark
 				/>
-			)} */}
+			)}
 		</PageWrapper>
 	);
 };

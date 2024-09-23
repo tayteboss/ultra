@@ -178,7 +178,8 @@ const App = (props: Props) => {
 		} else if (
 			router.pathname === '/contact' ||
 			router.pathname === '/terms-conditions' ||
-			router.pathname === '/privacy-policy'
+			router.pathname === '/privacy-policy' ||
+			router.pathname.includes('/news')
 		) {
 			setContactTheme();
 		} else if (router.pathname === '/about') {

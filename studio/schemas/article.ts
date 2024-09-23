@@ -20,6 +20,11 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      title: 'Date',
+      name: 'date',
+      type: 'date',
+    },
+    {
       title: 'SEO Description',
       name: 'seoDescription',
       type: 'string',

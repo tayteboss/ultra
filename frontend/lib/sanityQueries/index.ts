@@ -87,8 +87,8 @@ export const projectQueryString = `
 `;
 
 export const articleQueryString = `
-	*[_type == 'article' && !inactive] | order(orderRank) [0...100] {
+	*[_type == 'article'] | order(date desc) [0...8] {
 		...,
-		heroImage: heroImage.asset->url
+		'heroImage': heroImage.asset->url
 	}
 `;

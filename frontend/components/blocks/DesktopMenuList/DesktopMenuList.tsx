@@ -123,6 +123,11 @@ const DesktopMenuList = (props: Props) => {
 						isActive={activeLink === 'About'}
 					/>
 					<MenuItem
+						title="News"
+						url="/news"
+						isActive={activeLink === 'News'}
+					/>
+					<MenuItem
 						title="Contact"
 						url="/contact"
 						isActive={activeLink === 'Contact'}

@@ -86,12 +86,11 @@ export type ProjectType = {
 export type ArticleType = {
 	title: string;
 	slug: { current: string };
-	seoDescription: string;
+	seoDescription?: string;
 	heroImage: string;
-	relatedArticle: ArticleType[];
-	thumbnailStrip: [];
-	pageBuilder: [];
-	_id: string;
+	relatedArticle?: ArticleType[];
+	pageBuilder?: [];
+	date: string;
 };
 
 export type ContactPageType = {
