@@ -88,8 +88,8 @@ export type ArticleType = {
 	slug: { current: string };
 	seoDescription?: string;
 	heroImage: string;
-	relatedArticle?: ArticleType[];
-	pageBuilder?: [];
+	relatedArticle?: ArticleType;
+	pageBuilder: [];
 	date: string;
 };
 

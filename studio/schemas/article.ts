@@ -55,8 +55,8 @@ export default {
     {
       title: 'Related Article',
       name: 'relatedArticle',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'article'}]}],
+      type: 'reference',
+      to: [{type: 'article'}],
     },
   ],
 }

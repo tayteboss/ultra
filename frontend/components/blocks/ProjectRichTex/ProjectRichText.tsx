@@ -23,7 +23,7 @@ const Inner = styled.div`
 	align-items: center;
 	gap: ${pxToRem(32)};
 	margin: 0 auto;
-	max-width: ${pxToRem(1170)};
+	max-width: ${pxToRem(900)};
 `;
 
 const RichTextWrapper = styled.div`
@@ -69,7 +69,7 @@ const ProjectRichText = (props: Props) => {
 					}`}
 				>
 					{content && (
-						<RichTextWrapper className="content">
+						<RichTextWrapper>
 							<PortableText value={content} />
 						</RichTextWrapper>
 					)}

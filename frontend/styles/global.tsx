@@ -224,6 +224,20 @@ export const GlobalStyles = createGlobalStyle`
 				margin-bottom: ${pxToRem(16)};
 			}
 		}
+
+		a {
+			text-decoration: underline;
+
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	.left-align {
+		* {
+			text-align: left;
+		}
 	}
 
 	.view-element-fade-in

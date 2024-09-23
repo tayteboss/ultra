@@ -81,7 +81,7 @@ const ArticleCard = (props: Props) => {
 
 	return (
 		<ArticleCardWrapper>
-			<Link href={`/news/${slug}`}>
+			<Link href={`/news/${slug?.current}`}>
 				<ImageWrapper>
 					<ImageInner>
 						{heroImage && (

@@ -5,31 +5,69 @@ import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import { useEffect } from 'react';
 import ProjectHeroTitle from '../../components/blocks/ProjectHeroTitle';
-import ProjectHeroMedia from '../../components/blocks/ProjectHeroMedia';
 import UltraPageBuilder from '../../components/common/UltraPageBuilder';
 import pxToRem from '../../utils/pxToRem';
 import LayoutWrapper from '../../components/common/LayoutWrapper';
-
-type Props = {
-	data: ArticleType;
-	pageTransitionVariants: TransitionsType;
-};
+import ArticleHeroImage from '../../components/blocks/ArticleHeroImage';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(80)};
 	min-height: 100vh;
+
+	* {
+		color: var(--colour-black) !important;
+	}
+
+	.content {
+		* {
+			text-align: left;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+	}
 `;
 
 const RelatedWrapper = styled.div`
 	padding-top: ${pxToRem(80)};
+
+	&:hover {
+		img {
+			transform: scale(1.05);
+		}
+	}
+
+	img {
+		transition: all var(--transition-speed-extra-slow)
+			var(--transition-ease);
+	}
 `;
 
-const RelatedTitle = styled.h3`
-	color: var(--colour-off-white);
-	margin-bottom: ${pxToRem(40)};
+const RelatedSubTitle = styled.h3`
+	color: var(--colour-black);
+	margin-bottom: ${pxToRem(8)};
+	opacity: 0.5;
+`;
+
+const RelatedTitle = styled.h4`
+	color: var(--colour-black);
+	margin-bottom: ${pxToRem(32)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		margin-bottom: ${pxToRem(32)};
+		margin-bottom: ${pxToRem(24)};
+	}
+`;
+
+const ImageWrapper = styled.div`
+	width: 100%;
+	height: 70vh;
+	position: relative;
+	overflow: hidden;
+	border-radius: ${pxToRem(4)};
+
+	img {
+		object-fit: cover;
 	}
 `;
 
@@ -50,6 +88,11 @@ const workPageVariants = {
 	}
 };
 
+type Props = {
+	data: ArticleType;
+	pageTransitionVariants: TransitionsType;
+};
+
 const Page = (props: Props) => {
 	const { data } = props;
 
@@ -58,6 +101,8 @@ const Page = (props: Props) => {
 	}, []);
 
 	const hasRelatedArticle = data?.relatedArticle;
+
+	console.log('data', data);
 
 	return (
 		<PageWrapper
@@ -70,13 +115,31 @@ const Page = (props: Props) => {
 				title={data?.title || 'Ultra'}
 				description={data?.seoDescription || ''}
 			/>
-			<ProjectHeroTitle title={data?.title} />
-			<ProjectHeroMedia heroImage={data?.heroImage} />
+			<ProjectHeroTitle title={data?.title} date={data?.date} useLight />
+			<ArticleHeroImage heroImage={data?.heroImage} />
 			<UltraPageBuilder data={data?.pageBuilder} />
 			{hasRelatedArticle && (
 				<RelatedWrapper>
 					<LayoutWrapper>
-						<RelatedTitle>Related Article</RelatedTitle>
+						<Link
+							href={`/news/${data?.relatedArticle?.slug?.current}`}
+						>
+							<RelatedSubTitle className="type-h4">
+								Related Article
+							</RelatedSubTitle>
+							<RelatedTitle className="type-d1">
+								{data?.relatedArticle?.title || ''}
+							</RelatedTitle>
+							{data.relatedArticle?.heroImage && (
+								<ImageWrapper>
+									<Image
+										src={data.relatedArticle?.heroImage}
+										alt=""
+										fill
+									/>
+								</ImageWrapper>
+							)}
+						</Link>
 					</LayoutWrapper>
 				</RelatedWrapper>
 			)}
@@ -85,16 +148,16 @@ const Page = (props: Props) => {
 };
 
 export async function getStaticPaths() {
-	const projectsListQuery = `
-		*[_type == 'article'] [0...10] {
+	const articleListQuery = `
+		*[_type == 'article'] [0...100] {
 			slug
 		}
 	`;
 
-	const allCaseStudies = await client.fetch(projectsListQuery);
+	const allArticles = await client.fetch(articleListQuery);
 
 	return {
-		paths: allCaseStudies.map((item: any) => {
+		paths: allArticles.map((item: any) => {
 			return `/news/${item?.slug?.current}`;
 		}),
 		fallback: true
@@ -105,7 +168,7 @@ export async function getStaticProps({ params }: any) {
 	const articleQuery = `
 		*[_type == 'article' && slug.current == "${params.slug[0]}"][0] {
 			...,
-			heroImage: heroImage.asset->url,
+			'heroImage': heroImage.asset->url,
 			pageBuilder[] {
 				...,
 				'leftImage': leftImage.asset->url,
@@ -115,9 +178,9 @@ export async function getStaticProps({ params }: any) {
 				'image': image.asset->url,
 				'video': video.asset->playbackId
 			},
-			relatedArticle[]-> {
+			relatedArticle-> {
 				...,
-				heroImage: heroImage.asset->url
+				'heroImage': heroImage.asset->url,
 			}
 		}
 	`;
