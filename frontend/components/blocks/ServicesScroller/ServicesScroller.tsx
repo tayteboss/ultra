@@ -2,33 +2,52 @@ import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import { AboutPageType } from '../../../shared/types/types';
 import pxToRem from '../../../utils/pxToRem';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import router from 'next/router';
-import { useState, useRef, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/autoplay'; // Include autoplay styles
 
 const ServicesScrollerWrapper = styled.section`
 	position: relative;
 	padding: ${pxToRem(240)} 0;
-	margin-bottom: -250px;
 	overflow: hidden;
+
+	.swiper-wrapper {
+		transition-timing-function: linear !important;
+	}
+
+	.swiper-slide {
+		height: ${pxToRem(54)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			height: ${pxToRem(32)};
+		}
+	}
 `;
 
-const Inner = styled(motion.ul)`
+const Inner = styled.ul`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: ${pxToRem(8)};
 	position: relative;
+	height: 80vh;
 `;
 
-const Title = styled.h2`
-	margin-bottom: ${pxToRem(40)};
+const Title = styled.h4`
+	margin-bottom: ${pxToRem(64)};
 `;
 
 const ServiceItem = styled.li`
 	text-align: center;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(25)} !important;
+		line-height: ${pxToRem(28)} !important;
+	}
 `;
 
 const GradTop = styled.div`
@@ -60,69 +79,35 @@ const ServicesScroller = (props: Props) => {
 
 	const hasData = data && data.length > 0;
 
-	const [windowHeight, setWindowHeight] = useState(0);
-	const [distanceToTop, setDistanceToTop] = useState(0);
-
-	const wrapperRef = useRef<HTMLDivElement>(null);
-
-	const { scrollY } = useScroll();
-
-	const transform = useTransform(
-		scrollY,
-		[distanceToTop - windowHeight, distanceToTop + windowHeight * 2],
-		['translateY(250px)', 'translateY(-250px)']
-	);
-
-	useEffect(() => {
-		if (wrapperRef?.current) {
-			setDistanceToTop(
-				window.pageYOffset +
-					wrapperRef.current.getBoundingClientRect().top
-			);
-		}
-
-		setWindowHeight(window.innerHeight);
-
-		const timer = setTimeout(() => {
-			if (wrapperRef?.current) {
-				setDistanceToTop(
-					window.pageYOffset +
-						wrapperRef.current.getBoundingClientRect().top
-				);
-			}
-
-			setWindowHeight(window.innerHeight);
-		}, 1000);
-
-		return () => clearTimeout(timer);
-	}, [distanceToTop, router]);
-
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.01,
-		rootMargin: '-50px'
-	});
-
 	return (
 		<ServicesScrollerWrapper>
 			<LayoutWrapper>
-				<Inner style={{ transform }}>
-					<GradTop />
-					{/* <Title
-						className={`type-h3 view-element-fade-in ${
-							inView ? 'view-element-fade-in--in-view' : ''
-						}`}
-						ref={ref}
+				<Inner>
+					<Title>Our services</Title>
+					<Swiper
+						direction="vertical" // Set vertical scroll direction
+						spaceBetween={10}
+						slidesPerView="auto"
+						loop={true}
+						autoplay={{
+							delay: 0,
+							pauseOnMouseEnter: false,
+							disableOnInteraction: true
+						}}
+						speed={1000} // Control speed for smooth scrolling
+						modules={[Autoplay]}
 					>
-						Our services
-					</Title> */}
-					{hasData &&
-						data.map((item, i) => (
-							<Service className="type-h1" key={i}>
-								{item}
-							</Service>
-						))}
-					<GradBottom />
+						<GradTop />
+						{hasData &&
+							data.map((item, i) => (
+								<SwiperSlide key={i}>
+									<Service className="type-h1">
+										{item}
+									</Service>
+								</SwiperSlide>
+							))}
+						<GradBottom />
+					</Swiper>
 				</Inner>
 			</LayoutWrapper>
 		</ServicesScrollerWrapper>
@@ -141,7 +126,7 @@ const Service = (props: any) => {
 	return (
 		<ServiceItem
 			ref={ref}
-			className={`type-h1 view-element-bottom-top ${
+			className={`type-h2 view-element-bottom-top ${
 				inView ? 'view-element-bottom-top--in-view' : ''
 			}`}
 		>
