@@ -215,7 +215,6 @@ const MobileContactDetails = styled.div`
 
 const ContactLink = styled.a`
 	color: var(--footer-fg);
-	color: var(--footer-fg);
 `;
 
 const Title = styled.h4`
@@ -224,7 +223,15 @@ const Title = styled.h4`
 	}
 `;
 
-const LinkTag = styled.div``;
+const LinkTag = styled.div`
+	color: var(--footer-fg);
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		color: var(--footer-hover);
+	}
+`;
 
 const TermsFooter = styled.div`
 	display: flex;
@@ -352,12 +359,12 @@ const Footer = (props: Props) => {
 										LinkedIn
 									</SocialLink>
 								)}
-								<MobileNewsletterLink
+								{/* <MobileNewsletterLink
 									href="/contact#newsletter"
 									className="type-h3"
 								>
 									Newsletter
-								</MobileNewsletterLink>
+								</MobileNewsletterLink> */}
 								<MobileAddressDetails>
 									{addressUrl && (
 										<AddressWrapper
@@ -414,14 +421,14 @@ const Footer = (props: Props) => {
 								</LogoWrapper>
 							</LHS>
 							<RHS>
-								<Title className="type-h2 right-align">
+								{/* <Title className="type-h2 right-align">
 									Subscribe to
 								</Title>
 								<Link href="/contact#newsletter">
 									<LinkTag className="type-h3 right-align">
 										Newsletter
 									</LinkTag>
-								</Link>
+								</Link> */}
 							</RHS>
 						</BottomWrapper>
 					</Inner>

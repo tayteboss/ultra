@@ -66,6 +66,8 @@ const Layout = (props: Props) => {
 		return () => clearInterval(interval);
 	}, [accentHex]);
 
+	console.log('accentHexCodes', accentHexCodes);
+
 	return (
 		<>
 			<Header

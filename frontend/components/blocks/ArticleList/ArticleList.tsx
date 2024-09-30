@@ -28,8 +28,6 @@ const ArticleList = (props: Props) => {
 
 	const hasData = data.length > 0;
 
-	console.log('data', data);
-
 	return (
 		<ArticleListWrapper>
 			<LayoutWrapper>

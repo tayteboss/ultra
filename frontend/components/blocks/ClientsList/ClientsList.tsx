@@ -93,8 +93,6 @@ type Props = {
 const ClientsList = (props: Props) => {
 	const { data } = props;
 
-	console.log('data', data);
-
 	const hasData = data?.length > 0;
 
 	const { ref, inView } = useInView({

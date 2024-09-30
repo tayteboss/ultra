@@ -15,6 +15,8 @@ import HeroTitle from '../components/blocks/HeroTitle';
 import ContactList from '../components/ContactList';
 import muxBlurHash from '@mux/blurhash';
 import pxToRem from '../utils/pxToRem';
+import { useState } from 'react';
+import NewsletterModal from '../components/blocks/NewsletterModal';
 
 const PageWrapper = styled(motion.div)`
 	margin-bottom: ${pxToRem(140)};
@@ -34,6 +36,8 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, blurHashBase64, pageTransitionVariants, siteSettings } =
 		props;
+
+	const [newsletterIsOpen, setNewsletterIsOpen] = useState(false);
 
 	return (
 		<PageWrapper
@@ -69,7 +73,9 @@ const Page = (props: Props) => {
 				instagramUrl={siteSettings.instagramUrl}
 				linkedInUrl={siteSettings.linkedInUrl}
 				newsletterCta={data?.newsletterCta}
+				setNewsletterIsOpen={setNewsletterIsOpen}
 			/>
+			{/* <NewsletterModal isOpen={newsletterIsOpen} /> */}
 		</PageWrapper>
 	);
 };

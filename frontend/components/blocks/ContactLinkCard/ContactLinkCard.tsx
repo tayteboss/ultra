@@ -121,6 +121,7 @@ type Props = {
 	useNewsletterButton?: boolean;
 	useMapsButton?: boolean;
 	addressUrl?: string;
+	setNewsletterIsOpen?: (value: boolean) => void;
 };
 
 const ContactLinkCard = (props: Props) => {
@@ -132,7 +133,8 @@ const ContactLinkCard = (props: Props) => {
 		linkedInUrl,
 		useNewsletterButton,
 		useMapsButton,
-		addressUrl
+		addressUrl,
+		setNewsletterIsOpen
 	} = props;
 
 	return (
@@ -168,7 +170,12 @@ const ContactLinkCard = (props: Props) => {
 						</ButtonWrapper>
 					)}
 					{useNewsletterButton && (
-						<NewsletterTrigger>
+						<NewsletterTrigger
+							onClick={() =>
+								setNewsletterIsOpen && setNewsletterIsOpen(true)
+							}
+							id="newsletter"
+						>
 							Sign up to newsletter
 						</NewsletterTrigger>
 					)}

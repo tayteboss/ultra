@@ -102,8 +102,6 @@ const Page = (props: Props) => {
 
 	const hasRelatedArticle = data?.relatedArticle;
 
-	console.log('data', data);
-
 	return (
 		<PageWrapper
 			variants={workPageVariants}

@@ -22,6 +22,7 @@ type Props = {
 	instagramUrl: string;
 	linkedInUrl: string;
 	newsletterCta: string;
+	setNewsletterIsOpen?: (value: boolean) => void;
 };
 
 const ContactListWrapper = styled.section`
@@ -57,7 +58,8 @@ const ContactList = (props: Props) => {
 		followUsCta,
 		instagramUrl,
 		linkedInUrl,
-		newsletterCta
+		newsletterCta,
+		setNewsletterIsOpen
 	} = props;
 
 	return (
@@ -93,16 +95,14 @@ const ContactList = (props: Props) => {
 						cta={findUsCta}
 						useMapsButton={true}
 						addressUrl={addressUrl}
-						streetAddress={streetAddress}
 						title="Find us"
 					/>
-					<ContactLinkCard
+					{/* <ContactLinkCard
 						cta={newsletterCta}
 						useNewsletterButton={true}
-						instagramUrl={instagramUrl}
-						linkedInUrl={linkedInUrl}
+						setNewsletterIsOpen={setNewsletterIsOpen}
 						title="Newsletter"
-					/>
+					/> */}
 				</LayoutGrid>
 			</LayoutWrapper>
 		</ContactListWrapper>
