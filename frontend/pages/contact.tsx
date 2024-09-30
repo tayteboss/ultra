@@ -71,7 +71,11 @@ export async function getStaticProps() {
 	const data = await client.fetch(contactPageQueryString);
 	const siteSettings = await client.fetch(siteSettingsQueryString);
 
-	const { blurHashBase64 } = await muxBlurHash(data.showreelVideo);
+	let blurHashBase64: any = '';
+
+	if (data?.showreelVideo) {
+		blurHashBase64 = await muxBlurHash(data?.showreelVideo);
+	}
 
 	return {
 		props: {
