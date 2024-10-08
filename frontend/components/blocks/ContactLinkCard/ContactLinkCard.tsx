@@ -139,53 +139,51 @@ const ContactLinkCard = (props: Props) => {
 
 	return (
 		<>
-			{cta && (
-				<ContactLinkCardWrapper>
-					{title && <Title>{title}</Title>}
-					{cta && (
-						<Cta
-							dangerouslySetInnerHTML={{
-								__html: formatHTML(cta)
-							}}
-						/>
-					)}
-					{useSocialButtons && (
-						<ButtonWrapper>
-							<Button
-								href={instagramUrl}
-								target="_blank"
-								className="instagram"
-							>
-								<InstagramSvg />
-								Instagram
-							</Button>
-							<Button
-								href={linkedInUrl}
-								target="_blank"
-								className="linkedin"
-							>
-								<LinkedInSvg />
-								LinkedIn
-							</Button>
-						</ButtonWrapper>
-					)}
-					{useNewsletterButton && (
-						<NewsletterTrigger
-							onClick={() =>
-								setNewsletterIsOpen && setNewsletterIsOpen(true)
-							}
-							id="newsletter"
+			<ContactLinkCardWrapper>
+				{title && <Title>{title}</Title>}
+				{cta && (
+					<Cta
+						dangerouslySetInnerHTML={{
+							__html: formatHTML(cta)
+						}}
+					/>
+				)}
+				{useSocialButtons && (
+					<ButtonWrapper>
+						<Button
+							href={instagramUrl}
+							target="_blank"
+							className="instagram"
 						>
-							Sign up to newsletter
-						</NewsletterTrigger>
-					)}
-					{useMapsButton && (
-						<Button href={addressUrl} target="_blank">
-							Google Maps
+							<InstagramSvg />
+							Instagram
 						</Button>
-					)}
-				</ContactLinkCardWrapper>
-			)}
+						<Button
+							href={linkedInUrl}
+							target="_blank"
+							className="linkedin"
+						>
+							<LinkedInSvg />
+							LinkedIn
+						</Button>
+					</ButtonWrapper>
+				)}
+				{useNewsletterButton && (
+					<NewsletterTrigger
+						onClick={() =>
+							setNewsletterIsOpen && setNewsletterIsOpen(true)
+						}
+						id="newsletter"
+					>
+						Sign up to newsletter
+					</NewsletterTrigger>
+				)}
+				{useMapsButton && (
+					<Button href={addressUrl} target="_blank">
+						Google Maps
+					</Button>
+				)}
+			</ContactLinkCardWrapper>
 		</>
 	);
 };
