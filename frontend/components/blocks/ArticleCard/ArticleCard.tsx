@@ -46,6 +46,12 @@ const ImageInner = styled.div`
 	inset: 0;
 	height: 100%;
 	width: 100%;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 `;
 
 const Title = styled.h4`
