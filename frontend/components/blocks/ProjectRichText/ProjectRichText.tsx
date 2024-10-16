@@ -69,7 +69,7 @@ const ProjectRichText = (props: Props) => {
 					}`}
 				>
 					{content && (
-						<RichTextWrapper>
+						<RichTextWrapper className="content">
 							<PortableText value={content} />
 						</RichTextWrapper>
 					)}

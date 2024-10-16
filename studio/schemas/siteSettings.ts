@@ -11,17 +11,17 @@ export default {
       initialValue: 'Site Settings',
     },
     {
-      title: 'General Enquiries Email',
+      title: 'Talk to us email',
       name: 'generalEnquiriesEmail',
       type: 'email',
     },
     {
-      title: 'New Business Email',
+      title: 'Work with us email',
       name: 'newBusinessEmail',
       type: 'email',
     },
     {
-      title: 'Careers Email',
+      title: 'Join us Email',
       name: 'careersEmail',
       type: 'email',
     },
@@ -60,6 +60,40 @@ export default {
       title: 'Cookies CTA',
       name: 'cookieCta',
       type: 'string',
+    },
+    {
+      title: 'Terms & Conditions Content',
+      name: 'termsAndConditionsContent',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            {title: 'Normal', value: 'normal'},
+            {title: 'H1', value: 'h1'},
+            {title: 'H2', value: 'h2'},
+            {title: 'H3', value: 'h3'},
+            {title: 'H4', value: 'h4'},
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Privacy Policy Content',
+      name: 'privacyPolicyContent',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            {title: 'Normal', value: 'normal'},
+            {title: 'H1', value: 'h1'},
+            {title: 'H2', value: 'h2'},
+            {title: 'H3', value: 'h3'},
+            {title: 'H4', value: 'h4'},
+          ],
+        },
+      ],
     },
   ],
 }

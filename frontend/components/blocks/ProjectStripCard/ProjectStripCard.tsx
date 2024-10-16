@@ -54,7 +54,7 @@ const ProjectStripCard = (props: Props) => {
 			href={`/work/${slug}`}
 			className="cursor-text project-strip-card"
 			data-theme="orange"
-			data-text="View project"
+			data-text="View work"
 			onMouseOver={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}
 			onMouseDown={onLinkMouseDown}

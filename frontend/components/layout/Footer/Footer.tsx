@@ -4,6 +4,7 @@ import pxToRem from '../../../utils/pxToRem';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import LogoSvg from '../../svgs/LogoSvg';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 type Props = {
 	postcode: string;
@@ -46,7 +47,7 @@ const Inner = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		gap: ${pxToRem(240)};
-		height: calc(100svh - 64px);
+		min-height: calc(100svh - 64px);
 		justify-content: space-between;
 	}
 
@@ -76,7 +77,28 @@ const SocialLink = styled.a`
 	}
 `;
 
-const RHS = styled.div``;
+const MobileNewsletterLink = styled.a`
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+		padding-top: ${pxToRem(24)};
+
+		color: var(--footer-fg);
+
+		transition: all var(--transition-speed-default) var(--transition-ease);
+
+		&:hover {
+			color: var(--footer-hover);
+		}
+	}
+`;
+
+const RHS = styled.div`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
 
 const AddressWrapper = styled.a`
 	transition: all var(--transition-speed-default) var(--transition-ease);
@@ -156,7 +178,13 @@ const LogoWrapper = styled.div`
 
 const Copyright = styled.p`
 	text-align: right;
-	color: var(--footer-fg);
+	color: var(--footer-bg);
+
+	transition: color var(--transition-speed-slow) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		font-size: ${pxToRem(12)} !important;
+	}
 `;
 
 const DesktopAddressDetails = styled.div`
@@ -187,6 +215,53 @@ const MobileContactDetails = styled.div`
 
 const ContactLink = styled.a`
 	color: var(--footer-fg);
+`;
+
+const Title = styled.h4`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
+
+const LinkTag = styled.div`
+	color: var(--footer-fg);
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		color: var(--footer-hover);
+	}
+`;
+
+const TermsFooter = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: ${pxToRem(24)};
+`;
+
+const TermsRHS = styled.div`
+	display: flex;
+	gap: ${pxToRem(16)};
+`;
+
+const TermsLHS = styled.div`
+	display: flex;
+	gap: ${pxToRem(16)};
+`;
+
+const SmallLinkTag = styled.div`
+	color: var(--footer-bg);
+
+	transition: color var(--transition-speed-slow) var(--transition-ease);
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		font-size: ${pxToRem(12)} !important;
+	}
 `;
 
 const Footer = (props: Props) => {
@@ -245,7 +320,7 @@ const Footer = (props: Props) => {
 											className="type-h3"
 											href={`mailto:${generalEnquiriesEmail}`}
 										>
-											General enquiries
+											Talk to us
 										</ContactLink>
 									)}
 									{newBusinessEmail && (
@@ -253,7 +328,7 @@ const Footer = (props: Props) => {
 											className="type-h3"
 											href={`mailto:${newBusinessEmail}`}
 										>
-											New business
+											Work with us
 										</ContactLink>
 									)}
 									{careersEmail && (
@@ -261,10 +336,11 @@ const Footer = (props: Props) => {
 											className="type-h3"
 											href={`mailto:${careersEmail}`}
 										>
-											Join our team
+											Join us
 										</ContactLink>
 									)}
 								</MobileContactDetails>
+								<Title className="type-h2">Follow us</Title>
 								{instagramUrl && (
 									<SocialLink
 										href={instagramUrl}
@@ -283,6 +359,12 @@ const Footer = (props: Props) => {
 										LinkedIn
 									</SocialLink>
 								)}
+								{/* <MobileNewsletterLink
+									href="/contact#newsletter"
+									className="type-h3"
+								>
+									Newsletter
+								</MobileNewsletterLink> */}
 								<MobileAddressDetails>
 									{addressUrl && (
 										<AddressWrapper
@@ -307,6 +389,9 @@ const Footer = (props: Props) => {
 								</MobileAddressDetails>
 							</LHS>
 							<DesktopAddressDetails>
+								<Title className="type-h2 right-align">
+									Visit us
+								</Title>
 								{addressUrl && (
 									<AddressWrapper
 										href={addressUrl}
@@ -336,13 +421,36 @@ const Footer = (props: Props) => {
 								</LogoWrapper>
 							</LHS>
 							<RHS>
-								<Copyright>
-									© {new Date().getFullYear()} Ultra Brand
-									Studio
-								</Copyright>
+								{/* <Title className="type-h2 right-align">
+									Subscribe to
+								</Title>
+								<Link href="/contact#newsletter">
+									<LinkTag className="type-h3 right-align">
+										Newsletter
+									</LinkTag>
+								</Link> */}
 							</RHS>
 						</BottomWrapper>
 					</Inner>
+					<TermsFooter>
+						<TermsLHS>
+							<Link href="/terms-conditions">
+								<SmallLinkTag className="type-p">
+									Terms & Conditions
+								</SmallLinkTag>
+							</Link>
+							<Link href="/privacy-policy">
+								<SmallLinkTag className="type-p">
+									Privacy Policy
+								</SmallLinkTag>
+							</Link>
+						</TermsLHS>
+						<TermsRHS>
+							<Copyright>
+								© {new Date().getFullYear()} Ultra Brand Studio
+							</Copyright>
+						</TermsRHS>
+					</TermsFooter>
 				</LayoutWrapper>
 			</Outer>
 		</FooterWrapper>

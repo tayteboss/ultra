@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Props } from 'next/script';
 import { useState, useRef, useEffect } from 'react';
+import moment from 'moment';
 
 const ProjectHeroTitleWrapper = styled(motion.div)`
 	padding-top: ${pxToRem(180)};
-	max-width: 80%;
 	margin-bottom: ${pxToRem(32)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -17,16 +16,45 @@ const ProjectHeroTitleWrapper = styled(motion.div)`
 	}
 `;
 
-const Inner = styled.div``;
+const Inner = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
 
-const Title = styled.h1`
-	color: var(--colour-off-white);
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		gap: ${pxToRem(8)};
+	}
 `;
 
+const Title = styled.h1<{ $useLight: boolean }>`
+	color: ${(props) =>
+		props.$useLight ? 'var(--colour-black)' : 'var(--colour-off-white)'};
+`;
+
+const DateText = styled.p`
+	opacity: 0.5;
+	text-align: right;
+`;
+
+type Props = {
+	title?: string;
+	useLight?: boolean;
+	date?: string;
+};
+
 const ProjectHeroTitle = (props: Props) => {
-	const { title } = props;
+	const { title, date, useLight } = props;
 
 	const [windowHeight, setWindowHeight] = useState(0);
+	const [formattedDate, setFormattedDate] = useState('');
+
+	useEffect(() => {
+		if (date) {
+			setFormattedDate(moment(date).format('MMM YYYY'));
+		}
+	}, [date]);
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +89,10 @@ const ProjectHeroTitle = (props: Props) => {
 		>
 			<LayoutWrapper>
 				<Inner className="type-d1">
-					{title && <Title>{title}</Title>}
+					{title && (
+						<Title $useLight={useLight || false}>{title}</Title>
+					)}
+					{formattedDate && <DateText>{formattedDate}</DateText>}
 				</Inner>
 			</LayoutWrapper>
 		</ProjectHeroTitleWrapper>

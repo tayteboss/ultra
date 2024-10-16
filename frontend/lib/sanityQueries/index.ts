@@ -34,6 +34,12 @@ export const workPageQueryString = `
 	}
 `;
 
+export const newsPageQueryString = `
+	*[_type == 'newsPage'][0] {
+		...,
+	}
+`;
+
 export const contactPageQueryString = `
 	*[_type == 'contactPage'][0] {
 		...,
@@ -54,10 +60,16 @@ export const offBriefPageQueryString = `
 export const aboutPageQueryString = `
 	*[_type == 'aboutPage'][0] {
 		...,
-		'clientsLogos': clientsLogos[] {
-			'asset': asset->url,
-			"alt:": alt,
-		},
+		'clientList': clientList[] {
+			...,
+			title,
+			logo {
+				...,
+				asset-> {
+					url,
+				}
+			}
+		}
 	}
 `;
 
@@ -71,5 +83,12 @@ export const projectQueryString = `
 				playbackId
 			}
 		},
+	}
+`;
+
+export const articleQueryString = `
+	*[_type == 'article'] | order(date desc) [0...8] {
+		...,
+		'heroImage': heroImage.asset->url
 	}
 `;

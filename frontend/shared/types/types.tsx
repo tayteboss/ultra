@@ -49,9 +49,16 @@ export type SiteSettingsType = {
 	accentHexCode: string;
 	accentHexCodes: string[];
 	cookieCta: string;
+	termsAndConditionsContent: any;
+	privacyPolicyContent: any;
 };
 
 export type WorkPageType = {
+	seoTitle: string;
+	seoDescription: string;
+};
+
+export type NewsPageType = {
 	seoTitle: string;
 	seoDescription: string;
 };
@@ -76,6 +83,16 @@ export type ProjectType = {
 	_id: string;
 };
 
+export type ArticleType = {
+	title: string;
+	slug: { current: string };
+	seoDescription?: string;
+	heroImage: string;
+	relatedArticle?: ArticleType;
+	pageBuilder: [];
+	date: string;
+};
+
 export type ContactPageType = {
 	seoTitle: string;
 	seoDescription: string;
@@ -88,6 +105,9 @@ export type ContactPageType = {
 	prefixHeroTitle: string;
 	suffixHeroTitle: string;
 	showreelVideo: string;
+	followUsCta: string;
+	findUsCta: string;
+	newsletterCta: string;
 };
 
 export type OffBriefPageType = {

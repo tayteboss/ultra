@@ -105,6 +105,14 @@ const MobileMenu = (props: Props) => {
 											Work
 										</MainListTag>
 									</Link>
+									{/* <Link href="/news" passHref legacyBehavior>
+										<MainListTag
+											$isActive={activeLink === 'News'}
+											className="type-h1"
+										>
+											News
+										</MainListTag>
+									</Link> */}
 									<Link href="/about" passHref legacyBehavior>
 										<MainListTag
 											$isActive={activeLink === 'About'}

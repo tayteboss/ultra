@@ -206,10 +206,37 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.content {
+		h1,
+		h2,
+		h3,
+		h4 {
+			&:not(:last-child ) {
+				margin-bottom: ${pxToRem(32)};
+			}
+
+			&:not(:first-child) {
+				padding-top: ${pxToRem(24)};
+			}
+		}
+
 		p {
 			&:not(:last-child ) {
 				margin-bottom: ${pxToRem(16)};
 			}
+		}
+
+		a {
+			text-decoration: underline;
+
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	.left-align {
+		* {
+			text-align: left;
 		}
 	}
 
@@ -230,7 +257,7 @@ export const GlobalStyles = createGlobalStyle`
 		opacity: 0;
 		transform: translateY(15px);
 
-		transition: opacity var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
+		transition: opacity var(--transition-speed-extra-slow) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
 
 		&--in-view
 		{
@@ -356,5 +383,9 @@ export const GlobalStyles = createGlobalStyle`
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+.right-align {
+	text-align: right;
 }
 `;

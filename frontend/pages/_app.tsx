@@ -175,7 +175,12 @@ const App = (props: Props) => {
 			setDefaultTheme();
 		} else if (router.pathname === '/off-brief') {
 			setOffBriefTheme();
-		} else if (router.pathname === '/contact') {
+		} else if (
+			router.pathname === '/contact' ||
+			router.pathname === '/terms-conditions' ||
+			router.pathname === '/privacy-policy' ||
+			router.pathname.includes('/news')
+		) {
 			setContactTheme();
 		} else if (router.pathname === '/about') {
 			setAboutTheme();
