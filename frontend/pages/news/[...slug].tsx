@@ -112,6 +112,9 @@ const Page = (props: Props) => {
 			<NextSeo
 				title={data?.title || 'Ultra'}
 				description={data?.seoDescription || ''}
+				// REMOVE WHEN READY
+				nofollow={true}
+				noindex={true}
 			/>
 			<ProjectHeroTitle title={data?.title} date={data?.date} useLight />
 			<ArticleHeroImage heroImage={data?.heroImage} />

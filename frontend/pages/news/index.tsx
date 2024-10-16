@@ -82,6 +82,9 @@ const Page = (props: Props) => {
 			<NextSeo
 				title={data?.seoTitle || 'Ultra'}
 				description={data?.seoDescription || ''}
+				// REMOVE WHEN READY
+				nofollow={true}
+				noindex={true}
 			/>
 			<HeroTitle preCursor="Latest news" />
 			<ArticleList data={fetchedArticles} />
