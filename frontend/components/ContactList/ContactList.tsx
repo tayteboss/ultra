@@ -97,12 +97,12 @@ const ContactList = (props: Props) => {
 						addressUrl={addressUrl}
 						title="Find us"
 					/>
-					{/* <ContactLinkCard
+					<ContactLinkCard
 						cta={newsletterCta}
 						useNewsletterButton={true}
 						setNewsletterIsOpen={setNewsletterIsOpen}
 						title="Newsletter"
-					/> */}
+					/>
 				</LayoutGrid>
 			</LayoutWrapper>
 		</ContactListWrapper>

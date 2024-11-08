@@ -75,7 +75,10 @@ const Page = (props: Props) => {
 				newsletterCta={data?.newsletterCta}
 				setNewsletterIsOpen={setNewsletterIsOpen}
 			/>
-			{/* <NewsletterModal isOpen={newsletterIsOpen} /> */}
+			<NewsletterModal
+				isOpen={newsletterIsOpen}
+				setNewsletterIsOpen={setNewsletterIsOpen}
+			/>
 		</PageWrapper>
 	);
 };

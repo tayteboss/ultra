@@ -1,7 +1,8 @@
 import { AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import { useEffect } from 'react';
+import { CircleX } from 'lucide-react';
+import HubspotForm from 'react-hubspot-form';
 
 const NewsletterModalWrapper = styled.div`
 	position: fixed;
@@ -22,9 +23,12 @@ const Inner = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	position: relative;
 `;
 
-const TitleWrapper = styled.div``;
+const TitleWrapper = styled.div`
+	margin-bottom: ${pxToRem(24)};
+`;
 
 const Title = styled.h2`
 	margin-bottom: ${pxToRem(16)};
@@ -34,48 +38,55 @@ const Subtitle = styled.h4`
 	color: var(--colour-off-black);
 `;
 
-const FormWrapper = styled.div``;
+const FormWrapper = styled.div`
+	#hubspotForm {
+		width: 100%;
+	}
+`;
+
+const CloseTrigger = styled.button`
+	position: absolute;
+	top: ${pxToRem(16)};
+	right: ${pxToRem(16)};
+	z-index: 2;
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		opacity: 0.5;
+	}
+`;
 
 type Props = {
 	isOpen: boolean;
+	setNewsletterIsOpen: (value: boolean) => void;
 };
 
 const NewsletterModal = (props: Props) => {
-	const { isOpen } = props;
-
-	useEffect(() => {
-		const script = document.createElement('script');
-		script.src = 'https://js.hsforms.net/forms/shell.js';
-		document.body.appendChild(script);
-
-		script.addEventListener('load', () => {
-			// @TS-ignore
-			if (window.hbspt) {
-				// @TS-ignore
-				window.hbspt.forms.create({
-					region: 'eu1',
-					portalId: portalId,
-					formId: formId,
-					target: '#hubspotForm'
-				});
-			}
-		});
-	}, []);
+	const { isOpen, setNewsletterIsOpen } = props;
 
 	return (
 		<AnimatePresence>
 			{isOpen && (
 				<NewsletterModalWrapper>
 					<Inner>
+						<CloseTrigger
+							onClick={() => setNewsletterIsOpen(false)}
+						>
+							<CircleX />
+						</CloseTrigger>
 						<TitleWrapper>
 							<Title>Get Ultra in your inbox</Title>
 							<Subtitle>
 								Enter your email to receive our newsletter
 							</Subtitle>
 						</TitleWrapper>
-						<FormWrapper>
-							<div id="hubspotForm"></div>
-						</FormWrapper>
+						<HubspotForm
+							portalId={process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}
+							formId={process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID}
+							onSubmit={() => console.log('Submit!')}
+							loading={<div>Loading...</div>}
+						/>
 					</Inner>
 				</NewsletterModalWrapper>
 			)}
